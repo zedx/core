@@ -1,0 +1,2 @@
+# core
+ZEDx Core Project
