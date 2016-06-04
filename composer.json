@@ -4,6 +4,14 @@
     "keywords": ["cms", "classifieds cms", "classified ads manager"],
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Amine Oudjehih",
+            "email": "amine.oudjehih@gmail.com",
+            "homepage": "https://zedx.io",
+            "role": "Founder"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
