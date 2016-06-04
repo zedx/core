@@ -2,6 +2,7 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
+use Illuminate\Http\Request;
 use SoapBox\Formatter\Formatter;
 use ZEDx\Events\Page\PageTemplateWasSwitched;
 use ZEDx\Events\Page\PageThemepartialWasAttached;
@@ -18,7 +19,6 @@ use ZEDx\Models\Page;
 use ZEDx\Models\Tag;
 use ZEDx\Models\Template;
 use ZEDx\Models\Themepartial;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -91,7 +91,7 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -105,7 +105,7 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -130,7 +130,7 @@ class PageController extends Controller
     /**
      * Define a page as a homepage.
      *
-     * @param  Page   $page
+     * @param Page $page
      *
      * @return Reponse
      */
@@ -146,8 +146,8 @@ class PageController extends Controller
     /**
      * Attach a theme partial to a page.
      *
-     * @param  Page         $page
-     * @param  Themepartial $themepartial
+     * @param Page         $page
+     * @param Themepartial $themepartial
      *
      * @return void
      */
@@ -163,8 +163,8 @@ class PageController extends Controller
     /**
      * Attach a theme partial from a page.
      *
-     * @param  Page         $page
-     * @param  Themepartial $themepartial
+     * @param Page         $page
+     * @param Themepartial $themepartial
      *
      * @return void
      */
@@ -180,8 +180,8 @@ class PageController extends Controller
     /**
      * Set new template to a page.
      *
-     * @param  Page                  $page
-     * @param  SwitchTemplateRequest $request
+     * @param Page                  $page
+     * @param SwitchTemplateRequest $request
      *
      * @return array
      */
@@ -205,8 +205,8 @@ class PageController extends Controller
     /**
      * Update template blocks.
      *
-     * @param  Page $page
-     * @param  array $connectedBlocks
+     * @param Page  $page
+     * @param array $connectedBlocks
      *
      * @return void
      */
@@ -227,8 +227,8 @@ class PageController extends Controller
     /**
      * Define if blocks are connected to a page.
      *
-     * @param  Page $page
-     * @param  array $connectedBlocks
+     * @param Page  $page
+     * @param array $connectedBlocks
      *
      * @return bool
      */
@@ -237,7 +237,7 @@ class PageController extends Controller
         $connectedBlocks = $this->formatConnectedBlock($connectedBlocks);
 
         foreach ($page->nodes as $node) {
-            if (! in_array($node->block->identifier, $connectedBlocks['from'])) {
+            if (!in_array($node->block->identifier, $connectedBlocks['from'])) {
                 return false;
             }
         }
@@ -248,7 +248,7 @@ class PageController extends Controller
     /**
      * Format connected block.
      *
-     * @param  array $connectedBlocks
+     * @param array $connectedBlocks
      *
      * @return array
      */
@@ -267,8 +267,8 @@ class PageController extends Controller
     /**
      * Attach default theme partials.
      *
-     * @param  Page $page
-     * @param  Template $template
+     * @param Page     $page
+     * @param Template $template
      *
      * @return void
      */
@@ -293,8 +293,8 @@ class PageController extends Controller
     /**
      * Attach tags to a page.
      *
-     * @param  Page $page
-     * @param  Request $request
+     * @param Page    $page
+     * @param Request $request
      *
      * @return void
      */
@@ -315,7 +315,7 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Page  $page
+     * @param Page $page
      *
      * @return Response
      */

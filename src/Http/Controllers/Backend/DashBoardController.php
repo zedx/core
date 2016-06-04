@@ -2,10 +2,10 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use ZEDx\Http\Controllers\Controller;
-use ZEDx\Http\Requests\DashboardWidgetUpdateRequest;
-use ZEDx\Http\Requests\DashboardWidgetCreateRequest;
 use Request;
+use ZEDx\Http\Controllers\Controller;
+use ZEDx\Http\Requests\DashboardWidgetCreateRequest;
+use ZEDx\Http\Requests\DashboardWidgetUpdateRequest;
 use ZEDx\Models\Dashboardwidget;
 
 class DashBoardController extends Controller

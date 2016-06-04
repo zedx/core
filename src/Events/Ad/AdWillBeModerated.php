@@ -2,10 +2,10 @@
 
 namespace ZEDx\Events\Ad;
 
-use ZEDx\Models\Ad;
-use ZEDx\Events\Event;
-use ZEDx\Models\Adstatus;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
+use ZEDx\Models\Ad;
+use ZEDx\Models\Adstatus;
 
 class AdWillBeModerated extends Event
 {

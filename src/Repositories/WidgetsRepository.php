@@ -141,7 +141,7 @@ class WidgetsRepository implements ComponentInterface, Countable
 
             $groups = $json->get('groups');
 
-            if (! $this->allowedGroup($groups, $group)) {
+            if (!$this->allowedGroup($groups, $group)) {
                 continue;
             }
 
@@ -155,13 +155,13 @@ class WidgetsRepository implements ComponentInterface, Countable
 
             $widgetClass = new $widget($studlyType, $studlyAuthor, $studlyName, []);
 
-            if (! $this->filter) {
+            if (!$this->filter) {
                 $widgets[$fullName] = $widgetClass;
                 continue;
             }
 
             if ($this->filter == 'authors') {
-                if (! isset($widgets[$studlyAuthor])) {
+                if (!isset($widgets[$studlyAuthor])) {
                     $widgets[$studlyAuthor][] = $widgetClass;
                 } else {
                     array_push($widgets[$studlyAuthor], $widgetClass);
@@ -175,8 +175,8 @@ class WidgetsRepository implements ComponentInterface, Countable
     /**
      * whether the given group is inside group list.
      *
-     * @param  array  $groups
-     * @param  string $group
+     * @param array  $groups
+     * @param string $group
      *
      * @return bool
      */
@@ -285,8 +285,6 @@ class WidgetsRepository implements ComponentInterface, Countable
                 return $widget;
             }
         }
-
-        return;
     }
 
     /**
@@ -304,13 +302,13 @@ class WidgetsRepository implements ComponentInterface, Countable
      *
      * @param $fullName
      *
-     * @return Widget
-     *
      * @throws WidgetNotFoundException
+     *
+     * @return Widget
      */
     public function findOrFail($fullName)
     {
-        if (! is_null($widget = $this->find($fullName))) {
+        if (!is_null($widget = $this->find($fullName))) {
             return $widget;
         }
 
@@ -405,7 +403,7 @@ class WidgetsRepository implements ComponentInterface, Countable
      */
     public function run($fullName, $config = [])
     {
-        print $this->findOrFail($fullName)->setConfig($config)->run();
+        echo $this->findOrFail($fullName)->setConfig($config)->run();
     }
 
     /**
@@ -418,7 +416,7 @@ class WidgetsRepository implements ComponentInterface, Countable
      */
     public function setting($fullName, $config, $url)
     {
-        print $this->findOrFail($fullName)->setConfig($config)->setting($url);
+        echo $this->findOrFail($fullName)->setConfig($config)->setting($url);
     }
 
     /**
@@ -451,7 +449,7 @@ class WidgetsRepository implements ComponentInterface, Countable
         }
 
         foreach ($list[$block] as $widget) {
-            print $this->findOrFail($widget['_namespace'])
+            echo $this->findOrFail($widget['_namespace'])
                 ->setConfig($widget['_config'])
                 ->run();
         }
@@ -476,7 +474,7 @@ class WidgetsRepository implements ComponentInterface, Countable
      */
     public function getStubPath()
     {
-        if (! is_null($this->stubPath)) {
+        if (!is_null($this->stubPath)) {
             return $this->stubPath;
         }
 

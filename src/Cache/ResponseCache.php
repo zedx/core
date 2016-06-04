@@ -23,8 +23,8 @@ class ResponseCache
     protected $cacheProfile;
 
     /**
-     * @param \ZEDx\Cache\CacheHasher               $hasher
-     * @param \ZEDx\Cache\CacheProfile               $cacheProfile
+     * @param \ZEDx\Cache\CacheHasher  $hasher
+     * @param \ZEDx\Cache\CacheProfile $cacheProfile
      */
     public function __construct(ResponseCacheRepository $cache, CacheHasher $hasher, CacheProfile $cacheProfile)
     {
@@ -43,7 +43,7 @@ class ResponseCache
      */
     public function shouldCache(Request $request, Response $response)
     {
-        if (! env('APP_CACHE', true)) {
+        if (!env('APP_CACHE', true)) {
             return false;
         }
 
@@ -51,7 +51,7 @@ class ResponseCache
             return false;
         }
 
-        if (! $this->cacheProfile->shouldCacheRequest($request)) {
+        if (!$this->cacheProfile->shouldCacheRequest($request)) {
             return false;
         }
 
@@ -79,7 +79,7 @@ class ResponseCache
      */
     public function hasCached(Request $request)
     {
-        if (! env('APP_CACHE', true)) {
+        if (!env('APP_CACHE', true)) {
             return false;
         }
 

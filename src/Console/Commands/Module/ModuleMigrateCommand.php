@@ -3,9 +3,9 @@
 namespace ZEDx\Console\Commands\Module;
 
 use Illuminate\Console\Command;
+use Module;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Module;
 
 class ModuleMigrateCommand extends Command
 {
@@ -69,7 +69,7 @@ class ModuleMigrateCommand extends Command
     /**
      * Get migration path for specific module.
      *
-     * @param  Module $module
+     * @param Module $module
      *
      * @return string
      */

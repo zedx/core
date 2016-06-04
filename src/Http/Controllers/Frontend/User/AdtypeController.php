@@ -28,7 +28,7 @@ class AdtypeController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PageService  $service
+     * @param PageService $service
      *
      * @return void
      */
@@ -37,7 +37,7 @@ class AdtypeController extends Controller
         $this->pageService = $service;
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }

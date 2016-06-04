@@ -27,7 +27,7 @@ class AdtypeService extends Controller
     {
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }

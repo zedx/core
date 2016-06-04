@@ -63,7 +63,7 @@ class ZedxInstallCommand extends Command
             $this->output->writeln('');
         }
 
-        if (! $force && file_exists(base_path('.env'))) {
+        if (!$force && file_exists(base_path('.env'))) {
             $this->error('ZEDx is already installed on your server.');
 
             return;
@@ -150,7 +150,7 @@ class ZedxInstallCommand extends Command
         ];
 
         foreach ($codes as $code) {
-            if (! $this->installer->checkCode($code)) {
+            if (!$this->installer->checkCode($code)) {
                 throw new Exception(last($this->installer->getLog()));
             }
         }

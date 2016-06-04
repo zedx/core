@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-class UserTest extends TestCase
+class ExampleTest extends TestCase
 {
     public function test_zedx()
     {

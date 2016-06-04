@@ -39,7 +39,7 @@ class UserService
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateUserRequest  $request
+     * @param UpdateUserRequest $request
      *
      * @return bool
      */
@@ -47,8 +47,8 @@ class UserService
     {
         $inputs = $request->all();
 
-        if (! $this->user->is_validate || Hash::check($inputs['current_password'], $this->user->password)) {
-            if (! $this->user->is_validate && empty($inputs['password'])) {
+        if (!$this->user->is_validate || Hash::check($inputs['current_password'], $this->user->password)) {
+            if (!$this->user->is_validate && empty($inputs['password'])) {
                 return false;
             }
 
@@ -73,8 +73,8 @@ class UserService
     /**
      * Make avatar for a specific user.
      *
-     * @param  User                 $user
-     * @param  string/UploadedFile  $avatar
+     * @param User                $user
+     * @param string/UploadedFile $avatar
      *
      * @return void
      */
@@ -108,8 +108,8 @@ class UserService
     /**
      * Store new user.
      *
-     * @param  array        $data
-     * @param  Admin/User   $actor
+     * @param array      $data
+     * @param Admin/User $actor
      *
      * @return array
      */

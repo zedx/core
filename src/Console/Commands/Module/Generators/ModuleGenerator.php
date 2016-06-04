@@ -42,8 +42,8 @@ class ModuleGenerator extends Generator
      * The constructor.
      *
      * @param $name
-     * @param Config     $config
-     * @param Console    $console
+     * @param Config  $config
+     * @param Console $console
      */
     public function __construct($name, Console $console = null)
     {
@@ -154,7 +154,7 @@ class ModuleGenerator extends Generator
 
         $this->generateFiles();
 
-        if (! $this->plain) {
+        if (!$this->plain) {
             $this->generateResources();
         }
 
@@ -193,7 +193,7 @@ class ModuleGenerator extends Generator
         foreach ($this->getFiles() as $stub => $file) {
             $path = Modules::getModulePath($this->getName()).$file;
 
-            if (! File::isDirectory($dir = dirname($path))) {
+            if (!File::isDirectory($dir = dirname($path))) {
                 File::makeDirectory($dir, 0775, true);
             }
 
@@ -262,7 +262,7 @@ class ModuleGenerator extends Generator
 
         $namespace = Modules::config('namespace');
 
-        if (! isset($replacements[$stub])) {
+        if (!isset($replacements[$stub])) {
             return [];
         }
 

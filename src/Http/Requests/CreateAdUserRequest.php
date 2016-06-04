@@ -14,7 +14,7 @@ class CreateAdUserRequest extends Request
     public function authorize()
     {
         $user = Auth::user();
-        if (! $user->subscription_expired_at) {
+        if (!$user->subscription_expired_at) {
             return true;
         }
 

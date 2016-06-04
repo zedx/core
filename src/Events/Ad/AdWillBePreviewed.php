@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\Ad;
 
+use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Event;
 use ZEDx\Models\Ad;
-use Illuminate\Queue\SerializesModels;
 
 class AdWillBePreviewed extends Event
 {

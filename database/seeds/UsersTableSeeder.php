@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-use ZEDx\Models\User;
+use Illuminate\Database\Seeder;
+use ZEDx\Events\User\UserWasCreated;
 use ZEDx\Models\Role;
 use ZEDx\Models\Subscription;
-use ZEDx\Events\User\UserWasCreated;
+use ZEDx\Models\User;
 
 class UsersTableSeeder extends Seeder
 {

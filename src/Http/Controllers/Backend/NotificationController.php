@@ -26,7 +26,7 @@ class NotificationController extends Controller
     /**
      * Mark all notifications as read.
      *
-     * @param  Request $request
+     * @param Request $request
      *
      * @return Reponse
      */
@@ -34,7 +34,7 @@ class NotificationController extends Controller
     {
         if (\Request::ajax()) {
             return [
-                'success' => (boolean) Notification::readall(),
+                'success' => (bool) Notification::readall(),
             ];
         } else {
             abort(404);

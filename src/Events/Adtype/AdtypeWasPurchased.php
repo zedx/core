@@ -2,10 +2,10 @@
 
 namespace ZEDx\Events\Adtype;
 
-use ZEDx\Events\Event;
-use ZEDx\Models\Order;
-use ZEDx\Models\Adtype;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
+use ZEDx\Models\Adtype;
+use ZEDx\Models\Order;
 
 class AdtypeWasPurchased extends Event
 {

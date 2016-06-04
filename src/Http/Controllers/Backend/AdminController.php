@@ -21,7 +21,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -35,7 +35,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateAdminRequest  $request
+     * @param UpdateAdminRequest $request
      *
      * @return bool
      */
@@ -44,7 +44,7 @@ class AdminController extends Controller
         $inputs = $request->all();
         $admin = $this->admin;
 
-        if (! Hash::check($inputs['my_password'], $admin->password)) {
+        if (!Hash::check($inputs['my_password'], $admin->password)) {
             return back()->withInput()->withErrors(['my_password' => trans('backend.profile.incorrect_password')]);
         }
 

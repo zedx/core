@@ -2,10 +2,10 @@
 
 namespace ZEDx\Events\Subscription;
 
-use ZEDx\Models\User;
+use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Event;
 use ZEDx\Models\Subscription;
-use Illuminate\Queue\SerializesModels;
+use ZEDx\Models\User;
 
 class SubscriptionWasSwaped extends Event
 {

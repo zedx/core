@@ -3,10 +3,10 @@
 namespace ZEDx\Listeners;
 
 use Carbon\Carbon;
-use ZEDx\Models\Role;
-use ZEDx\Mailers\AdMail;
 use ZEDx\Jobs\UpdateCache;
+use ZEDx\Mailers\AdMail;
 use ZEDx\Models\Notification;
+use ZEDx\Models\Role;
 
 class AdEventListener
 {
@@ -159,7 +159,7 @@ class AdEventListener
     /**
      * Register the listeners for the subscriber.
      *
-     * @param  Illuminate\Events\Dispatcher  $events
+     * @param Illuminate\Events\Dispatcher $events
      *
      * @return array
      */

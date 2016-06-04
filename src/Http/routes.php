@@ -1,7 +1,6 @@
 <?php
 
 Route::group(['middleware' => 'api'], function () {
-
 });
 
 Route::group(['middleware' => 'web'], function () {
@@ -263,6 +262,5 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('return/{encryptedOrderId}', ['as' => 'payment.return', 'uses' => 'PaymentController@returnPayment']);
             Route::any('notify/{encryptedOrderId}', ['as' => 'payment.notify', 'uses' => 'PaymentController@notifyPayment']);
         });
-
     });
 });

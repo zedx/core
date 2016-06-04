@@ -2,8 +2,8 @@
 
 namespace ZEDx\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class Code extends Model
 {

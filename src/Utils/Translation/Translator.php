@@ -11,8 +11,8 @@ class Translator
     /**
      * Merge translations.
      *
-     * @param  string $type
-     * @param  array  $defaultTrans
+     * @param string $type
+     * @param array  $defaultTrans
      *
      * @return array
      */
@@ -30,8 +30,8 @@ class Translator
     /**
      * Apply merge.
      *
-     * @param  string $type
-     * @param  array  $defaultTrans
+     * @param string $type
+     * @param array  $defaultTrans
      *
      * @return array
      */

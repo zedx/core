@@ -55,7 +55,7 @@ class ThemePublishCommand extends Command
         $themePath = $this->getThemePath();
         $themePublicPath = $this->getThemePublicPath();
 
-        if (! File::isDirectory($themePath)) {
+        if (!File::isDirectory($themePath)) {
             $this->error("Theme [{$this->name}] doesn't exist!]");
 
             return;
@@ -105,7 +105,7 @@ class ThemePublishCommand extends Command
     /**
      * Merge public manifest file.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */

@@ -54,7 +54,7 @@ class ModulePublishCommand extends Command
     {
         $this->name = $this->argument('name');
 
-        if (! $this->name) {
+        if (!$this->name) {
             $this->publishAll();
 
             return;
@@ -106,7 +106,7 @@ class ModulePublishCommand extends Command
         $sourcePath = $this->getSourcePath();
         $destinationPath = $this->getDestinationPath();
 
-        if (! File::isDirectory($sourcePath)) {
+        if (!File::isDirectory($sourcePath)) {
             $this->info("[ ~ ] Nothing to publish for Module [{$this->module->getStudlyName()}]");
 
             return;

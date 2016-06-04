@@ -22,18 +22,18 @@ class Geolocation
         $json = preg_replace('/:\s*(\-?\d+(\.\d+)?([e|E][\-|\+]\d+)?)/', ': "$1"', $input);
         $data = json_decode($json, true);
 
-        if (! isset($data['formatted_address']) || ! isset($data['address_components'])) {
+        if (!isset($data['formatted_address']) || !isset($data['address_components'])) {
             return;
         }
 
         $formatted_address = $data['formatted_address'];
 
-        if (! isset($data['geometry'])) {
+        if (!isset($data['geometry'])) {
             return;
         }
 
         $geometry = $data['geometry'];
-        if (! isset($geometry['location']) || ! isset($geometry['location']['lat']) || ! isset($geometry['location']['lng'])) {
+        if (!isset($geometry['location']) || !isset($geometry['location']['lat']) || !isset($geometry['location']['lng'])) {
             return;
         }
 
@@ -41,19 +41,19 @@ class Geolocation
         $location_lat = $location['lat'];
         $location_lng = $location['lng'];
 
-        if (! isset($geometry['viewport'])) {
+        if (!isset($geometry['viewport'])) {
             return;
         }
         $viewport = $geometry['viewport'];
 
-        if (! isset($viewport['northeast']) || ! isset($viewport['southwest'])) {
+        if (!isset($viewport['northeast']) || !isset($viewport['southwest'])) {
             return;
         }
 
         $northeast = $viewport['northeast'];
         $southwest = $viewport['southwest'];
 
-        if (! isset($northeast['lat']) || ! isset($northeast['lng']) || ! isset($southwest['lat']) || ! isset($southwest['lng'])) {
+        if (!isset($northeast['lat']) || !isset($northeast['lng']) || !isset($southwest['lat']) || !isset($southwest['lng'])) {
             return;
         }
         $northeast_lat = $northeast['lat'];
@@ -101,13 +101,13 @@ class Geolocation
 
     protected function radius($a)
     {
-        return ($this->distance([
+        return $this->distance([
             'x' => $a['southwest']['lat'],
             'y' => $a['southwest']['lng'],
         ], [
             'x' => $a['northeast']['lat'],
             'y' => $a['northeast']['lng'],
-        ]) / 2);
+        ]) / 2;
     }
 
     protected function distance($p1, $p2)

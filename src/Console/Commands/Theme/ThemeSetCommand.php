@@ -47,7 +47,7 @@ class ThemeSetCommand extends Command
     {
         $this->name = studly_case($this->argument('name'));
 
-        if (! Themes::exists($this->name)) {
+        if (!Themes::exists($this->name)) {
             $this->error("Theme [{$this->name}] doesn't exist!]");
 
             return;

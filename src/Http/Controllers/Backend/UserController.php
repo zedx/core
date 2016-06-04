@@ -2,22 +2,22 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use ZEDx\Http\Requests\CreateUserRequest;
-use ZEDx\Http\Requests\UpdateUserRequest;
-use ZEDx\Http\Controllers\Controller;
-use Illuminate\Support\Collection;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Request;
-use ZEDx\Models\User;
+use ZEDx\Events\User\UserWasCreated;
+use ZEDx\Events\User\UserWasDeleted;
+use ZEDx\Events\User\UserWasUpdated;
+use ZEDx\Events\User\UserWillBeCreated;
+use ZEDx\Events\User\UserWillBeDeleted;
+use ZEDx\Events\User\UserWillBeUpdated;
+use ZEDx\Http\Controllers\Controller;
+use ZEDx\Http\Requests\CreateUserRequest;
+use ZEDx\Http\Requests\UpdateUserRequest;
 use ZEDx\Models\Role;
 use ZEDx\Models\Subscription;
-use ZEDx\Events\User\UserWasCreated;
-use ZEDx\Events\User\UserWasUpdated;
-use ZEDx\Events\User\UserWasDeleted;
-use ZEDx\Events\User\UserWillBeCreated;
-use ZEDx\Events\User\UserWillBeUpdated;
-use ZEDx\Events\User\UserWillBeDeleted;
+use ZEDx\Models\User;
 
 class UserController extends Controller
 {

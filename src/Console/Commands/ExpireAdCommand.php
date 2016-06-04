@@ -3,10 +3,10 @@
 namespace ZEDx\Console\Commands;
 
 use Carbon\Carbon;
+use Illuminate\Console\Command;
+use ZEDx\Events\Ad\AdWasExpired;
 use ZEDx\Models\Ad;
 use ZEDx\Models\Adstatus;
-use ZEDx\Events\Ad\AdWasExpired;
-use Illuminate\Console\Command;
 
 class ExpireAdCommand extends Command
 {

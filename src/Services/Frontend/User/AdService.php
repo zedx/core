@@ -32,7 +32,7 @@ class AdService extends Controller
     {
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
@@ -133,7 +133,7 @@ class AdService extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -151,7 +151,7 @@ class AdService extends Controller
     {
         $mergedFields = [];
 
-        if (! $ad->has('fields')) {
+        if (!$ad->has('fields')) {
             return [];
         }
 
@@ -172,13 +172,13 @@ class AdService extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
     public function update(Ad $ad, UpdateAdUserRequest $request)
     {
-        if (! $ad->adtype->can_edit) {
+        if (!$ad->adtype->can_edit) {
             return [
                 'adId' => null,
             ];
@@ -228,7 +228,7 @@ class AdService extends Controller
         $ad->fields()->detach();
         $fields = $request->get('fields');
 
-        if (! is_array($fields)) {
+        if (!is_array($fields)) {
             return false;
         }
 
@@ -251,7 +251,7 @@ class AdService extends Controller
 
     protected function canAttachFieldToAd($authorizedFields, $fieldId, $value)
     {
-        if (! in_array($fieldId, array_keys($authorizedFields))) {
+        if (!in_array($fieldId, array_keys($authorizedFields))) {
             return false;
         }
 
@@ -287,12 +287,12 @@ class AdService extends Controller
 
     protected function isValidFieldSelectOptions($fieldId, $value)
     {
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             return false;
         }
 
         foreach ($value as $option) {
-            if (! $this->isValidFieldSelectOption($fieldId, $option)) {
+            if (!$this->isValidFieldSelectOption($fieldId, $option)) {
                 return false;
             }
         }
@@ -373,7 +373,7 @@ class AdService extends Controller
 
     public function renew(Ad $ad)
     {
-        if (! $ad->adtype->can_renew) {
+        if (!$ad->adtype->can_renew) {
             return false;
         }
 
@@ -388,7 +388,7 @@ class AdService extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Ad  $ad
+     * @param Ad $ad
      *
      * @return Response
      */

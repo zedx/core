@@ -22,7 +22,7 @@ class TemplateEvent extends Event
      *
      * @param \ZEDx\Models\Template $template
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Template $template)
     {

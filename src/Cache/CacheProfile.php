@@ -32,6 +32,7 @@ class CacheProfile
 
         return $this->app->runningInConsole();
     }
+
     /**
      * Determine if the given request should be cached;.
      *

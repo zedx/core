@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePageThemepartialPivotTable extends Migration
 {
@@ -13,11 +13,11 @@ class CreatePageThemepartialPivotTable extends Migration
   public function up()
   {
       Schema::create('page_themepartial', function (Blueprint $table) {
-      $table->integer('page_id')->unsigned()->index();
-      $table->foreign('page_id')->references('id')->on('pages');
-      $table->integer('themepartial_id')->unsigned()->index();
-      $table->foreign('themepartial_id')->references('id')->on('themepartials');
-    });
+          $table->integer('page_id')->unsigned()->index();
+          $table->foreign('page_id')->references('id')->on('pages');
+          $table->integer('themepartial_id')->unsigned()->index();
+          $table->foreign('themepartial_id')->references('id')->on('themepartials');
+      });
   }
 
   /**

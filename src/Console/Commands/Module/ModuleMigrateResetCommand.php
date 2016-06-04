@@ -36,7 +36,7 @@ class ModuleMigrateResetCommand extends Command
     {
         $module = $this->argument('module');
 
-        if (! empty($module)) {
+        if (!empty($module)) {
             $this->reset($module);
 
             return;

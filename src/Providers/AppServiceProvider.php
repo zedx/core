@@ -2,9 +2,9 @@
 
 namespace ZEDx\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use View;
-use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {

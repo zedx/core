@@ -36,7 +36,7 @@ class Updater
 
     public function newestVersion()
     {
-        return (version_compare($this->getLatestVersion(), Core::VERSION) > 0);
+        return version_compare($this->getLatestVersion(), Core::VERSION) > 0;
     }
 
     public function getChangedFiles()
@@ -48,7 +48,7 @@ class Updater
         foreach ($json->files as $type => $files) {
             if ($type == 'U') {
                 foreach ($files as $file) {
-                    if (! base_path($file->path)) {
+                    if (!base_path($file->path)) {
                         $list[] = $file->path;
                     } elseif (@md5_file(base_path($file->path)) != $file->checksum->before) {
                         $list[] = $file->path;
@@ -63,14 +63,14 @@ class Updater
     /**
      * Start Updating.
      *
-     * @param  bool $force           Force updating
-     * @param  bool $is_console      running from console or not
+     * @param bool $force      Force updating
+     * @param bool $is_console running from console or not
      *
      * @return void
      */
     public function update($force = false, $is_console = false)
     {
-        if (! $this->newestVersion()) {
+        if (!$this->newestVersion()) {
             $this->error('You are trying to install an old version v.'.$this->getLatestVersion().' <= (installed) v.'.Core::VERSION);
 
             return false;
@@ -86,7 +86,7 @@ class Updater
             $this->progress(1, trans('backend.update.events.checking_conformity'), 1);
 
             $listEditedFiles = $this->getChangedFiles();
-            if (! empty($listEditedFiles) && ! $force) {
+            if (!empty($listEditedFiles) && !$force) {
                 return $listEditedFiles;
             }
 
@@ -209,7 +209,7 @@ class Updater
     protected function updateFile($file)
     {
         // create directory
-        if (dirname($file->path) != '.' && ! File::exists(base_path(dirname($file->path)))) {
+        if (dirname($file->path) != '.' && !File::exists(base_path(dirname($file->path)))) {
             File::makeDirectory(base_path(dirname($file->path)), 0775, true);
         }
         //copy file content
@@ -252,7 +252,7 @@ class Updater
 
         $message = vsprintf($message, $args);
         $time = date('Y/m/d h:i:s', time());
-        if (! $this->is_console) {
+        if (!$this->is_console) {
             $this->sendEventMessage($message, $time);
         }
     }

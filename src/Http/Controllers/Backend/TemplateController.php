@@ -40,7 +40,7 @@ class TemplateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,7 +57,7 @@ class TemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Template  $template
+     * @param Template $template
      *
      * @return \Illuminate\Http\Response
      */
@@ -69,8 +69,8 @@ class TemplateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TemplateRequest  $request
-     * @param  Template  $template
+     * @param TemplateRequest $request
+     * @param Template        $template
      *
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +97,7 @@ class TemplateController extends Controller
     /**
      * Remove a Collection of Templates.
      *
-     * @param  Collection  $templates
+     * @param Collection $templates
      *
      * @return Response
      */
@@ -111,7 +111,7 @@ class TemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Template  $template
+     * @param Template $template
      *
      * @return Response
      */

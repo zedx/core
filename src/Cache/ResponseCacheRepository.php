@@ -13,7 +13,7 @@ class ResponseCacheRepository
 
     /**
      * @param \Illuminate\Contracts\Foundation\Application $app
-     * @param \ZEDx\Cache\ResponseSerializer     $responseSerializer
+     * @param \ZEDx\Cache\ResponseSerializer               $responseSerializer
      */
     public function __construct()
     {

@@ -27,8 +27,8 @@ class CountryController extends Controller
     /**
      * Switch country status.
      *
-     * @param  CountrySwitchRequest $request
-     * @param  Country              $country
+     * @param CountrySwitchRequest $request
+     * @param Country              $country
      *
      * @return Response
      */
@@ -41,8 +41,8 @@ class CountryController extends Controller
     /**
      * Personalize a country map.
      *
-     * @param  CountryPersonalizeRequest $request
-     * @param  Country              $country
+     * @param CountryPersonalizeRequest $request
+     * @param Country                   $country
      *
      * @return Response
      */
@@ -56,7 +56,7 @@ class CountryController extends Controller
 
         $map = Maps::find($country->code);
 
-        if (! $map) {
+        if (!$map) {
             return;
         }
 
@@ -66,21 +66,21 @@ class CountryController extends Controller
     /**
      * Upload Map JSON.
      *
-     * @param  Request $request
-     * @param  Country $country
+     * @param Request $request
+     * @param Country $country
      *
      * @return Reponse
      */
     public function upload(CountryUploadMapRequest $request, Country $country)
     {
         $mapUploadedFile = $request->file('map');
-        if (! $mapUploadedFile || ! $mapUploadedFile->isValid()) {
+        if (!$mapUploadedFile || !$mapUploadedFile->isValid()) {
             return response(trans('backend.map.invalid_map_file'), 400);
         }
 
         $mapFile = $mapUploadedFile->getPathname();
 
-        if (! Maps::isValidMapFile($mapFile)) {
+        if (!Maps::isValidMapFile($mapFile)) {
             return response(trans('backend.map.invalid_map_file'), 400);
         }
 

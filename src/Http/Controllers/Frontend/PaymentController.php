@@ -18,7 +18,7 @@ class PaymentController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PaymentService  $service
+     * @param PaymentService $service
      *
      * @return void
      */

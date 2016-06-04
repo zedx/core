@@ -72,13 +72,13 @@ class WidgetArchiveCommand extends Command
 
         $this->file = $path.'/'.$this->getWidgetFileName().'-'.rand().'.zip';
 
-        if (! $this->validWidgetType()) {
+        if (!$this->validWidgetType()) {
             $this->error('Invalid Widget Type, please choose between [Frontend, Backend]');
 
             return;
         }
 
-        if (! File::isDirectory($this->getWidgetPath())) {
+        if (!File::isDirectory($this->getWidgetPath())) {
             $this->error("Widget [{$this->type}/{$this->author}/{$this->name}] doesn't exist!]");
 
             return;
@@ -144,7 +144,7 @@ class WidgetArchiveCommand extends Command
 
         foreach ($files as $name => $file) {
             // Skip directories (they would be added automatically)
-            if (! $file->isDir()) {
+            if (!$file->isDir()) {
                 // Get real and relative path for current file
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($rootPath) + 1);

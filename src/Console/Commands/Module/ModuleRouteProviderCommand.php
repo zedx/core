@@ -2,10 +2,10 @@
 
 namespace ZEDx\Console\Commands\Module;
 
-use ZEDx\Support\Stub;
-use ZEDx\Console\Commands\Module\Traits\ModuleCommandTrait;
-use Symfony\Component\Console\Input\InputArgument;
 use Modules;
+use Symfony\Component\Console\Input\InputArgument;
+use ZEDx\Console\Commands\Module\Traits\ModuleCommandTrait;
+use ZEDx\Support\Stub;
 
 class ModuleRouteProviderCommand extends GeneratorCommand
 {

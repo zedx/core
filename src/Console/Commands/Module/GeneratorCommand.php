@@ -2,11 +2,11 @@
 
 namespace ZEDx\Console\Commands\Module;
 
+use File;
 use Illuminate\Console\Command;
+use Modules;
 use ZEDx\Console\Commands\Module\Generators\FileAlreadyExistException;
 use ZEDx\Console\Commands\Module\Generators\FileGenerator;
-use File;
-use Modules;
 
 abstract class GeneratorCommand extends Command
 {
@@ -38,7 +38,7 @@ abstract class GeneratorCommand extends Command
     {
         $path = str_replace('\\', '/', $this->getDestinationFilePath());
 
-        if (! File::isDirectory($dir = dirname($path))) {
+        if (!File::isDirectory($dir = dirname($path))) {
             File::makeDirectory($dir, 0777, true);
         }
 

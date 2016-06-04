@@ -135,7 +135,7 @@ class WidgetMakeCommand extends Command
         foreach ($this->getFiles() as $stub => $file) {
             $path = $this->getWidgetPath().'/'.$file;
 
-            if (! File::isDirectory($dir = dirname($path))) {
+            if (!File::isDirectory($dir = dirname($path))) {
                 File::makeDirectory($dir, 0775, true);
             }
 
@@ -175,7 +175,7 @@ class WidgetMakeCommand extends Command
 
         $namespace = config('widgets.namespace');
 
-        if (! isset($replacements[$stub])) {
+        if (!isset($replacements[$stub])) {
             return [];
         }
 

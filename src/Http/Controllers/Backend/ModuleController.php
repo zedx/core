@@ -2,15 +2,15 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use Request;
-use File;
-use Zipper;
-use Modules;
 use Exception;
+use File;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Modules;
+use Request;
+use ZEDx\Core;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ModuleUploadRequest;
-use ZEDx\Core;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Zipper;
 
 class ModuleController extends Controller
 {
@@ -34,9 +34,9 @@ class ModuleController extends Controller
     public function filterByStatus($status)
     {
         switch ($status) {
-            case 'enabled' : $modules = Modules::enabled(); break;
-            case 'disabled' : $modules = Modules::disabled(); break;
-            default :
+            case 'enabled': $modules = Modules::enabled(); break;
+            case 'disabled': $modules = Modules::disabled(); break;
+            default:
                 return redirect()->route('zxadmin.module.index');
             break;
         }
@@ -73,7 +73,7 @@ class ModuleController extends Controller
         $modules = [];
         switch ($tab) {
             case 'search':
-                # code...
+                // code...
                 break;
                 /*
             case 'upload':
@@ -99,7 +99,7 @@ class ModuleController extends Controller
     /**
      * Download and install a new module.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -109,7 +109,7 @@ class ModuleController extends Controller
         $json = json_decode(file_get_contents($url));
         $archive = file_get_contents(Core::API.'/'.$json->archive);
         $zipPath = storage_path().'/app/'.$module.'_'.time().'.zip';
-        $package = File::put($zipPath,  $archive);
+        $package = File::put($zipPath, $archive);
         $moduleName = $this->getModuleNameFromZip($zipPath);
 
         $this->extract($zipPath, $moduleName);
@@ -122,7 +122,7 @@ class ModuleController extends Controller
     /**
      * upload a new module.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -132,7 +132,7 @@ class ModuleController extends Controller
 
         $uploadedModule = $request->file('file');
 
-        if (! $uploadedModule->isValid()) {
+        if (!$uploadedModule->isValid()) {
             return response()->json(['error' => trans('Fichier Zip invalid')], 400);
         }
 
@@ -158,7 +158,7 @@ class ModuleController extends Controller
             throw new Exception(trans('Module déjà existant'));
         }
 
-        if (! File::makeDirectory($modulePath, 0775, true)) {
+        if (!File::makeDirectory($modulePath, 0775, true)) {
             throw new Exception(trans('Impossible de créer le module'));
         }
 
@@ -172,7 +172,7 @@ class ModuleController extends Controller
     protected function getModuleNameFromZip($zipPath)
     {
         $manifest = Zipper::make($zipPath)->getFileContent('zedx.json');
-        if (! $manifest) {
+        if (!$manifest) {
             throw new Exception(trans('zedx.json introuvable'));
         }
 
@@ -185,7 +185,7 @@ class ModuleController extends Controller
     {
         $className = "\ZEDx\Modules\\".$moduleName."\Module";
         $module = new $className();
-        if (! $module->install()) {
+        if (!$module->install()) {
             throw new Exception(trans("Impossible d'installer le module"));
         }
     }
@@ -193,19 +193,19 @@ class ModuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
     public function destroy($moduleName)
     {
-        if (! Modules::has($moduleName)) {
+        if (!Modules::has($moduleName)) {
             throw new Exception(trans("Module n'existe pas"));
         }
 
         $className = "\ZEDx\Modules\\".$moduleName."\Module";
         $module = new $className();
-        if (! $module->uninstall()) {
+        if (!$module->uninstall()) {
             throw new Exception(trans('Impossible de désinstaller le module'));
         }
 

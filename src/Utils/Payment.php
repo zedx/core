@@ -23,7 +23,7 @@ class Payment
     /**
      * Purchase order.
      *
-     * @param  array $transaction
+     * @param array $transaction
      *
      * @return Response
      */
@@ -47,7 +47,7 @@ class Payment
     /**
      * Complete purchasing.
      *
-     * @param  Order $order
+     * @param Order $order
      *
      * @return Response
      */
@@ -71,7 +71,7 @@ class Payment
     /**
      * Retrieve transaction params.
      *
-     * @param  array $transaction
+     * @param array $transaction
      *
      * @return array
      */
@@ -79,7 +79,7 @@ class Payment
     {
         $gatewayId = $transaction['gatewayId'];
         $gateway = Gateway::enabled()->findOrFail($gatewayId);
-        if (! $this->order) {
+        if (!$this->order) {
             $this->createOrder($transaction, $gateway);
         }
         $gateways[$gateway->name] = [
@@ -113,8 +113,8 @@ class Payment
     /**
      * Create order from a transaction.
      *
-     * @param  array $transaction
-     * @param  Gateway $gateway
+     * @param array   $transaction
+     * @param Gateway $gateway
      *
      * @return void
      */

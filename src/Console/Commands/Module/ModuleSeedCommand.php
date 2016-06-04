@@ -36,7 +36,7 @@ class ModuleSeedCommand extends Command
         $name = $this->argument('module');
 
         if ($name) {
-            if (! Modules::has(studly_case($name))) {
+            if (!Modules::has(studly_case($name))) {
                 return $this->error("Module [$name] does not exists.");
             }
 

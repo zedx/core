@@ -23,7 +23,7 @@ class Json
     /**
      * The constructor.
      *
-     * @param mixed                             $path
+     * @param mixed $path
      */
     public function __construct($path)
     {
@@ -58,7 +58,7 @@ class Json
     /**
      * Make new instance.
      *
-     * @param string                            $path
+     * @param string $path
      *
      * @return static
      */
@@ -91,12 +91,12 @@ class Json
      * Clean comments of json content and decode it with json_decode().
      * Work like the original php json_decode() function with the same params.
      *
-     * @param   string  $json    The json string being decoded
-     * @param   bool    $assoc   When TRUE, returned objects will be converted into associative arrays.
-     * @param   int $depth   User specified recursion depth. (>=5.3)
-     * @param   int $options Bitmask of JSON decode options. (>=5.4)
+     * @param string $json    The json string being decoded
+     * @param bool   $assoc   When TRUE, returned objects will be converted into associative arrays.
+     * @param int    $depth   User specified recursion depth. (>=5.3)
+     * @param int    $options Bitmask of JSON decode options. (>=5.4)
      *
-     * @return  array/object
+     * @return array/object
      */
     public function json_clean_decode($json, $assoc = false, $depth = 512, $options = 0)
     {

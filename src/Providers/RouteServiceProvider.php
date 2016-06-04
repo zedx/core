@@ -4,18 +4,18 @@ namespace ZEDx\Providers;
 
 use Auth;
 use Crypt;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use ZEDx\Models\Ad;
-use ZEDx\Models\User;
+use ZEDx\Models\Adstatus;
+use ZEDx\Models\Adtype;
 use ZEDx\Models\Field;
 use ZEDx\Models\Order;
-use ZEDx\Models\Adtype;
-use ZEDx\Models\Adstatus;
-use ZEDx\Models\Template;
-use ZEDx\Models\Widgetnode;
 use ZEDx\Models\Subscription;
-use Illuminate\Routing\Router;
+use ZEDx\Models\Template;
 use ZEDx\Models\Templateblock;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use ZEDx\Models\User;
+use ZEDx\Models\Widgetnode;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -38,105 +38,105 @@ class RouteServiceProvider extends ServiceProvider
   public function boot(Router $router)
   {
       $router->bind('adWithTrashed', function ($id) {
-      return Ad::with('content')->withTrashed()->findOrFail($id);
-    });
+          return Ad::with('content')->withTrashed()->findOrFail($id);
+      });
 
       $router->bind('ad', function ($id) {
-      return Ad::with('content')->findOrFail($id);
-    });
+          return Ad::with('content')->findOrFail($id);
+      });
 
       $router->bind('adCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return Ad::with('content')->withTrashed()->findMany($ids);
-    });
+          return Ad::with('content')->withTrashed()->findMany($ids);
+      });
 
       $router->bind('adstatus', function ($title) {
-      return Adstatus::whereTitle($title)->firstOrFail();
-    });
+          return Adstatus::whereTitle($title)->firstOrFail();
+      });
 
       $router->bind('adValidated', function ($id) {
-        return Ad::with('content')->validate()->findOrFail($id);
-    });
+          return Ad::with('content')->validate()->findOrFail($id);
+      });
 
       $router->bind('adPreview', function ($id) {
-      if (Auth::guard('admin')->check()) {
-          return Ad::with('content')->findOrFail($id);
-      }
+          if (Auth::guard('admin')->check()) {
+              return Ad::with('content')->findOrFail($id);
+          }
 
-      if (Auth::guard('user')->check()) {
-          return Auth::user()->ads()->with('content')->findOrFail($id);
-      }
+          if (Auth::guard('user')->check()) {
+              return Auth::user()->ads()->with('content')->findOrFail($id);
+          }
 
-      abort(404);
-    });
+          abort(404);
+      });
 
       $router->bind('adtypeNotCustomized', function ($id) {
-      return Adtype::whereIsCustomized(0)->findOrFail($id);
-    });
+          return Adtype::whereIsCustomized(0)->findOrFail($id);
+      });
 
       $router->bind('adtypeCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return Adtype::findMany($ids);
-    });
+          return Adtype::findMany($ids);
+      });
 
       $router->bind('templateCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return Template::findMany($ids);
-    });
+          return Template::findMany($ids);
+      });
 
       $router->bind('encryptedOrderId', function ($enc) {
-      $orderId = Crypt::decrypt($enc);
+          $orderId = Crypt::decrypt($enc);
 
-      return Order::findOrFail($orderId);
-    });
+          return Order::findOrFail($orderId);
+      });
 
       $router->bind('fieldCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return Field::findMany($ids);
-    });
+          return Field::findMany($ids);
+      });
 
       $router->bind('subscriptionCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return Subscription::findMany($ids);
-    });
+          return Subscription::findMany($ids);
+      });
 
       $router->bind('userCollection', function ($ids) {
-      $ids = explode(',', $ids);
+          $ids = explode(',', $ids);
 
-      return User::findMany($ids);
-    });
+          return User::findMany($ids);
+      });
 
       $router->bind('adUser', function ($id) {
-      if (Auth::check()) {
-          return Auth::user()->ads()->with('content')->findOrFail($id);
-      } else {
-          abort(404);
-      }
-    });
+          if (Auth::check()) {
+              return Auth::user()->ads()->with('content')->findOrFail($id);
+          } else {
+              abort(404);
+          }
+      });
 
       $router->bind('field', function ($id) {
-      return Field::with('search')->findOrFail($id);
-    });
+          return Field::with('search')->findOrFail($id);
+      });
 
       $router->bind('templateblock', function ($identifier) use ($router) {
-      $page = $router->input('page');
+          $page = $router->input('page');
 
-      return Templateblock::whereIdentifier($identifier)
+          return Templateblock::whereIdentifier($identifier)
         ->whereTemplateId($page->template->id)
         ->firstOrFail();
-    });
+      });
 
       $router->bind('widgetnode', function ($id) use ($router) {
-      $pageId = $router->input('page')->id;
-      $templateblockId = $router->input('templateblock')->id;
+          $pageId = $router->input('page')->id;
+          $templateblockId = $router->input('templateblock')->id;
 
-      return Widgetnode::whereTemplateblockId($templateblockId)->wherePageId($pageId)->findOrFail($id);
-    });
+          return Widgetnode::whereTemplateblockId($templateblockId)->wherePageId($pageId)->findOrFail($id);
+      });
 
       $router->model('adtype', 'ZEDx\Models\Adtype');
       $router->model('template', 'ZEDx\Models\Template');
@@ -165,7 +165,7 @@ class RouteServiceProvider extends ServiceProvider
   public function map(Router $router)
   {
       $router->group(['namespace' => $this->namespace], function ($router) {
-      require core_src_path('Http/routes.php');
-    });
+          require core_src_path('Http/routes.php');
+      });
   }
 }

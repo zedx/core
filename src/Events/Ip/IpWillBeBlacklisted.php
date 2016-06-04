@@ -2,8 +2,8 @@
 
 namespace ZEDx\Events\Ip;
 
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
 
 class IpWillBeBlacklisted extends Event
 {

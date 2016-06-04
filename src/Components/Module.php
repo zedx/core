@@ -319,7 +319,7 @@ class Module
      */
     public function notActive()
     {
-        return ! $this->active();
+        return !$this->active();
     }
 
     /**
@@ -329,7 +329,7 @@ class Module
      */
     public function disabled()
     {
-        return ! $this->enabled();
+        return !$this->enabled();
     }
 
     /**

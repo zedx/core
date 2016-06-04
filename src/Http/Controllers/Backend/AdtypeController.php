@@ -2,10 +2,10 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use ZEDx\Models\Adtype;
 use Illuminate\Support\Collection;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\AdtypeRequest;
+use ZEDx\Models\Adtype;
 
 class AdtypeController extends Controller
 {
@@ -47,7 +47,7 @@ class AdtypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -59,7 +59,7 @@ class AdtypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -88,7 +88,7 @@ class AdtypeController extends Controller
     /**
      * Remove a Collection of Adtypes.
      *
-     * @param  Collection  $adtypes
+     * @param Collection $adtypes
      *
      * @return Response
      */
@@ -102,7 +102,7 @@ class AdtypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Adtype  $adtype
+     * @param Adtype $adtype
      *
      * @return Response
      */

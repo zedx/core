@@ -40,7 +40,6 @@ class Migrator
 
         $files = array_map(function ($file) {
             return str_replace('.php', '', basename($file));
-
         }, $files);
 
         // Once we have all of the formatted file names we will sort them and since
@@ -150,7 +149,7 @@ class Migrator
     /**
      * Require in all the migration files in a given path.
      *
-     * @param array  $files
+     * @param array $files
      */
     public function requireFiles(array $files)
     {

@@ -29,9 +29,9 @@ class PageThemepartialWasDetached extends Event
      * Create a new event instance.
      *
      * @param \ZEDx\Models\Page         $page
-     * @param \ZEDx\Models\Themepartial  $themepartial
+     * @param \ZEDx\Models\Themepartial $themepartial
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Page $page, Themepartial $themepartial)
     {

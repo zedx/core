@@ -4,10 +4,10 @@ namespace ZEDx\Repositories;
 
 use Countable;
 use File;
-use ZEDx\Support\Json;
+use ZEDx\Components\Module;
 use ZEDx\Contracts\ComponentInterface;
 use ZEDx\Exceptions\ModuleNotFoundException;
-use ZEDx\Components\Module;
+use ZEDx\Support\Json;
 
 class ModulesRepository implements ComponentInterface, Countable
 {
@@ -193,8 +193,6 @@ class ModulesRepository implements ComponentInterface, Countable
                 return $module;
             }
         }
-
-        return;
     }
 
     /**
@@ -212,13 +210,13 @@ class ModulesRepository implements ComponentInterface, Countable
      *
      * @param $name
      *
-     * @return Module
-     *
      * @throws ModuleNotFoundException
+     *
+     * @return Module
      */
     public function findOrFail($name)
     {
-        if (! is_null($module = $this->find($name))) {
+        if (!is_null($module = $this->find($name))) {
             return $module;
         }
 
@@ -325,7 +323,7 @@ class ModulesRepository implements ComponentInterface, Countable
      */
     public function notActive($name)
     {
-        return ! $this->active($name);
+        return !$this->active($name);
     }
 
     /**
@@ -371,7 +369,7 @@ class ModulesRepository implements ComponentInterface, Countable
      */
     public function getStubPath()
     {
-        if (! is_null($this->stubPath)) {
+        if (!is_null($this->stubPath)) {
             return $this->stubPath;
         }
 

@@ -39,13 +39,13 @@ class ZedxResetCommand extends Command
      */
     public function handle()
     {
-        if (! $this->option('force')) {
+        if (!$this->option('force')) {
             $warning = 'Reset ZEDx database';
             $this->comment(str_repeat('*', strlen($warning) + 12));
             $this->comment('*     '.$warning.'     *');
             $this->comment(str_repeat('*', strlen($warning) + 12));
             $this->output->writeln('');
-            if (! $this->confirm('Are you sure ?')) {
+            if (!$this->confirm('Are you sure ?')) {
                 return;
             }
         }

@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\Payment;
 
-use ZEDx\Models\Order;
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
+use ZEDx\Models\Order;
 
 class PaymentWasReceived extends Event
 {

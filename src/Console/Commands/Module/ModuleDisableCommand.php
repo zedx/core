@@ -3,8 +3,8 @@
 namespace ZEDx\Console\Commands\Module;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Modules;
+use Symfony\Component\Console\Input\InputArgument;
 
 class ModuleDisableCommand extends Command
 {

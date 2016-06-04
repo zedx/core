@@ -2,11 +2,11 @@
 
 namespace ZEDx\Console\Commands\Module;
 
-use ZEDx\Console\Commands\Module\Traits\ModuleCommandTrait;
+use Modules;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use ZEDx\Console\Commands\Module\Traits\ModuleCommandTrait;
 use ZEDx\Support\Stub;
-use Modules;
 
 class ModuleMakeSeedCommand extends GeneratorCommand
 {

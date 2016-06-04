@@ -6,11 +6,11 @@ use ZEDx\Models\Page;
 use ZEDx\Models\Setting;
 use ZEDx\Utils\Translation\Translator;
 
-if (! function_exists('setting')) {
+if (!function_exists('setting')) {
     /**
      * Get Settings.
      *
-     * @param  string       $key
+     * @param string $key
      *
      * @return string/Setting
      */
@@ -18,11 +18,11 @@ if (! function_exists('setting')) {
     {
         static $setting = null;
 
-        if (! $setting) {
+        if (!$setting) {
             $setting = Setting::firstOrFail();
         }
 
-        if (! $key) {
+        if (!$key) {
             return $setting;
         }
 
@@ -30,18 +30,18 @@ if (! function_exists('setting')) {
     }
 }
 
-if (! function_exists('zedx_cache')) {
+if (!function_exists('zedx_cache')) {
     /**
      * Cache a closure forever.
      *
-     * @param  string       $key
-     * @param  \Closure     $next
+     * @param string   $key
+     * @param \Closure $next
      *
      * @return \Closure
      */
     function zedx_cache($key, Closure $next)
     {
-        if (! env('APP_CACHE', true)) {
+        if (!env('APP_CACHE', true)) {
             return $next();
         }
 
@@ -53,16 +53,16 @@ if (! function_exists('zedx_cache')) {
     }
 }
 
-if (! function_exists('elixir_frontend')) {
+if (!function_exists('elixir_frontend')) {
     /**
      * Get the path to a versioned Elixir frontend file.
      *
-     * @param  string  $file
-     * @param  string  $buildDirectory
-     *
-     * @return string
+     * @param string $file
+     * @param string $buildDirectory
      *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     function elixir_frontend($file, $buildDirectory = 'build')
     {
@@ -72,16 +72,16 @@ if (! function_exists('elixir_frontend')) {
     }
 }
 
-if (! function_exists('elixir_backend')) {
+if (!function_exists('elixir_backend')) {
     /**
      * Get the path to a versioned Elixir backend file.
      *
-     * @param  string  $file
-     * @param  string  $buildDirectory
-     *
-     * @return string
+     * @param string $file
+     * @param string $buildDirectory
      *
      * @throws \InvalidArgumentException
+     *
+     * @return string
      */
     function elixir_backend($file, $buildDirectory = 'build')
     {
@@ -91,13 +91,13 @@ if (! function_exists('elixir_backend')) {
     }
 }
 
-if (! function_exists('view_widget')) {
+if (!function_exists('view_widget')) {
     /**
      * Get the evaluated view widget contents for the given view.
      *
-     * @param  string  $view
-     * @param  array   $data
-     * @param  array   $mergeData
+     * @param string $view
+     * @param array  $data
+     * @param array  $mergeData
      *
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
@@ -107,13 +107,13 @@ if (! function_exists('view_widget')) {
     }
 }
 
-if (! function_exists('view_module')) {
+if (!function_exists('view_module')) {
     /**
      * Get the evaluated view module contents for the given view.
      *
-     * @param  string  $view
-     * @param  array   $data
-     * @param  array   $mergeData
+     * @param string $view
+     * @param array  $data
+     * @param array  $mergeData
      *
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
@@ -125,13 +125,13 @@ if (! function_exists('view_module')) {
     }
 }
 
-if (! function_exists('view_backend')) {
+if (!function_exists('view_backend')) {
     /**
      * Get the evaluated view backend contents for the given view.
      *
-     * @param  string  $view
-     * @param  array   $data
-     * @param  array   $mergeData
+     * @param string $view
+     * @param array  $data
+     * @param array  $mergeData
      *
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
@@ -143,7 +143,7 @@ if (! function_exists('view_backend')) {
     }
 }
 
-if (! function_exists('merge_trans')) {
+if (!function_exists('merge_trans')) {
     /**
      * Merge default with the custom translations.
      *
@@ -155,7 +155,7 @@ if (! function_exists('merge_trans')) {
     }
 }
 
-if (! function_exists('core_path')) {
+if (!function_exists('core_path')) {
     /**
      * Get the path to the zedx core directory.
      *
@@ -169,7 +169,7 @@ if (! function_exists('core_path')) {
     }
 }
 
-if (! function_exists('core_src_path')) {
+if (!function_exists('core_src_path')) {
     /**
      * Get the path to the zedx core directory.
      *
@@ -183,12 +183,12 @@ if (! function_exists('core_src_path')) {
     }
 }
 
-if (! function_exists('public_asset')) {
+if (!function_exists('public_asset')) {
     /**
      * Generate an asset path for the application.
      *
-     * @param  string  $path
-     * @param  bool    $secure
+     * @param string $path
+     * @param bool   $secure
      *
      * @return string
      */
@@ -200,19 +200,19 @@ if (! function_exists('public_asset')) {
     }
 }
 
-if (! function_exists('rchmod')) {
+if (!function_exists('rchmod')) {
     /**
      * Recursive chmod.
      *
-     * @param  string  $path
-     * @param  int $filePerm
-     * @param  int $dirPerm
+     * @param string $path
+     * @param int    $filePerm
+     * @param int    $dirPerm
      *
      * @return bool
      */
     function rchmod($path, $filePerm = 0644, $dirPerm = 0755)
     {
-        if (! file_exists($path)) {
+        if (!file_exists($path)) {
             return false;
         }
 
@@ -233,12 +233,12 @@ if (! function_exists('rchmod')) {
     }
 }
 
-if (! function_exists('env_replace')) {
+if (!function_exists('env_replace')) {
     /**
      * Replace an environement content.
      *
-     * @param  string  $keyToRepace
-     * @param  string  $value
+     * @param string $keyToRepace
+     * @param string $value
      *
      * @return string
      */
@@ -256,8 +256,9 @@ if (! function_exists('env_replace')) {
 
             if ($keyToRepace == $key) {
                 $keyExist = true;
+
                 return $key.'='.$value."\n";
-            }else {
+            } else {
                 return $content;
             }
         }, $envContent);
@@ -271,18 +272,18 @@ if (! function_exists('env_replace')) {
     }
 }
 
-if (! function_exists('is_numeric_array')) {
+if (!function_exists('is_numeric_array')) {
     /**
      * Check whether an array is composed only with numeric values or not.
      *
-     * @param  array  $array
+     * @param array $array
      *
      * @return bool
      */
     function is_numeric_array($array)
     {
         foreach ($array as $element) {
-            if (! is_numeric($element)) {
+            if (!is_numeric($element)) {
                 return false;
             }
         }
@@ -291,12 +292,12 @@ if (! function_exists('is_numeric_array')) {
     }
 }
 
-if (! function_exists('image_route')) {
+if (!function_exists('image_route')) {
     /**
      * Get image route.
      *
-     * @param  string $type
-     * @param  string $image
+     * @param string $type
+     * @param string $image
      *
      * @return string
      */
@@ -310,12 +311,12 @@ if (! function_exists('image_route')) {
     }
 }
 
-if (! function_exists('getCurrency')) {
+if (!function_exists('getCurrency')) {
     /**
      * Get ad currency.
      *
-     * @param  Ad $ad
-     * @param  string $unit
+     * @param Ad     $ad
+     * @param string $unit
      *
      * @return string
      */
@@ -329,7 +330,7 @@ if (! function_exists('getCurrency')) {
 
         $countryCode = $ad->geolocation->country;
 
-        if (! $countryCode) {
+        if (!$countryCode) {
             return $default;
         }
 
@@ -342,12 +343,12 @@ if (! function_exists('getCurrency')) {
     }
 }
 
-if (! function_exists('in_arrayi')) {
+if (!function_exists('in_arrayi')) {
     /**
      * Insensitive in_array.
      *
-     * @param  string $needle
-     * @param  array $haystack
+     * @param string $needle
+     * @param array  $haystack
      *
      * @return bool
      */
@@ -357,13 +358,13 @@ if (! function_exists('in_arrayi')) {
     }
 }
 
-if (! function_exists('string_between')) {
+if (!function_exists('string_between')) {
     /**
      * Get string between two strings.
      *
-     * @param  string $string
-     * @param  string $start
-     * @param  string $end
+     * @param string $string
+     * @param string $start
+     * @param string $end
      *
      * @return string
      */
@@ -382,12 +383,12 @@ if (! function_exists('string_between')) {
     }
 }
 
-if (! function_exists('renderMenu')) {
+if (!function_exists('renderMenu')) {
     /**
      * Render Menu.
      *
-     * @param  string/Menu $groupName
-     * @param  array  $config
+     * @param string/Menu $groupName
+     * @param array       $config
      *
      * @return void
      */
@@ -397,7 +398,7 @@ if (! function_exists('renderMenu')) {
 
         if (is_string($groupName)) {
             $nested = Menu::whereGroupName($groupName)->orderBy('lft')->get();
-            if (! $nested) {
+            if (!$nested) {
                 return;
             }
             $menus = $nested->toHierarchy();
@@ -445,12 +446,12 @@ if (! function_exists('renderMenu')) {
     }
 }
 
-if (! function_exists('renderNode')) {
+if (!function_exists('renderNode')) {
     /**
      * Render Node.
      *
-     * @param  Node $node
-     * @param  string $type
+     * @param Node   $node
+     * @param string $type
      *
      * @return void
      */
@@ -497,11 +498,11 @@ if (! function_exists('renderNode')) {
     }
 }
 
-if (! function_exists('constructRouteNames')) {
+if (!function_exists('constructRouteNames')) {
     /**
      * Construct routes.
      *
-     * @param  string $base
+     * @param string $base
      *
      * @return array
      */

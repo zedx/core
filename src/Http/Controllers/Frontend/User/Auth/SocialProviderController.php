@@ -35,7 +35,7 @@ class SocialProviderController extends SocialiteController
     /**
      * Check whether the provider exists and enabled.
      *
-     * @param  string $providerName
+     * @param string $providerName
      *
      * @return bool
      */
@@ -43,7 +43,7 @@ class SocialProviderController extends SocialiteController
     {
         $providers = json_decode(setting('social_auths'));
 
-        if (! $providers->{$providerName}) {
+        if (!$providers->{$providerName}) {
             return false;
         }
 

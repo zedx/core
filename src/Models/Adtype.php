@@ -4,10 +4,10 @@ namespace ZEDx\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use ZEDx\Events\Adtype\AdtypeWasCreated;
-use ZEDx\Events\Adtype\AdtypeWasUpdated;
 use ZEDx\Events\Adtype\AdtypeWasDeleted;
-use ZEDx\Events\Adtype\AdtypeWillBeDeleted;
+use ZEDx\Events\Adtype\AdtypeWasUpdated;
 use ZEDx\Events\Adtype\AdtypeWillBeCreated;
+use ZEDx\Events\Adtype\AdtypeWillBeDeleted;
 use ZEDx\Events\Adtype\AdtypeWillBeUpdated;
 
 class Adtype extends Model
@@ -63,32 +63,32 @@ class Adtype extends Model
         parent::boot();
 
         static::creating(function ($adtype) {
-      event(new AdtypeWillBeCreated($adtype));
-    });
+            event(new AdtypeWillBeCreated($adtype));
+        });
 
         static::created(function ($adtype) {
-      event(new AdtypeWasCreated($adtype));
-    });
+            event(new AdtypeWasCreated($adtype));
+        });
 
         static::updating(function ($adtype) {
-      event(new AdtypeWillBeUpdated($adtype));
-    });
+            event(new AdtypeWillBeUpdated($adtype));
+        });
 
         static::updated(function ($adtype) {
-      event(new AdtypeWasUpdated($adtype));
-    });
+            event(new AdtypeWasUpdated($adtype));
+        });
 
         static::deleted(function ($adtype) {
-      event(new AdtypeWasDeleted($adtype));
-    });
+            event(new AdtypeWasDeleted($adtype));
+        });
 
         static::deleting(function ($adtype) {
-      event(new AdtypeWillBeDeleted($adtype));
-      foreach ($adtype->ads as $ad) {
-          $ad->forceDelete();
-      }
-      $adtype->subscriptions()->detach();
-      $adtype->users()->detach();
-    });
+            event(new AdtypeWillBeDeleted($adtype));
+            foreach ($adtype->ads as $ad) {
+                $ad->forceDelete();
+            }
+            $adtype->subscriptions()->detach();
+            $adtype->users()->detach();
+        });
     }
 }

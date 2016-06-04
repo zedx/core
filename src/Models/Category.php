@@ -3,9 +3,9 @@
 namespace ZEDx\Models;
 
 use Baum\Node;
-use ZEDx\Events\Category\CategoryWasMoved;
 use ZEDx\Events\Category\CategoryWasCreated;
 use ZEDx\Events\Category\CategoryWasDeleted;
+use ZEDx\Events\Category\CategoryWasMoved;
 
 class Category extends Node
 {
@@ -38,23 +38,23 @@ class Category extends Node
         parent::boot();
 
         static::created(function ($category) {
-      event(new CategoryWasCreated($category));
-    });
+            event(new CategoryWasCreated($category));
+        });
 
         static::moved(function ($category) {
-      event(new CategoryWasMoved($category));
-    });
+            event(new CategoryWasMoved($category));
+        });
 
         static::deleted(function ($category) {
-      event(new CategoryWasDeleted($category));
-    });
+            event(new CategoryWasDeleted($category));
+        });
 
         static::deleting(function ($category) {
-      foreach ($category->ads as $ad) {
-          $ad->forceDelete();
-      }
-      $category->codes()->delete();
-      $category->fields()->detach();
-    });
+            foreach ($category->ads as $ad) {
+                $ad->forceDelete();
+            }
+            $category->codes()->delete();
+            $category->fields()->detach();
+        });
     }
 }

@@ -3,8 +3,8 @@
 namespace ZEDx\Cache;
 
 use Cache;
-use ZEDx\Widget;
 use Symfony\Component\HttpFoundation\Response;
+use ZEDx\Widget;
 
 class WidgetCache
 {
@@ -24,8 +24,8 @@ class WidgetCache
     protected $cacheProfile;
 
     /**
-     * @param \ZEDx\Cache\CacheHasher                  $hasher
-     * @param \ZEDx\Cache\CacheProfile                  $cacheProfile
+     * @param \ZEDx\Cache\CacheHasher  $hasher
+     * @param \ZEDx\Cache\CacheProfile $cacheProfile
      */
     public function __construct()
     {
@@ -37,18 +37,18 @@ class WidgetCache
     /**
      * Determine if the given widget should be cached.
      *
-     * @param \ZEDx\Widget                                  $widget
-     * @param \Symfony\Component\HttpFoundation\Response    $response
+     * @param \ZEDx\Widget                               $widget
+     * @param \Symfony\Component\HttpFoundation\Response $response
      *
      * @return bool
      */
     public function shouldCache(Widget $widget, Response $response)
     {
-        if (! env('APP_CACHE', true)) {
+        if (!env('APP_CACHE', true)) {
             return false;
         }
 
-        if (! $widget->cache()) {
+        if (!$widget->cache()) {
             return false;
         }
 
@@ -58,8 +58,8 @@ class WidgetCache
     /**
      * Store the given response in the cache.
      *
-     * @param \ZEDx\Widget                                  $widget
-     * @param \Symfony\Component\HttpFoundation\Response    $response
+     * @param \ZEDx\Widget                               $widget
+     * @param \Symfony\Component\HttpFoundation\Response $response
      */
     public function cacheWidget(Widget $widget, Response $response)
     {
@@ -75,11 +75,11 @@ class WidgetCache
      */
     public function hasCached(Widget $widget)
     {
-        if (! env('APP_CACHE', true)) {
+        if (!env('APP_CACHE', true)) {
             return false;
         }
 
-        if (! $widget->cache()) {
+        if (!$widget->cache()) {
             return false;
         }
 

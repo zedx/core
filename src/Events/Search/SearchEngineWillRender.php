@@ -2,8 +2,8 @@
 
 namespace ZEDx\Events\Search;
 
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
 
 class SearchEngineWillRender extends Event
 {
