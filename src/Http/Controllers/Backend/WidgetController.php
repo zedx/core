@@ -2,20 +2,21 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use File;
-use Zipper;
-use Widgets;
 use Artisan;
-use ZEDx\Core;
 use Exception;
+use File;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Widgets;
+use ZEDx\Core;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\WidgetUploadRequest;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Zipper;
 
 class WidgetController extends Controller
 {
     protected $uploadedWidget;
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +40,7 @@ class WidgetController extends Controller
         $widgets = [];
         switch ($tab) {
             case 'search':
-                # code...
+                // code...
                 break;
                 /*
             case 'upload':
@@ -61,7 +62,7 @@ class WidgetController extends Controller
     /**
      * Download and install a new widget.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -71,7 +72,7 @@ class WidgetController extends Controller
         $json = json_decode(file_get_contents($url));
         $archive = file_get_contents(Core::API.'/'.$json->archive);
         $zipPath = storage_path().'/app/'.$widget.'_'.time().'.zip';
-        $package = File::put($zipPath,  $archive);
+        $package = File::put($zipPath, $archive);
 
         $widgetManifest = $this->getWidgetManifestFromZip($zipPath);
 
@@ -88,7 +89,7 @@ class WidgetController extends Controller
     protected function getWidgetManifestFromZip($zipPath)
     {
         $manifest = Zipper::make($zipPath)->getFileContent('zedx.json');
-        if (! $manifest) {
+        if (!$manifest) {
             throw new Exception(trans('zedx.json introuvable'));
         }
 
@@ -98,7 +99,7 @@ class WidgetController extends Controller
     /**
      * upload a new widget.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -108,7 +109,7 @@ class WidgetController extends Controller
 
         $uploadedWidget = $request->file('file');
 
-        if (! $uploadedWidget->isValid()) {
+        if (!$uploadedWidget->isValid()) {
             return response()->json(['error' => trans('Fichier Zip invalid')], 400);
         }
 
@@ -138,7 +139,7 @@ class WidgetController extends Controller
             throw new Exception(trans('Widget déjà existant'));
         }
 
-        if (! File::makeDirectory($widgetPath, 0775, true)) {
+        if (!File::makeDirectory($widgetPath, 0775, true)) {
             throw new Exception(trans('Impossible de créer le widget'));
         }
 
@@ -162,7 +163,7 @@ class WidgetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */

@@ -11,7 +11,7 @@ class MapController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $code
+     * @param string $code
      *
      * @return Response
      */
@@ -20,7 +20,7 @@ class MapController extends Controller
         if ($request->wantsJson()) {
             $map = Maps::find($code);
 
-            if (! $map) {
+            if (!$map) {
                 return;
             }
 

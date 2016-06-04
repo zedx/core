@@ -3,9 +3,9 @@
 namespace ZEDx\Console\Commands\Module;
 
 use Illuminate\Console\Command;
-use ZEDx\Console\Commands\Module\Generators\ModuleGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use ZEDx\Console\Commands\Module\Generators\ModuleGenerator;
 
 class ModuleMakeCommand extends Command
 {

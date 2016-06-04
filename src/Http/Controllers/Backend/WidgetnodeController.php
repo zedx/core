@@ -4,16 +4,16 @@ namespace ZEDx\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use ZEDx\Http\Controllers\Controller;
+use ZEDx\Http\Requests\WidgetnodeRequest;
 use ZEDx\Models\Page;
 use ZEDx\Models\Widgetnode;
-use ZEDx\Http\Requests\WidgetnodeRequest;
 
 class WidgetnodeController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -29,9 +29,9 @@ class WidgetnodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Page             $page
-     * @param  Templateblock    $templateblock
-     * @param  Widgetnode       $widgetnode
+     * @param Page          $page
+     * @param Templateblock $templateblock
+     * @param Widgetnode    $widgetnode
      *
      * @return Response
      */
@@ -45,8 +45,8 @@ class WidgetnodeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
      *
      * @return Response
      */
@@ -68,23 +68,23 @@ class WidgetnodeController extends Controller
     /**
      * Enable/Disable a widget.
      *
-     * @param  Page $page
-     * @param  Templateblock $templateblock
-     * @param  Widgetnode $widgetnode
-     * @param  Request $request
+     * @param Page          $page
+     * @param Templateblock $templateblock
+     * @param Widgetnode    $widgetnode
+     * @param Request       $request
      *
      * @return mixed
      */
     public function swap(Page $page, $templateblock, Widgetnode $widgetnode, Request $request)
     {
-        $widgetnode->is_enabled = ! $widgetnode->is_enabled;
+        $widgetnode->is_enabled = !$widgetnode->is_enabled;
         $widgetnode->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */

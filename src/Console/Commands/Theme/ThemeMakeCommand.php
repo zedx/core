@@ -133,7 +133,7 @@ class ThemeMakeCommand extends Command
         foreach ($this->getFiles() as $stub => $file) {
             $path = $this->getThemePath().'/'.$file;
 
-            if (! File::isDirectory($dir = dirname($path))) {
+            if (!File::isDirectory($dir = dirname($path))) {
                 File::makeDirectory($dir, 0775, true);
             }
 
@@ -193,7 +193,7 @@ class ThemeMakeCommand extends Command
 
         $namespace = config('themes.namespace');
 
-        if (! isset($replacements[$stub])) {
+        if (!isset($replacements[$stub])) {
             return [];
         }
 

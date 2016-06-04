@@ -2,10 +2,10 @@
 
 namespace ZEDx\Http\Controllers\Backend\Auth;
 
-use ZEDx\Models\Admin;
-use ZEDx\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use ZEDx\Http\Controllers\Controller;
+use ZEDx\Models\Admin;
 
 class AuthController extends Controller
 {

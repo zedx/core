@@ -70,7 +70,7 @@ class FieldController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -85,7 +85,7 @@ class FieldController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -118,14 +118,14 @@ class FieldController extends Controller
     /**
      * Sync Field Options.
      *
-     * @param  Field  $field
-     * @param  array  $options
+     * @param Field $field
+     * @param array $options
      *
      * @return void
      */
     protected function syncFieldOptions(Field $field, $options)
     {
-        if (! $options) {
+        if (!$options) {
             $options = [];
         }
 
@@ -145,7 +145,7 @@ class FieldController extends Controller
         }
 
         $removeIds = array_diff($existingIds, $newIds);
-        if (! empty($removeIds)) {
+        if (!empty($removeIds)) {
             SelectField::destroy($removeIds);
         }
     }
@@ -153,7 +153,7 @@ class FieldController extends Controller
     /**
      * Remove a Collection of Fields.
      *
-     * @param  Collection  $fields
+     * @param Collection $fields
      *
      * @return Response
      */
@@ -167,7 +167,7 @@ class FieldController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Field  $field
+     * @param Field $field
      *
      * @return Response
      */

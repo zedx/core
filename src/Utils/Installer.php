@@ -25,24 +25,24 @@ class Installer
     public function checkDatabase()
     {
         if ($this->post('db_type') != 'sqlite') {
-            if (! strlen($this->post('db_host'))) {
+            if (!strlen($this->post('db_host'))) {
                 throw new Exception('Please specify a database host');
             }
 
-            if (! is_numeric($this->post('db_port'))) {
+            if (!is_numeric($this->post('db_port'))) {
                 throw new Exception('Please specify a database port');
             }
 
-            if (! strlen($this->post('db_username'))) {
+            if (!strlen($this->post('db_username'))) {
                 throw new Exception('Please specify a database username');
             }
 
-            if (! strlen($this->post('db_password'))) {
+            if (!strlen($this->post('db_password'))) {
                 throw new Exception('Please specify a database password');
             }
         }
 
-        if (! strlen($this->post('db_name'))) {
+        if (!strlen($this->post('db_name'))) {
             throw new Exception('Please specify the database name');
         }
 
@@ -99,19 +99,19 @@ class Installer
 
     public function checkAdmin()
     {
-        if (! strlen($this->post('admin_name'))) {
+        if (!strlen($this->post('admin_name'))) {
             throw new Exception('Please specify administrator name');
         }
 
-        if (! strlen($this->post('admin_email'))) {
+        if (!strlen($this->post('admin_email'))) {
             throw new Exception('Please specify administrator email address');
         }
 
-        if (! filter_var($this->post('admin_email'), FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->post('admin_email'), FILTER_VALIDATE_EMAIL)) {
             throw new Exception('Please specify valid email address');
         }
 
-        if (! strlen($this->post('admin_password'))) {
+        if (!strlen($this->post('admin_password'))) {
             throw new Exception('Please specify password');
         }
 
@@ -126,11 +126,11 @@ class Installer
 
     public function checkSettings()
     {
-        if (! strlen($this->post('website_name'))) {
+        if (!strlen($this->post('website_name'))) {
             throw new Exception('Please specify your website name');
         }
 
-        if (! strlen($this->post('website_description'))) {
+        if (!strlen($this->post('website_description'))) {
             throw new Exception('Please specify your website description');
         }
     }
@@ -158,7 +158,7 @@ class Installer
     {
         $this->log('<comment>~ Building Configs</comment>');
 
-        if (! File::exists(base_path('.env'))) {
+        if (!File::exists(base_path('.env'))) {
             @File::copy(base_path('.env.example'), base_path('.env'));
         }
 
@@ -322,7 +322,7 @@ class Installer
     public function getBaseUrl()
     {
         if (isset($_SERVER['HTTP_HOST'])) {
-            $baseUrl = ! empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+            $baseUrl = !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
             $baseUrl .= '://'.$_SERVER['HTTP_HOST'];
             $baseUrl .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
         } else {
@@ -340,7 +340,7 @@ class Installer
 
         $directory = dirname($filename);
 
-        if (! is_dir($directory) && ! mkdir($directory, 0777, true)) {
+        if (!is_dir($directory) && !mkdir($directory, 0777, true)) {
             throw new Exception("Can't create SQLite storage file");
         }
 

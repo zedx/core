@@ -2,10 +2,10 @@
 
 namespace ZEDx\Jobs;
 
-use ZEDx\Models\Order;
-use ZEDx\Models\Subscription;
 use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Subscription\SubscriptionWasPurchased;
+use ZEDx\Models\Order;
+use ZEDx\Models\Subscription;
 
 class purchaseSubscription extends Job
 {

@@ -2,10 +2,10 @@
 
 namespace ZEDx\Listeners;
 
-use ZEDx\Models\Role;
 use ZEDx\Jobs\UpdateCache;
 use ZEDx\Mailers\AdtypeMail;
 use ZEDx\Models\Notification;
+use ZEDx\Models\Role;
 
 class AdtypeEventListener
 {
@@ -110,7 +110,7 @@ class AdtypeEventListener
     /**
      * Register the listeners for the subscriber.
      *
-     * @param  Illuminate\Events\Dispatcher  $events
+     * @param Illuminate\Events\Dispatcher $events
      *
      * @return array
      */

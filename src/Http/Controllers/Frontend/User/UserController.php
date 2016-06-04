@@ -27,7 +27,7 @@ class UserController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PageService  $service
+     * @param PageService $service
      *
      * @return void
      */
@@ -36,7 +36,7 @@ class UserController extends Controller
         $this->pageService = $service;
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -58,7 +58,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  UpdateUserRequest  $request
+     * @param UpdateUserRequest $request
      *
      * @return Response
      */
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $updated = (new UserService())->update($request);
 
-        if (! $updated) {
+        if (!$updated) {
             return redirect()->back();
         }
 

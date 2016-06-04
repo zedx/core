@@ -2,9 +2,9 @@
 
 namespace ZEDx\Models;
 
-use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Sofa\Eloquence\Eloquence;
 
 class Ad extends Model
 {
@@ -94,14 +94,14 @@ class Ad extends Model
     {
         parent::boot();
         static::deleting(function ($ad) {
-      if ($ad->forceDeleting) {
-          $ad->content()->delete();
-          $ad->geolocation()->delete();
-          $ad->photos()->delete();
-          $ad->videos()->delete();
-          $ad->reasons()->detach();
-          $ad->fields()->detach();
-      }
-    });
+            if ($ad->forceDeleting) {
+                $ad->content()->delete();
+                $ad->geolocation()->delete();
+                $ad->photos()->delete();
+                $ad->videos()->delete();
+                $ad->reasons()->detach();
+                $ad->fields()->detach();
+            }
+        });
     }
 }

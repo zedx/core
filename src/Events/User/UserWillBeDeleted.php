@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\User;
 
-use ZEDx\Models\User;
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
+use ZEDx\Models\User;
 
 class UserWillBeDeleted extends Event
 {

@@ -22,7 +22,7 @@ class PageEvent extends Event
      *
      * @param \ZEDx\Models\Page $page
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Page $page)
     {

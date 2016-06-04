@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\Category;
 
+use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Event;
 use ZEDx\Models\Category;
-use Illuminate\Queue\SerializesModels;
 
 class CategoryWasMoved extends Event
 {

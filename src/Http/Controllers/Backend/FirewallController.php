@@ -3,13 +3,13 @@
 namespace ZEDx\Http\Controllers\Backend;
 
 use Auth;
-use ZEDx\Http\Requests\FirewallRequest;
-use ZEDx\Http\Controllers\Controller;
+use Firewall;
 use ZEDx\Events\Ip\IpWillBeBlacklisted;
-use ZEDx\Events\Ip\IpWillBeWhitelisted;
 use ZEDx\Events\Ip\IpWillBeRemovedFromBlacklist;
 use ZEDx\Events\Ip\IpWillBeRemovedFromWhitelist;
-use Firewall;
+use ZEDx\Events\Ip\IpWillBeWhitelisted;
+use ZEDx\Http\Controllers\Controller;
+use ZEDx\Http\Requests\FirewallRequest;
 
 class FirewallController extends Controller
 {
@@ -52,7 +52,7 @@ class FirewallController extends Controller
       $this->notify('add', $type, $ip);
       $file = head(config("firewall.{$type}"));
       $list = $this->readFile($file);
-      if (! in_array($ip, $list)) {
+      if (!in_array($ip, $list)) {
           file_put_contents($file, $ip, FILE_APPEND | LOCK_EX);
       }
   }

@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\User;
 
+use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Event;
 use ZEDx\Models\User;
-use Illuminate\Queue\SerializesModels;
 
 class UserWillBeCreated extends Event
 {

@@ -48,7 +48,7 @@ class BackendPublishCommand extends Command
         $themePath = $this->getThemePath();
         $themePublicPath = $this->getThemePublicPath();
 
-        if (! File::isDirectory($themePath)) {
+        if (!File::isDirectory($themePath)) {
             $this->error("Theme Backend doesn't exist!]");
 
             return;
@@ -97,7 +97,7 @@ class BackendPublishCommand extends Command
     /**
      * Merge public manifest file.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */

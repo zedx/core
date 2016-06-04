@@ -49,15 +49,15 @@ class ZedxUpdateCommand extends Command
             return;
         }
 
-        if (! $force) {
-            if (! $this->confirm('Are you sure to update ZEDx from <comment>v'.Core::VERSION.'</comment> to <comment>v'.Updater::getLatestVersion().'</comment> ?')) {
+        if (!$force) {
+            if (!$this->confirm('Are you sure to update ZEDx from <comment>v'.Core::VERSION.'</comment> to <comment>v'.Updater::getLatestVersion().'</comment> ?')) {
                 return;
             }
         }
 
         $changedFiles = Updater::getChangedFiles();
 
-        if (! empty($changedFiles)) {
+        if (!empty($changedFiles)) {
             $data = [];
 
             foreach ($changedFiles as $file) {
@@ -66,7 +66,7 @@ class ZedxUpdateCommand extends Command
 
             $this->table(['File', 'Status'], $data);
 
-            if (! $force) {
+            if (!$force) {
                 return;
             }
         }

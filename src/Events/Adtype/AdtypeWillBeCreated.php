@@ -2,9 +2,9 @@
 
 namespace ZEDx\Events\Adtype;
 
-use ZEDx\Models\Adtype;
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
+use ZEDx\Models\Adtype;
 
 class AdtypeWillBeCreated extends Event
 {

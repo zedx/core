@@ -5,8 +5,8 @@ namespace ZEDx\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\GatewaySetCurrencyRequest;
-use ZEDx\Models\Gateway;
 use ZEDx\Models\Country;
+use ZEDx\Models\Gateway;
 
 class GatewayController extends Controller
 {
@@ -29,7 +29,7 @@ class GatewayController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -55,7 +55,7 @@ class GatewayController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -71,8 +71,8 @@ class GatewayController extends Controller
     /**
      * Make real boolean.
      *
-     * @param  Gateway $gateway
-     * @param  array  $inputs
+     * @param Gateway $gateway
+     * @param array   $inputs
      *
      * @return array
      */
@@ -94,13 +94,13 @@ class GatewayController extends Controller
     /**
      * Enable/Disable a gateway.
      *
-     * @param  Gateway $gateway
+     * @param Gateway $gateway
      *
      * @return Response
      */
     public function switchStatus(Gateway $gateway)
     {
-        $gateway->enabled = ! $gateway->enabled;
+        $gateway->enabled = !$gateway->enabled;
         $gateway->save();
     }
 }

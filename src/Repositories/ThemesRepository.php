@@ -44,7 +44,7 @@ class ThemesRepository
                 'is_active' => $this->isActive($name),
                 'manifest'  => $this->getManifest($name),
             ];
-        };
+        }
 
         return collect($themes);
     }
@@ -52,7 +52,7 @@ class ThemesRepository
     /**
      * Check if given theme exists.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */
@@ -64,7 +64,7 @@ class ThemesRepository
     /**
      * Check if given theme exists.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */
@@ -78,7 +78,7 @@ class ThemesRepository
     /**
      * Get theme JSON content as an array.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return array|mixed
      */
@@ -89,7 +89,7 @@ class ThemesRepository
             $theme = $this->getActive();
         }
 
-        if (! $this->exists($theme)) {
+        if (!$this->exists($theme)) {
             return $default;
         }
 
@@ -108,8 +108,8 @@ class ThemesRepository
     /**
      * Set theme manifest JSON content property value.
      *
-     * @param  string $theme
-     * @param  array  $content
+     * @param string $theme
+     * @param array  $content
      *
      * @return int
      */
@@ -124,8 +124,8 @@ class ThemesRepository
     /**
      * Get a theme manifest property value.
      *
-     * @param  string      $property
-     * @param  null|string $default
+     * @param string      $property
+     * @param null|string $default
      *
      * @return mixed
      */
@@ -139,8 +139,8 @@ class ThemesRepository
     /**
      * Set a theme manifest property value.
      *
-     * @param  string $property
-     * @param  mixed  $value
+     * @param string $property
+     * @param mixed  $value
      *
      * @return bool
      */
@@ -161,7 +161,7 @@ class ThemesRepository
     /**
      * Get theme slug.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return string
      */
@@ -173,7 +173,7 @@ class ThemesRepository
     /**
      * Get theme name.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return string
      */
@@ -185,7 +185,7 @@ class ThemesRepository
     /**
      * Get theme author.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return string
      */
@@ -197,7 +197,7 @@ class ThemesRepository
     /**
      * Get theme description.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return string
      */
@@ -209,7 +209,7 @@ class ThemesRepository
     /**
      * Get theme version.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return string
      */
@@ -254,7 +254,7 @@ class ThemesRepository
     /**
      * Check if given theme is the active one.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */
@@ -266,13 +266,13 @@ class ThemesRepository
     /**
      * set a new active Theme.
      *
-     * @param  string $theme
+     * @param string $theme
      *
      * @return bool
      */
     public function setActive($theme)
     {
-        if (! $this->exists($theme)) {
+        if (!$this->exists($theme)) {
             throw new Exception("Theme $theme doesn't exist!");
         }
 

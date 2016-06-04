@@ -2,11 +2,11 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use Updater;
-use Session;
 use Illuminate\Http\Request;
-use ZEDx\Http\Controllers\Controller;
+use Session;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Updater;
+use ZEDx\Http\Controllers\Controller;
 
 class UpdateController extends Controller
 {
@@ -61,11 +61,11 @@ class UpdateController extends Controller
     protected function startUpdate(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
     {
         $response = new StreamedResponse(function () use ($request) {
-      $hasForce = $request->has('force');
-      $force = $hasForce && $request->get('force') == 'true';
+            $hasForce = $request->has('force');
+            $force = $hasForce && $request->get('force') == 'true';
 
-      Updater::update($force);
-    });
+            Updater::update($force);
+        });
 
         $response->headers->set('Content-Type', 'text/event-stream');
 

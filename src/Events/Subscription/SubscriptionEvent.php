@@ -22,7 +22,7 @@ class SubscriptionEvent extends Event
      *
      * @param \ZEDx\Models\Subscription $subscription
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Subscription $subscription)
     {

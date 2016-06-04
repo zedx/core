@@ -1,12 +1,12 @@
 <?php
 
-use ZEDx\Models\Ad;
-use ZEDx\Models\Adtype;
-use ZEDx\Models\Adstatus;
-use ZEDx\Events\Ad\AdWasCreated;
-use ZEDx\Utils\Geolocation;
-use ZEDx\Events\Ad\AdWasValidated;
 use Illuminate\Database\Seeder;
+use ZEDx\Events\Ad\AdWasCreated;
+use ZEDx\Events\Ad\AdWasValidated;
+use ZEDx\Models\Ad;
+use ZEDx\Models\Adstatus;
+use ZEDx\Models\Adtype;
+use ZEDx\Utils\Geolocation;
 
 class AdsTableSeeder extends Seeder
 {

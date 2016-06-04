@@ -3,16 +3,17 @@
 namespace ZEDx\Models;
 
 use Carbon\Carbon;
-use Sofa\Eloquence\Eloquence;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Sofa\Eloquence\Eloquence;
 
-class User extends Model implements AuthenticatableContract,
+class User extends Model implements
+AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
@@ -97,10 +98,10 @@ class User extends Model implements AuthenticatableContract,
     {
         parent::boot();
         static::deleting(function ($user) {
-      foreach ($user->ads as $ad) {
-          $ad->forceDelete();
-      }
-      $user->adtypes()->detach();
-    });
+            foreach ($user->ads as $ad) {
+                $ad->forceDelete();
+            }
+            $user->adtypes()->detach();
+        });
     }
 }

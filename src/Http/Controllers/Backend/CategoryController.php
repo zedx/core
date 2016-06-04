@@ -3,11 +3,11 @@
 namespace ZEDx\Http\Controllers\Backend;
 
 use Request;
-use ZEDx\Models\Field;
-use ZEDx\Models\Category;
+use ZEDx\Events\Category\CategoryWasUpdated;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\CategoryRequest;
-use ZEDx\Events\Category\CategoryWasUpdated;
+use ZEDx\Models\Category;
+use ZEDx\Models\Field;
 
 class CategoryController extends Controller
 {
@@ -38,7 +38,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryRequest  $request
+     * @param CategoryRequest $request
      *
      * @return Response
      */
@@ -77,7 +77,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -118,7 +118,7 @@ class CategoryController extends Controller
     /**
      * Order the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -139,7 +139,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Category  $category
+     * @param Category $category
      *
      * @return Response
      */

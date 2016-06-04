@@ -91,7 +91,7 @@ class WidgetsServiceProvider extends ServiceProvider
     /**
      * Register a widget translations.
      *
-     * @param  Widget     $widget
+     * @param Widget $widget
      *
      * @return void
      */

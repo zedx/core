@@ -15,10 +15,11 @@ use ZEDx\Models\Category;
 class AdService extends Controller
 {
     /**
-     * Contact user
+     * Contact user.
      *
-     * @param  Ad           $ad
-     * @param  Request      $request
+     * @param Ad      $ad
+     * @param Request $request
+     *
      * @return Response
      */
     public function contact(Ad $ad, BaseRequest $request)
@@ -50,10 +51,11 @@ class AdService extends Controller
     }
 
     /**
-     * Send mail to user
+     * Send mail to user.
      *
-     * @param  Ad          $ad
-     * @param  Request $request
+     * @param Ad      $ad
+     * @param Request $request
+     *
      * @return bool
      */
     protected function sendMailToUser(Ad $ad, BaseRequest $request)
@@ -72,7 +74,7 @@ class AdService extends Controller
             'sender_phone'  => $request->phone,
             'ad_title'      => $ad->content->title,
             'website_title' => setting()->website_title,
-            'ad_url'        => route('ad.show', array($ad->id, str_slug($ad->content->title))),
+            'ad_url'        => route('ad.show', [$ad->id, str_slug($ad->content->title)]),
         ];
 
         return $mailer
@@ -81,9 +83,10 @@ class AdService extends Controller
     }
 
     /**
-     * Show user phone
+     * Show user phone.
      *
-     * @param  Ad     $ad
+     * @param Ad $ad
+     *
      * @return string
      */
     public function phone(Ad $ad)
@@ -104,15 +107,16 @@ class AdService extends Controller
     }
 
     /**
-     * Encode phone to image
+     * Encode phone to image.
      *
-     * @param  string $number
+     * @param string $number
+     *
      * @return string
      */
     protected function phoneToEncodedImage($number)
     {
-        $im        = imagecreate(strlen($number) * 10, 40);
-        $bg        = imagecolorallocate($im, 255, 255, 255);
+        $im = imagecreate(strlen($number) * 10, 40);
+        $bg = imagecolorallocate($im, 255, 255, 255);
         $textcolor = imagecolorallocate($im, 0, 0, 0);
         imagestring($im, 5, 0, 10, $number, $textcolor);
         ob_start();
@@ -120,7 +124,7 @@ class AdService extends Controller
         $pngData = ob_get_contents();
         ob_end_clean();
 
-        return 'data:image/png;base64,' . base64_encode($pngData);
+        return 'data:image/png;base64,'.base64_encode($pngData);
     }
 
     /**
@@ -142,7 +146,7 @@ class AdService extends Controller
 
         if ($category = Category::find($filters->category_id)) {
             $categories = $category->getDescendantsAndSelf(['id'])->keyBy('id')->keys()->toArray();
-            $ads        = $ads->whereIn('category_id', $categories);
+            $ads = $ads->whereIn('category_id', $categories);
         }
 
         $ads = $ads->join('adcontents', 'ads.id', '=', 'adcontents.ad_id');
@@ -153,8 +157,8 @@ class AdService extends Controller
          */
 
         // Like (valid on all SGBD)
-        $ads = $filters->query ? $ads->where('adcontents.title', 'like', '%' . $filters->query . '%')
-            ->orWhere('adcontents.body', 'like', '%' . $filters->query . '%') : $ads;
+        $ads = $filters->query ? $ads->where('adcontents.title', 'like', '%'.$filters->query.'%')
+            ->orWhere('adcontents.body', 'like', '%'.$filters->query.'%') : $ads;
 
         if (is_numeric($filters->lat) && is_numeric($filters->lng) && is_numeric($filters->radius)) {
             $ads = $ads->join('geolocations', 'ads.id', '=', 'geolocations.ad_id')
@@ -178,23 +182,24 @@ class AdService extends Controller
     }
 
     /**
-     * Get filters
+     * Get filters.
      *
-     * @param  string $params
+     * @param string $params
+     *
      * @return array
      */
     public function getFilters($params = '')
     {
-        $data        = explode('/', $params);
-        $location    = isset($data[1]) ? $data[1] : null;
-        $query       = Request::get('q');
+        $data = explode('/', $params);
+        $location = isset($data[1]) ? $data[1] : null;
+        $query = Request::get('q');
         $user_status = in_array(Request::get('us'), ['0', '1']) ? Request::get('us') : null;
         $category_id = Request::get('c');
-        $lat         = Request::get('lat');
-        $lng         = Request::get('lng');
-        $radius      = Request::get('radius');
+        $lat = Request::get('lat');
+        $lng = Request::get('lng');
+        $radius = Request::get('radius');
         $fields_data = Request::get('fields');
-        $fields      = Cache::rememberForever('search-fields-' . $fields_data, function () use ($fields_data) {
+        $fields = Cache::rememberForever('search-fields-'.$fields_data, function () use ($fields_data) {
             return $this->getFields($fields_data);
         });
 
@@ -211,10 +216,11 @@ class AdService extends Controller
     }
 
     /**
-     * Prepare ad Fields
+     * Prepare ad Fields.
      *
-     * @param  Builder      $ads
-     * @param  array        $fields
+     * @param Builder $ads
+     * @param array   $fields
+     *
      * @return Builder
      */
     protected function joinFields($ads, $fields)
@@ -224,22 +230,22 @@ class AdService extends Controller
             switch ($field['type']) {
                 case 'select':
                     $ads = $this->attachQueryJoin($ads, $f, $field);
-                    $ads = $ads->where('zedx__tmpF' . $f . '.value', '=', $field['value']);
+                    $ads = $ads->where('zedx__tmpF'.$f.'.value', '=', $field['value']);
                     break;
                 case 'checkbox':
                     $ads = $this->attachQueryJoin($ads, $f, $field);
-                    $ads = $ads->whereIn('zedx__tmpF' . $f . '.value', $field['value']);
+                    $ads = $ads->whereIn('zedx__tmpF'.$f.'.value', $field['value']);
                     break;
                 case 'input':
                     if ($field['value']['min'] != '*' || $field['value']['max'] != '*') {
                         $ads = $this->attachQueryJoin($ads, $f, $field);
                     }
                     if ($field['value']['min'] != '*' && $field['value']['max'] != '*') {
-                        $ads = $ads->whereBetween('zedx__tmpF' . $f . '.value', [$field['value']['min'], $field['value']['max']]);
+                        $ads = $ads->whereBetween('zedx__tmpF'.$f.'.value', [$field['value']['min'], $field['value']['max']]);
                     } elseif ($field['value']['min'] != '*') {
-                        $ads = $ads->where('zedx__tmpF' . $f . '.value', '>=', $field['value']['min']);
+                        $ads = $ads->where('zedx__tmpF'.$f.'.value', '>=', $field['value']['min']);
                     } elseif ($field['value']['max'] != '*') {
-                        $ads = $ads->where('zedx__tmpF' . $f . '.value', '<=', $field['value']['max']);
+                        $ads = $ads->where('zedx__tmpF'.$f.'.value', '<=', $field['value']['max']);
                     }
                     break;
             }
@@ -250,26 +256,28 @@ class AdService extends Controller
     }
 
     /**
-     * Attach join queries
+     * Attach join queries.
      *
-     * @param  Builder $ads
-     * @param  integer $f
-     * @param  array $field
+     * @param Builder $ads
+     * @param int     $f
+     * @param array   $field
+     *
      * @return Builder
      */
     protected function attachQueryJoin($ads, $f, $field)
     {
-        $ads = $ads->join('ad_field AS zedx__tmpF' . $f, function ($join) use ($f, $field) {
-            $join->on('ads.id', '=', 'zedx__tmpF' . $f . '.ad_id')->where('zedx__tmpF' . $f . '.field_id', '=', $field['field_id']);
+        $ads = $ads->join('ad_field AS zedx__tmpF'.$f, function ($join) use ($f, $field) {
+            $join->on('ads.id', '=', 'zedx__tmpF'.$f.'.ad_id')->where('zedx__tmpF'.$f.'.field_id', '=', $field['field_id']);
         });
 
         return $ads;
     }
 
     /**
-     * Get Fields from request
+     * Get Fields from request.
      *
-     * @param  string $fields_data
+     * @param string $fields_data
+     *
      * @return array
      */
     protected function getFields($fields_data)
@@ -284,7 +292,7 @@ class AdService extends Controller
         foreach ($_fields_data as $fields) {
             $_fields = explode('a', $fields);
             if (count($_fields) == 2 && is_numeric($_fields[0])) {
-                $minmax   = explode('b', $_fields[1]);
+                $minmax = explode('b', $_fields[1]);
                 $checkbox = explode('|', $_fields[1]);
                 if (count($minmax) == 2 && (is_numeric($minmax[0]) || $minmax[0] == '*') && (is_numeric($minmax[1]) || $minmax[1] == '*')) {
                     $list_fields[$_fields[0]] = $this->constructNumericInput($_fields, $minmax);
@@ -300,10 +308,11 @@ class AdService extends Controller
     }
 
     /**
-     * Construct numeric input fields
+     * Construct numeric input fields.
      *
-     * @param  array $fields
-     * @param  array $values
+     * @param array $fields
+     * @param array $values
+     *
      * @return array
      */
     protected function constructNumericInput($fields, $values)
@@ -319,10 +328,11 @@ class AdService extends Controller
     }
 
     /**
-     * Construct checkbox fields
+     * Construct checkbox fields.
      *
-     * @param  array $fields
-     * @param  array $values
+     * @param array $fields
+     * @param array $values
+     *
      * @return array
      */
     protected function constructCheckbox($fields, $values)
@@ -335,10 +345,11 @@ class AdService extends Controller
     }
 
     /**
-     * Construct selectbox fields
+     * Construct selectbox fields.
      *
-     * @param  array $fields
-     * @param  array $value
+     * @param array $fields
+     * @param array $value
+     *
      * @return array
      */
     protected function constructSelect($fields, $value)

@@ -22,7 +22,7 @@ class AdController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PageService  $service
+     * @param PageService $service
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class AdController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Ad  $ad
+     * @param Ad $ad
      *
      * @return Response
      */
@@ -44,13 +44,13 @@ class AdController extends Controller
 
         $page = (object) $this->pageService->show('ad.show', true);
 
-        return view('__templates::' . $page->templateFile, $page->data);
+        return view('__templates::'.$page->templateFile, $page->data);
     }
 
     /**
      * Ad preview.
      *
-     * @param  Ad  $ad
+     * @param Ad $ad
      *
      * @return Response
      */
@@ -62,7 +62,7 @@ class AdController extends Controller
 
         $page = (object) $this->pageService->show('ad.show', true);
 
-        return view('__templates::' . $page->templateFile, $page->data);
+        return view('__templates::'.$page->templateFile, $page->data);
     }
 
     public function contact(Ad $ad, Request $request)
@@ -86,6 +86,6 @@ class AdController extends Controller
 
         $page = (object) $this->pageService->show('ad.search', true);
 
-        return view('__templates::' . $page->templateFile, $page->data);
+        return view('__templates::'.$page->templateFile, $page->data);
     }
 }

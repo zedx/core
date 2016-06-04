@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateRolesTable extends Migration
 {
@@ -14,12 +14,12 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
-      $table->string('name');
-      $table->string('display_name');
-      $table->string('description');
-      $table->boolean('is_visible')->default(true);
-      $table->timestamp('cached_at')->useCurrent();
-      $table->nullableTimestamps();
+            $table->string('name');
+            $table->string('display_name');
+            $table->string('description');
+            $table->boolean('is_visible')->default(true);
+            $table->timestamp('cached_at')->useCurrent();
+            $table->nullableTimestamps();
         });
     }
 

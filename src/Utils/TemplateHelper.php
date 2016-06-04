@@ -14,7 +14,7 @@ class TemplateHelper
     /**
      * Save new templates for theme.
      *
-     * @param  string $themeName
+     * @param string $themeName
      *
      * @return Template
      */
@@ -27,7 +27,7 @@ class TemplateHelper
         foreach ($templates['template'] as $template) {
             $identifier = str_slug($template['@attributes']['identifier']);
             $title = $template['@attributes']['title'];
-            if (! Template::whereIdentifier($identifier)->whereTheme($themeName)->exists()) {
+            if (!Template::whereIdentifier($identifier)->whereTheme($themeName)->exists()) {
                 self::saveNewTemplate($themeName, $template);
             }
         }
@@ -64,7 +64,7 @@ class TemplateHelper
     /**
      * Save template blocks.
      *
-     * @param  Template $template
+     * @param Template $template
      *
      * @return void
      */
@@ -83,8 +83,8 @@ class TemplateHelper
     /**
      * Synchronize template blocks.
      *
-     * @param  Template $template
-     * @param  [type] $xmlBlock
+     * @param Template $template
+     * @param [type]   $xmlBlock
      *
      * @return void
      */

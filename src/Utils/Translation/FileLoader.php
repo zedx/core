@@ -31,8 +31,8 @@ class FileLoader implements LoaderInterface
     /**
      * Create a new file loader instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
-     * @param  string  $paths
+     * @param \Illuminate\Filesystem\Filesystem $files
+     * @param string                            $paths
      *
      * @return void
      */
@@ -45,9 +45,9 @@ class FileLoader implements LoaderInterface
     /**
      * Load the messages for the given locale.
      *
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
      *
      * @return array
      */
@@ -63,9 +63,9 @@ class FileLoader implements LoaderInterface
     /**
      * Load a namespaced translation group.
      *
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
      *
      * @return array
      */
@@ -83,10 +83,10 @@ class FileLoader implements LoaderInterface
     /**
      * Load a local namespaced translation group for overrides.
      *
-     * @param  array  $lines
-     * @param  string  $locale
-     * @param  string  $group
-     * @param  string  $namespace
+     * @param array  $lines
+     * @param string $locale
+     * @param string $group
+     * @param string $namespace
      *
      * @return array
      */
@@ -104,9 +104,9 @@ class FileLoader implements LoaderInterface
     /**
      * Load a locale from a given path.
      *
-     * @param  string  $paths
-     * @param  string  $locale
-     * @param  string  $group
+     * @param string $paths
+     * @param string $locale
+     * @param string $group
      *
      * @return array
      */
@@ -114,7 +114,7 @@ class FileLoader implements LoaderInterface
     {
         foreach ($paths as $path) {
             $lang = $this->loadPath($path, $locale, $group);
-            if (! empty($lang)) {
+            if (!empty($lang)) {
                 return $lang;
             }
         }
@@ -125,9 +125,9 @@ class FileLoader implements LoaderInterface
     /**
      * Load a locale from a given path.
      *
-     * @param  string  $path
-     * @param  string  $locale
-     * @param  string  $group
+     * @param string $path
+     * @param string $locale
+     * @param string $group
      *
      * @return array
      */
@@ -143,8 +143,8 @@ class FileLoader implements LoaderInterface
     /**
      * Add a new namespace to the loader.
      *
-     * @param  string  $namespace
-     * @param  string  $hint
+     * @param string $namespace
+     * @param string $hint
      *
      * @return void
      */

@@ -63,13 +63,13 @@ class WidgetPublishCommand extends Command
         $this->name = $this->argument('name');
         $this->type = $this->argument('type');
 
-        if (! $this->author && ! $this->name && ! $this->type) {
+        if (!$this->author && !$this->name && !$this->type) {
             $this->publishAll();
 
             return;
         }
 
-        if (! $this->validWidgetType()) {
+        if (!$this->validWidgetType()) {
             $this->error('Invalid Widget Type, please choose between [Frontend, Backend]');
 
             return;
@@ -104,13 +104,13 @@ class WidgetPublishCommand extends Command
         $widgetPath = $this->getWidgetPath();
         $widgetPublicPath = $this->getWidgetPublicPath();
 
-        if (! File::isDirectory($widgetPath)) {
+        if (!File::isDirectory($widgetPath)) {
             $this->error("Widget [{$this->type}/{$this->author}/{$this->name}] doesn't exist!");
 
             return;
         }
 
-        if (! File::isDirectory($widgetPath.'/assets')) {
+        if (!File::isDirectory($widgetPath.'/assets')) {
             $this->info("[ ~ ] Nothing to publish for Widget [{$this->type}/{$this->author}/{$this->name}]");
 
             return;

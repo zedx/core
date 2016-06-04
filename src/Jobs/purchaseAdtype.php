@@ -2,9 +2,9 @@
 
 namespace ZEDx\Jobs;
 
-use ZEDx\Models\Order;
-use ZEDx\Events\Adtype\AdtypeWasPurchased;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Adtype\AdtypeWasPurchased;
+use ZEDx\Models\Order;
 
 class purchaseAdtype extends Job
 {

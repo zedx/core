@@ -16,6 +16,7 @@ use Zipper;
 class ThemeController extends Controller
 {
     protected $uploadedTheme;
+
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +70,7 @@ class ThemeController extends Controller
         $themes = [];
         switch ($tab) {
             case 'search':
-                # code...
+                // code...
                 break;
             /*
             case 'upload':
@@ -91,7 +92,7 @@ class ThemeController extends Controller
     /**
      * Download and install a new theme.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -112,7 +113,7 @@ class ThemeController extends Controller
     /**
      * upload a new theme.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -120,7 +121,7 @@ class ThemeController extends Controller
     {
         $uploadedTheme = $request->file('file');
 
-        if (! $uploadedTheme->isValid()) {
+        if (!$uploadedTheme->isValid()) {
             return response()->json(['error' => trans('backend.theme.invalid_zip_file')], 400);
         }
 
@@ -144,7 +145,7 @@ class ThemeController extends Controller
             throw new Exception(trans('backend.theme.theme_already_exist'));
         }
 
-        if (! File::makeDirectory($themePath, 0775, true)) {
+        if (!File::makeDirectory($themePath, 0775, true)) {
             throw new Exception(trans('backend.theme.cant_create_theme'));
         }
 
@@ -158,7 +159,7 @@ class ThemeController extends Controller
     protected function getThemeNameFromZip($zipPath)
     {
         $manifest = Zipper::make($zipPath)->getFileContent('zedx.json');
-        if (! $manifest) {
+        if (!$manifest) {
             throw new Exception(trans("zedx.json doesn't exist!"));
         }
 
@@ -170,13 +171,13 @@ class ThemeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
     public function destroy($themeName)
     {
-        if (! Themes::has($themeName)) {
+        if (!Themes::has($themeName)) {
             throw new Exception(trans('backend.theme.theme_doesnt_exist', [
                 'name' => $themeName,
             ]));

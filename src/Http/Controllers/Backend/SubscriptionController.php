@@ -77,7 +77,7 @@ class SubscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -91,7 +91,7 @@ class SubscriptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -116,7 +116,7 @@ class SubscriptionController extends Controller
     /**
      * Remove a Collection of Subscriptions.
      *
-     * @param  Collection  $subscriptions
+     * @param Collection $subscriptions
      *
      * @return Response
      */
@@ -130,7 +130,7 @@ class SubscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Subscription  $subscription
+     * @param Subscription $subscription
      *
      * @return Response
      */

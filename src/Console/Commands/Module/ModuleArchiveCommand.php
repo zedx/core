@@ -58,7 +58,7 @@ class ModuleArchiveCommand extends Command
 
         $this->file = $path.'/'.$this->name.'-'.rand().'.zip';
 
-        if (! File::isDirectory($this->getModulePath())) {
+        if (!File::isDirectory($this->getModulePath())) {
             $this->error("Module [{$this->name}] doesn't exist!]");
 
             return;
@@ -107,7 +107,7 @@ class ModuleArchiveCommand extends Command
 
         foreach ($files as $name => $file) {
             // Skip directories (they would be added automatically)
-            if (! $file->isDir()) {
+            if (!$file->isDir()) {
                 // Get real and relative path for current file
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($rootPath) + 1);

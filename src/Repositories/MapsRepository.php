@@ -188,8 +188,6 @@ class MapsRepository implements Countable
                 return $map;
             }
         }
-
-        return;
     }
 
     /**
@@ -207,13 +205,13 @@ class MapsRepository implements Countable
      *
      * @param $code
      *
-     * @return Map
-     *
      * @throws MapNotFoundException
+     *
+     * @return Map
      */
     public function findOrFail($code)
     {
-        if (! is_null($map = $this->find($code))) {
+        if (!is_null($map = $this->find($code))) {
             return $map;
         }
 
@@ -223,7 +221,7 @@ class MapsRepository implements Countable
     /**
      * Construct map attributes.
      *
-     * @param  string $code
+     * @param string $code
      *
      * @return string
      */
@@ -231,7 +229,7 @@ class MapsRepository implements Countable
     {
         $map = $this->find($code);
 
-        if (! $map) {
+        if (!$map) {
             return '';
         }
 
@@ -264,7 +262,7 @@ class MapsRepository implements Countable
             && isset($data['animate'])
             && isset($data['animate']['attributes'])
             && isset($data['animate']['attributes']['fill'])
-            && isset($data['paths']) && ! empty($data['paths']);
+            && isset($data['paths']) && !empty($data['paths']);
         } catch (Exception $e) {
             return false;
         }

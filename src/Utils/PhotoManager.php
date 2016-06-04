@@ -13,7 +13,7 @@ class PhotoManager
 
     public function save($imgs)
     {
-        if (! is_array($imgs)) {
+        if (!is_array($imgs)) {
             $imgs = [$imgs];
         }
         $imgs = array_filter($imgs);

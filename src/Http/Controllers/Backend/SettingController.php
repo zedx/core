@@ -62,7 +62,7 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -98,7 +98,7 @@ class SettingController extends Controller
      *
      * @param StdClass $providers
      *
-     * @return  void
+     * @return void
      */
     protected function setProvidersToEnv($providers)
     {

@@ -78,7 +78,7 @@ abstract class Widget
     /**
      * Setting widget.
      *
-     * @param  string $url
+     * @param string $url
      *
      * @return Response
      */

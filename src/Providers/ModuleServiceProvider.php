@@ -7,7 +7,7 @@ use Modules;
 use ZEDx\Repositories\ModulesRepository;
 use ZEDx\Support\Stub;
 
-class ModulesServiceProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     /**
      * Modules.

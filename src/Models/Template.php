@@ -22,12 +22,12 @@ class Template extends Model
         parent::boot();
 
         static::deleted(function ($template) {
-        event(new TemplateWasDeleted($template));
-    });
+            event(new TemplateWasDeleted($template));
+        });
 
         static::deleting(function ($template) {
-      $template->pages()->delete();
-      $template->blocks()->delete();
-    });
+            $template->pages()->delete();
+            $template->blocks()->delete();
+        });
     }
 }

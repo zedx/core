@@ -36,9 +36,9 @@ class SubscriptionAdtypesTableSeeder extends Seeder
     protected function syncAdtypesToSubscription(Subscription $subscription, $adtypes)
     {
         array_walk($adtypes, function (&$adtype, $key) {
-          $adtype['number'] = $adtype['enabled'] == 1 && $adtype['number'] > 0 ? $adtype['number'] : 0;
-          unset($adtype['enabled']);
-      });
+            $adtype['number'] = $adtype['enabled'] == 1 && $adtype['number'] > 0 ? $adtype['number'] : 0;
+            unset($adtype['enabled']);
+        });
 
         $subscription->adtypes()->sync($adtypes);
     }

@@ -18,10 +18,11 @@ class SubscriptionService extends Controller
     public function __construct()
     {
         $this->user = Auth::user();
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
+
     /**
      * Display a listing of the resource.
      *

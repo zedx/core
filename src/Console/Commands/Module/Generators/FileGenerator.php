@@ -122,7 +122,7 @@ class FileGenerator extends Generator
      */
     public function generate()
     {
-        if (! $this->filesystem->exists($path = $this->getPath())) {
+        if (!$this->filesystem->exists($path = $this->getPath())) {
             return $this->filesystem->put($path, $this->getContents());
         }
 

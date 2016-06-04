@@ -36,7 +36,7 @@ class ModuleMigrateRollbackCommand extends Command
     {
         $module = $this->argument('module');
 
-        if (! empty($module)) {
+        if (!empty($module)) {
             $this->rollback($module);
 
             return;

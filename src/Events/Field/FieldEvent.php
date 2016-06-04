@@ -22,7 +22,7 @@ class FieldEvent extends Event
      *
      * @param \ZEDx\Models\Field $field
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Field $field)
     {

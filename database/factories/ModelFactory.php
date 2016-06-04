@@ -11,9 +11,9 @@
 |
 */
 use Carbon\Carbon;
-use ZEDx\Models\User;
 use ZEDx\Models\Role;
 use ZEDx\Models\Subscription;
+use ZEDx\Models\User;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [
@@ -21,16 +21,16 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'email'       => $faker->email,
         'is_validate' => true,
         'role_id'     => function () {
-          return Role::whereName('user')->firstOrFail()->id;
+            return Role::whereName('user')->firstOrFail()->id;
         },
         'subscription_id' => function () {
-          return Subscription::whereIsDefault(1)->first()->id;
+            return Subscription::whereIsDefault(1)->first()->id;
         },
         'subscribed_at'           => Carbon::now()->format('d/m/Y'),
         'subscription_expired_at' => function () {
-          $subscription = Subscription::whereIsDefault(1)->first();
+            $subscription = Subscription::whereIsDefault(1)->first();
 
-          return $subscription->days >= 9999 ? null : Carbon::now()->addDays($subscription->days + 1);
+            return $subscription->days >= 9999 ? null : Carbon::now()->addDays($subscription->days + 1);
         },
         'password'       => str_random(10),
         'remember_token' => str_random(10),
@@ -38,7 +38,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(ZEDx\Models\Admin::class, function (Faker\Generator $faker) {
-  return [
+    return [
     'name'           => $faker->name,
     'email'          => $faker->email,
     'password'       => bcrypt(str_random(10)),
@@ -47,7 +47,7 @@ $factory->define(ZEDx\Models\Admin::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(ZEDx\Models\Subscription::class, function (Faker\Generator $faker) {
-  return [
+    return [
     'title'       => $faker->word,
     'description' => $faker->sentence,
     'days'        => $faker->randomNumber(3),
@@ -57,7 +57,7 @@ $factory->define(ZEDx\Models\Subscription::class, function (Faker\Generator $fak
 });
 
 $factory->define(ZEDx\Models\Adtype::class, function (Faker\Generator $faker) {
-  return [
+    return [
     'title'            => $faker->word,
     'is_headline'      => $faker->boolean(),
     'can_renew'        => $faker->boolean(),
@@ -74,7 +74,7 @@ $factory->define(ZEDx\Models\Adtype::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(ZEDx\Models\Field::class, function (Faker\Generator $faker) {
-  return [
+    return [
     'name'         => $faker->word,
     'type'         => $faker->numberBetween(1, 8),
     'title'        => $faker->word,

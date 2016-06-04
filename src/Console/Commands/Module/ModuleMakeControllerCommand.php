@@ -2,10 +2,10 @@
 
 namespace ZEDx\Console\Commands\Module;
 
+use Modules;
 use Symfony\Component\Console\Input\InputArgument;
 use ZEDx\Console\Commands\Module\Traits\ModuleCommandTrait;
 use ZEDx\Support\Stub;
-use Modules;
 
 class ModuleMakeControllerCommand extends GeneratorCommand
 {
@@ -87,7 +87,7 @@ class ModuleMakeControllerCommand extends GeneratorCommand
     {
         $controller = studly_case($this->argument('controller'));
 
-        if (! str_contains(strtolower($controller), 'controller')) {
+        if (!str_contains(strtolower($controller), 'controller')) {
             $controller = $controller.'Controller';
         }
 

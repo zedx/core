@@ -22,7 +22,7 @@ class MenuEvent extends Event
      *
      * @param \ZEDx\Models\Menu $menu
      *
-     * @return  void
+     * @return void
      */
     public function __construct(Menu $menu)
     {

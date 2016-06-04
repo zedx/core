@@ -10,7 +10,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class Admin extends Model implements AuthenticatableContract,
+class Admin extends Model implements
+AuthenticatableContract,
 AuthorizableContract,
 CanResetPasswordContract
 {

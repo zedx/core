@@ -2,8 +2,8 @@
 
 namespace ZEDx\Events\Admin;
 
-use ZEDx\Events\Event;
 use Illuminate\Queue\SerializesModels;
+use ZEDx\Events\Event;
 use ZEDx\Models\Admin;
 
 class AdminWillBeLoggedOut extends Event

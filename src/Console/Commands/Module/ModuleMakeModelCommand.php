@@ -104,7 +104,7 @@ class ModuleMakeModelCommand extends GeneratorCommand
     {
         $fillable = $this->option('fillable');
 
-        if (! is_null($fillable)) {
+        if (!is_null($fillable)) {
             $arrays = explode(',', $fillable);
 
             return json_encode($arrays);

@@ -14,8 +14,11 @@ abstract class Driver
   protected $gatewayStatus;
 
     abstract public function getConfig($transaction);
+
     abstract public function returnPayment($response);
+
     abstract public function cancelPayment();
+
     abstract public function notifyPayment();
 
     public function isValid()

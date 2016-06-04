@@ -112,7 +112,7 @@ class TemplateSkeleton
 
     protected function isThemePartial($partial)
     {
-        return (Themepartial::whereName($partial)->first());
+        return Themepartial::whereName($partial)->first();
     }
 
     protected function replaceStubBlocks()
@@ -146,12 +146,12 @@ class TemplateSkeleton
 
         $template = '';
         if ($this->xmlTemplate) {
-            if (! $this->blockEdit) {
+            if (!$this->blockEdit) {
                 $template = '<div id="page-blocks" class="show-grid">';
             }
             $rows = isset($this->xmlTemplate->row->item) ? $this->xmlTemplate->row->item : [$this->xmlTemplate->row];
             $template .= $this->renderRows($rows);
-            if (! $this->blockEdit) {
+            if (!$this->blockEdit) {
                 $template .= '</div>';
             }
         }
@@ -170,7 +170,7 @@ class TemplateSkeleton
             $cols = isset($xmlRow->col->item) ? $xmlRow->col->item : [$xmlRow->col];
             $templateCols = $this->renderCols($cols);
             if ($templateCols) {
-                if (! $this->blockEdit) {
+                if (!$this->blockEdit) {
                     $template .= '<div class="row">';
                 } else {
                     $template .= '<div class="row template-editing ui-sortable">
@@ -254,7 +254,7 @@ class TemplateSkeleton
             }
             $template .= '<div id="'.$blockId.'" data-template-identifier="'.str_slug($xmlBlock->attributes->identifier).'" class="'.$this->connectionClass.' col-md-'.$grid.' block '.$current.'" data-template-grid="'.$grid.'">';
             $template .= '  <div class="template-block-content">';
-            if (! $this->generateFile) {
+            if (!$this->generateFile) {
                 if ($this->type == 'page') {
                     $template .= '    <a href="'.route('zxadmin.page.edit', [$this->page->id, str_slug($xmlBlock->attributes->identifier)]).'">';
                 } else {

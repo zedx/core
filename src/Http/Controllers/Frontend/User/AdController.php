@@ -31,7 +31,7 @@ class AdController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PageService  $service
+     * @param PageService $service
      *
      * @return void
      */
@@ -40,7 +40,7 @@ class AdController extends Controller
         $this->pageService = $service;
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
@@ -94,7 +94,7 @@ class AdController extends Controller
     /**
      * Adtype number.
      *
-     * @param  Adtype $adtype
+     * @param Adtype $adtype
      *
      * @return int
      */
@@ -126,13 +126,13 @@ class AdController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
     public function edit(Ad $ad)
     {
-        if (! $ad->adtype->can_edit) {
+        if (!$ad->adtype->can_edit) {
             return redirect()->route('user.ad.index');
         }
 
@@ -144,7 +144,7 @@ class AdController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -169,7 +169,7 @@ class AdController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Ad  $ad
+     * @param Ad $ad
      *
      * @return Response
      */

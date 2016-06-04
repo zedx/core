@@ -2,10 +2,10 @@
 
 namespace ZEDx\Events\Subscription;
 
+use Illuminate\Queue\SerializesModels;
 use ZEDx\Events\Event;
 use ZEDx\Models\Order;
 use ZEDx\Models\Subscription;
-use Illuminate\Queue\SerializesModels;
 
 class SubscriptionWasPurchased extends Event
 {

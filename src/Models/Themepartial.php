@@ -19,7 +19,7 @@ class Themepartial extends Model
     {
         parent::boot();
         static::deleting(function ($page) {
-      $page->pages()->detach();
-    });
+            $page->pages()->detach();
+        });
     }
 }

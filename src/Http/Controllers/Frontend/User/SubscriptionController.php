@@ -29,7 +29,7 @@ class SubscriptionController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  PageService  $service
+     * @param PageService $service
      *
      * @return void
      */
@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
         $this->pageService = $service;
         $this->user = Auth::user();
 
-        if ($this->user && ! $this->user->is_validate) {
+        if ($this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
@@ -64,7 +64,7 @@ class SubscriptionController extends Controller
     {
         $swapped = (new SubscriptionService())->swapForFree($subscription);
 
-        if (! Request::ajax()) {
+        if (!Request::ajax()) {
             return redirect()->route('user.subscription.index');
         }
 

@@ -75,8 +75,8 @@ class AdController extends Controller
     /**
      * Moderate a Collection of Ads.
      *
-     * @param  Collection       $ads
-     * @param  Adstatus $adstatus
+     * @param Collection $ads
+     * @param Adstatus   $adstatus
      *
      * @return Response
      */
@@ -96,8 +96,8 @@ class AdController extends Controller
     /**
      * Moderate an Ad.
      *
-     * @param  Ad       $ad
-     * @param  Adstatus $adstatus
+     * @param Ad       $ad
+     * @param Adstatus $adstatus
      *
      * @return Response
      */
@@ -131,7 +131,7 @@ class AdController extends Controller
     /**
      * Banish an Ad.
      *
-     * @param  Ad     $ad
+     * @param Ad $ad
      *
      * @return Reponse
      */
@@ -218,7 +218,7 @@ class AdController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -234,7 +234,7 @@ class AdController extends Controller
     {
         $mergedFields = [];
 
-        if (! $ad->has('fields')) {
+        if (!$ad->has('fields')) {
             return [];
         }
 
@@ -279,7 +279,7 @@ class AdController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return Response
      */
@@ -328,7 +328,7 @@ class AdController extends Controller
         $ad->fields()->detach();
         $fields = $request->get('fields');
 
-        if (! is_array($fields)) {
+        if (!is_array($fields)) {
             return false;
         }
 
@@ -351,7 +351,7 @@ class AdController extends Controller
 
     protected function canAttachFieldToAd($authorizedFields, $fieldId, $value)
     {
-        if (! in_array($fieldId, array_keys($authorizedFields))) {
+        if (!in_array($fieldId, array_keys($authorizedFields))) {
             return false;
         }
 
@@ -387,12 +387,12 @@ class AdController extends Controller
 
     protected function isValidFieldSelectOptions($fieldId, $value)
     {
-        if (! is_array($value)) {
+        if (!is_array($value)) {
             return false;
         }
 
         foreach ($value as $option) {
-            if (! $this->isValidFieldSelectOption($fieldId, $option)) {
+            if (!$this->isValidFieldSelectOption($fieldId, $option)) {
                 return false;
             }
         }
@@ -472,7 +472,7 @@ class AdController extends Controller
     /**
      * Remove a Collection of Ads.
      *
-     * @param  Collection  $ads
+     * @param Collection $ads
      *
      * @return Response
      */
@@ -487,7 +487,7 @@ class AdController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Ad  $ad
+     * @param Ad $ad
      *
      * @return Response
      */

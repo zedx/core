@@ -1,8 +1,8 @@
 <?php
 
-use ZEDx\Models\Field;
-use ZEDx\Models\Category;
 use Illuminate\Database\Seeder;
+use ZEDx\Models\Category;
+use ZEDx\Models\Field;
 
 class CategoriesFieldsSeeder extends Seeder
 {
