@@ -1,0 +1,1 @@
+@extends('emails.user.layout')@section('content'){!! trans('email.user.adtype_changed.content', ['ad' => $ad->title, 'adtype' => $adtype->title]) !!}@endsection

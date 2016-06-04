@@ -1,0 +1,22 @@
+
+.selectr .color-code.no-color {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    margin-right: 0;
+    float: left;
+    border-radius: 5px;
+}
+
+.select2 {
+    width: 100%!important;
+}
+
+.select2-container .select2-choice {
+    height: 34px;
+    line-height: 34px;
+}
+
+.select2-hidden-accessible {
+    height: 0px;
+}

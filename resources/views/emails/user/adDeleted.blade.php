@@ -1,0 +1,1 @@
+@extends('emails.user.layout')@section('content'){!! trans('email.user.ad_deleted.content', ['ad' => $ad->content->title]) !!}@endsection

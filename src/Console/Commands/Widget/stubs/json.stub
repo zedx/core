@@ -1,0 +1,30 @@
+{
+  "component"   : "widget",             //  Don't change it.
+  "type"        : "$STUDLY_TYPE$",      //  Don't change it.
+  "name"        : "$STUDLY_NAME$",      //  Don't change it.
+  "author"      : "$STUDLY_AUTHOR$",    //  Don't change it.
+
+  /*
+   * Widget Title
+   */
+  "title"       : "$STUDLY_NAME$",
+
+
+  /*
+   * Groups [ Backend Widgets doesn't use this option. ]
+   *
+   * In which group this widget should be visible ?
+   *
+   * Available groups:
+   *
+   * userLogin, userPasswordEmail, userPasswordReset, userRegister, userAdList, userAdType,
+   * userAdCreate, userAdEdit, userAdtypeList, userAdtypeCart, userSubscriptionList,
+   * userSubscriptionCart, userEdit, adSearch, adShow, page
+   *
+   * Leave empty if this widget can be used on all groups
+   */
+  "groups"      : [],
+  "description" : "Description $LOWER_NAME$",
+  "keywords"    : [],
+  "version"     : "1.0.0"
+}

@@ -1,0 +1,18 @@
+{
+    "type": "theme",
+    "slug": "$LOWER_NAME$",
+    "name": "$STUDLY_NAME$",
+    "author": "ZEDx",
+    "description": "Description $LOWER_NAME$ theme.",
+    "partials":[
+      {
+        "file": "header",
+        "title": "Header"
+      },
+      {
+        "file": "footer",
+        "title": "Footer"
+      }
+    ],
+    "version": "1.0.0"
+}

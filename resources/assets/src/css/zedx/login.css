@@ -1,0 +1,16 @@
+.login-box-body > .form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.login-box, .register-box {
+    width: 520px;
+    margin: 7% auto;
+}
+
+@media (max-width:768px){
+    .login-box,.register-box{
+        width:90%;
+        margin-top:20px
+    }
+}

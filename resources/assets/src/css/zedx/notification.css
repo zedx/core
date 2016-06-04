@@ -1,0 +1,27 @@
+#notifications .bootstrap-switch {
+    float: right
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu {
+    width: 380px;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu {
+    max-height: 800px;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > .new {
+    background-color: #ebeef4;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .time {
+    margin-left: 25px;
+}
+
+.notification-daterange > .input-group-addon {
+    width: auto;
+}
+
+.notification-daterange {
+    margin-right: 24px;
+}

@@ -1,0 +1,50 @@
+<?php
+
+namespace ZEDx\Widgets\$STUDLY_TYPE$\$STUDLY_AUTHOR$\$STUDLY_NAME$;
+
+use ZEDx\Components\Widget as BaseWidget;
+
+class Widget extends BaseWidget
+{
+    /**
+     * The configuration array.
+     *
+     * @var array
+     */
+    protected $config = [];
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+
+    /**
+     * Display widget
+     *
+     * @return Response
+     */
+    public function run()
+    {
+        return view("widget_$LOWER_TYPE$_$LOWER_AUTHOR$_$LOWER_NAME$::index", [
+            'config' => $this->config,
+        ]);
+    }
+
+    /**
+     * Display the setting page of widget.
+     *
+     * @param  string  $url
+     * @return Response
+     */
+    public function setting($url)
+    {
+        return view("widget_$LOWER_TYPE$_$LOWER_AUTHOR$_$LOWER_NAME$::setting", [
+            'config' => $this->config,
+        ]);
+    }
+}

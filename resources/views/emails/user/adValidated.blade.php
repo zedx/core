@@ -1,0 +1,1 @@
+@extends('emails.user.layout')@section('content'){!! trans('email.user.ad_validated.content', ['ad' => "<a href='" . route('ad.show', array($ad->id, str_slug($ad->content->title))) . "'>" . $ad->content->title . "</a>"]) !!}@endsection

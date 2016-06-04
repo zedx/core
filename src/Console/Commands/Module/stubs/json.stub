@@ -1,0 +1,18 @@
+{
+    "component": "module",
+    "name": "$STUDLY_NAME$",
+    "alias": "$LOWER_NAME$",
+    "title": "$STUDLY_NAME$",
+    "author": "",
+    "description": "",
+    "keywords": [],
+    "version": "1.0.0",
+    "active": 1,
+    "providers": [
+        "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\Providers\\$STUDLY_NAME$ServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

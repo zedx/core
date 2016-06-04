@@ -1,0 +1,192 @@
+
+.template-new-schema, .template-current-schema, .template-preview-schema {
+    padding: 20px;
+    border-style: dotted;
+}
+
+
+#template-controls {
+    margin: 5px 0
+}
+
+#template-controls button, #template-controls a {
+    font-size: 14px
+}
+
+#template-canvas {
+    min-height: 100;
+    background: #fff
+}
+
+#template-canvas textarea {
+    width: 100%;
+    height: 100%
+}
+
+#template-canvas .template-editing {
+    border-top: solid 1px #2fa4e7;
+    border-left: solid 1px #2fa4e7;
+    border-right: solid 1px #2fa4e7;
+    border-bottom: solid 1px #2fa4e7;
+    min-height: 30px;
+    background-color: none
+}
+
+#template-canvas .template-editing-selected {
+    -webkit-box-shadow: 0 0 5px 0 #2fa4e7;
+    -moz-box-shadow: 0 0 5px 0 #2fa4e7;
+    box-shadow: 0 0 5px 0 #2fa4e7
+}
+
+#template-canvas .template-editable-region {
+    border-top: solid 1px #c00;
+    border-left: solid 1px #c00;
+    border-right: solid 1px #c00;
+    border-bottom: solid 1px #c00;
+    border-style: dotted;
+    margin-bottom: 2px;
+    min-height: 30px -10;
+    padding: 0 20
+}
+
+#template-canvas .template-editable-region .template-controls-element {
+    top: 0;
+    right: 0;
+    display: block
+}
+
+#template-canvas .template-editable-region .template-controls-element a {
+    color: #fff;
+    font-size: 10px
+}
+
+#template-canvas .template-editable-region .template-controls-element .template-move {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-topleft: 6px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    float: left;
+    background-color: #c00;
+    padding: 4px;
+    margin-left: -17px
+}
+
+#template-canvas .template-editable-region .template-controls-element .template-delete {
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    float: right;
+    background-color: #c00;
+    padding: 4px;
+    margin-right: -17px;
+    border-radius: 0 8px 8px 0
+}
+
+#template-canvas .template-tools {
+    background-color: none;
+    min-height: 30px;
+    display: block;
+    clear: both;
+    margin-left: -13px;
+    margin-right: -14px
+}
+
+#template-canvas .template-tools a {
+    color: #1a99e2;
+    font-size: 14px;
+    padding: 5px 5px 5px 8px;
+    float: left;
+    cursor: pointer;
+    background-color: none
+}
+
+#template-canvas .template-tools a:hover {
+    background-color: #2fa4e7;
+    color: #fff;
+    text-decoration: none
+}
+
+#template-canvas .template-tools label, #template-canvas .template-tools input {
+    font-size: 10px
+}
+
+#template-canvas .template-tools .template-removeRow:hover, #template-canvas .template-tools .template-removeCol:hover {
+    background-color: #c00;
+    color: #fff
+}
+
+#template-canvas .template-tools .template-moveCol, #template-canvas .template-tools .template-moveRow {
+    cursor: move
+}
+
+#template-canvas .row.template-editing, #template-canvas .row-fluid.template-editing {
+    background-color: none;
+    margin: 0 0 5px 0;
+    padding: 0 5px 0 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -moz-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-top: solid 1px #999;
+    border-left: solid 1px #999;
+    border-right: solid 1px #999;
+    border-bottom: solid 1px #999;
+    -webkit-box-shadow: 0 1px 2px #999;
+    -moz-box-shadow: 0 1px 2px #999;
+    box-shadow: 0 1px 2px #999
+}
+
+#template-canvas .row.template-editing>.template-tools, #template-canvas .row-fluid.template-editing>.template-tools {
+    background-color: none;
+    margin-right: 0;
+    margin-left: 0
+}
+
+#template-canvas .row.template-editing>.template-tools a, #template-canvas .row-fluid.template-editing>.template-tools a {
+    color: #666;
+    background-color: none;
+    font-size: 15px
+}
+
+#template-canvas .row.template-editing>.template-tools a:hover, #template-canvas .row-fluid.template-editing>.template-tools a:hover {
+    color: #fff;
+    background-color: #2fa4e7
+}
+
+.layout-mode a:hover {
+    cursor: pointer
+}

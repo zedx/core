@@ -1,0 +1,48 @@
+{
+    "name": "zedx/core",
+    "description": "Complete and easily manageable Classifieds CMS",
+    "keywords": ["cms", "classifieds cms", "classified ads manager"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "laravelcollective/html": "^5.2",
+        "sofa/eloquence": "^5.2",
+        "intervention/image": "^2.3",
+        "laravel/socialite": "^2.0",
+        "rutorika/sortable": "^3.1",
+        "soapbox/laravel-formatter": "^2.0",
+        "ignited/laravel-omnipay": "2.*",
+        "omnipay/paypal": "~2.0",
+        "zorx/zipper": "^0.6.2",
+        "zorx/baum": "1.1.*",
+        "unikent/tfilecache": "^1.0",
+        "barryvdh/laravel-async-queue": "0.4.x"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.4",
+        "phpunit/phpunit": "^4.8",
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "files": [
+            "src/Support/helpers.php"
+        ],
+        "psr-4": {
+            "ZEDx\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

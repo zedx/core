@@ -1,0 +1,94 @@
+.themepartial-label.checkbox-inline {
+    margin-left: 0px!important;
+    padding: 10px
+}
+
+/* Widget-List */
+
+.widgets-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto
+}
+
+.widgets-list>li {
+    border-radius: 2px;
+    padding: 10px;
+    background: #f4f4f4;
+    margin-bottom: 2px;
+    border-left: 2px solid #e6e7e8;
+    color: #444
+}
+
+.widgets-list>li:last-of-type {
+    margin-bottom: 0
+}
+
+.widgets-list>li>input[type='checkbox'] {
+    margin: 0 10px 0 5px
+}
+
+.widgets-list>li .text {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.widgets-list>li .label {
+    margin-left: 10px;
+    font-size: 9px
+}
+
+.widgets-list>li .tools {
+    display: none;
+    float: right;
+    color: #dd4b39
+}
+
+.widgets-list>li .tools>.fa, .widgets-list>li .tools>.glyphicon, .widgets-list>li .tools>.ion {
+    margin-right: 5px;
+    cursor: pointer
+}
+
+.widgets-list>li:hover .tools {
+    display: inline-block
+}
+
+.widgets-list>li.disabled {
+    color: #999
+}
+
+.widgets-list>li.disabled .text {
+    text-decoration: line-through;
+    font-weight: 500
+}
+
+.widgets-list>li.disabled .label {
+    background: #d2d6de !important
+}
+
+.widgets-list .danger {
+    border-left-color: #dd4b39
+}
+
+.widgets-list .warning {
+    border-left-color: #f39c12
+}
+
+.widgets-list .info {
+    border-left-color: #00c0ef
+}
+
+.widgets-list .success {
+    border-left-color: #00a65a
+}
+
+.widgets-list .primary {
+    border-left-color: #3c8dbc
+}
+
+.widgets-list .handle {
+    display: inline-block;
+    cursor: move;
+    margin: 0 5px
+}

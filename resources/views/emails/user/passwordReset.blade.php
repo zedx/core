@@ -1,0 +1,1 @@
+@extends('emails.user.layout')@section('content'){!! trans('email.user.password_reset.content', ['link' => route('auth.password.resetrequest', $token).'?email='.urlencode($user->getEmailForPasswordReset())]) !!}@endsection

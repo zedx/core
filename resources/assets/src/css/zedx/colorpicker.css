@@ -1,0 +1,7 @@
+.colorpicker:before {
+    border-bottom: none;
+}
+
+.colorpicker {
+    padding: 0;
+}

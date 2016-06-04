@@ -1,0 +1,1 @@
+@extends('emails.user.layout')@section('content'){!! trans('email.user.ad_refused.content', ['ad' => $ad->content->title]) !!}<br /><ul>  @foreach($ad->reasons as $reason)  <li>{{ $reason->title }}</li>  @endforeach</ul>@endsection

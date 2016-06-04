@@ -1,0 +1,36 @@
+<?php
+
+namespace ZEDx\Modules\$STUDLY_NAME$;
+
+use Artisan;
+
+class Module {
+
+    /**
+     * Install module.
+     *
+     * @return boolean
+     */
+    public function install()
+    {
+        Artisan::call('module:migrate', ['module' => '$STUDLY_NAME$']);
+        // Your code here
+
+        return true;
+    }
+
+    /**
+     * Uninstall module.
+     *
+     * @return boolean
+     */
+    public function uninstall()
+    {
+
+        Artisan::call('module:migrate-rollback', ['module' => '$STUDLY_NAME$']);
+        // Your code here
+
+        return true;
+    }
+
+}

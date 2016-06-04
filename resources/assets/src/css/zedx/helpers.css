@@ -1,0 +1,158 @@
+legend {
+    display: block;
+    border-bottom: 1px dashed rgba(0, 0, 0, .2);
+    background: #FFF;
+    font-weight: 300;
+    color: #222;
+    margin: 25px 0 20px;
+}
+
+.editable {
+    cursor: pointer;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.label-text {
+    margin-bottom: 6px;
+    line-height: 19px;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+}
+
+.nav-tabs-custom > .tab-content {
+    padding: 18px;
+}
+
+.dotted {
+    border-style: dotted;
+}
+
+.vcenter {
+    vertical-align: middle!important;
+}
+
+.icon-user {
+    color: white;
+    font-size: 44px;
+}
+
+.btn-sign-out {
+    height: 50px;
+}
+
+.note {
+    margin-top: 6px;
+    padding: 0 1px;
+    font-size: 11px;
+    line-height: 15px;
+    color: #999;
+}
+
+/*
+    Circle Buttons
+*/
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.bootstrap-tagsinput {
+    width: 100% !important;
+}
+
+.placeholder {
+    background-color: #BFB;
+    border: 1px dashed #666;
+    height: 58px;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    border: 1px solid rgba(0, 0, 0, .15);
+    > li > a {
+        color: #333;
+    }
+    > li > a:hover {
+        background-color: #f5f5f5;
+        color: #262626;
+    }
+    > .divider {
+        background-color: #e5e5e5;
+    }
+}
+
+
+.w100 {
+    width: 100%;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+.btn-file input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+
+.thumbnail img {
+    max-height: 100px;
+}
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+.color-white {
+    color: #FFF;
+}
+
+
+/* Containment area */
+
+#containment {
+    background-color: #FFA;
+    height: 230px;
+}

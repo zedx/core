@@ -1,0 +1,1 @@
+@extends('emails.admin.layout')@section('content'){!! trans('email.admin.user_created.content', ['user' => $user->name]) !!}@endsection

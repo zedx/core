@@ -1,0 +1,1 @@
+@extends('emails.admin.layout')@section('content'){!! trans('email.admin.password_reset.content', ['link' => route('zxadmin.password.resetrequest', $token).'?email='.urlencode($user->getEmailForPasswordReset())]) !!}@endsection
