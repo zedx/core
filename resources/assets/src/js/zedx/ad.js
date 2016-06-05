@@ -166,7 +166,7 @@ $(document).ready(function() {
   var $geolocation = $("#zedx-ad-geolocation");
   $geolocation.select2({
     ajax: {
-      url: 'http://maps.google.com/maps/api/geocode/json',
+      url: 'https://maps.google.com/maps/api/geocode/json',
       dataType: 'json',
       data: function (params) {
         return {
@@ -197,7 +197,7 @@ $(document).ready(function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var $request = $.ajax({
-          url: "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" + position.coords.latitude + "," + position.coords.longitude
+          url: "https://maps.google.com/maps/api/geocode/json?sensor=false&address=" + position.coords.latitude + "," + position.coords.longitude
         });
         $request.then(function (data) {
           var results =data.results[0];
