@@ -30,6 +30,11 @@
         </div><!-- /.tab-pane -->
         @include('backend::errors.list')
       </div><!-- /.tab-content -->
+      @if ($errors->has('demo_update_settings'))
+      <div class="alert alert-danger">
+          {!! $errors->first('demo_update_settings') !!}
+      </div>
+      @endif
       <div class="box-footer clearfix">
         <button class="pull-right btn btn-primary">{!! trans('backend.setting.save') !!}</button>
       </div>

@@ -28,7 +28,11 @@
           <input class="form-control" name="my_password" type="password" id="my_password">
           {!! $errors->first('my_password', '<p class="help-block">:message</p>') !!}
       </div>
-
+      @if ($errors->has('demo_update_admin_profile'))
+      <div class="alert alert-danger">
+          {!! $errors->first('demo_update_admin_profile') !!}
+      </div>
+      @endif
     </div>
     <div class="panel-footer">
         <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-refresh"></i> {!! trans('backend.profile.edit') !!}</button>
