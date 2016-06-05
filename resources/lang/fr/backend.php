@@ -3,7 +3,7 @@
 return merge_trans('backend', [
     'demo'           => [
         'update_admin_profile' => '<b>[ Version de démonstration ]</b> Vous n\'avez pas la permission de modifier le profile de l\'administrateur',
-        'update_settings' => '<b>[ Version de démonstration ]</b> Vous n\'avez pas la permission de modifier les paramètres de configuration.',
+        'update_settings'      => '<b>[ Version de démonstration ]</b> Vous n\'avez pas la permission de modifier les paramètres de configuration.',
     ],
     'format'         => [
         'date'   => '',
