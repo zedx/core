@@ -66,36 +66,37 @@ class Kernel extends ConsoleKernel
         $schedule->command('ad:expire')
             ->daily();
 
-        //@todo : for demo
-        //$this->refreshZedx($schedule);
+        if (env('VERSION_DEMO', false)) {
+            $this->refreshZedx($schedule);
+        }
     }
 
     protected function refreshZedx(Schedule $schedule)
     {
         $slug = str_slug(Carbon::now());
 
-        $filePathMigration = storage_path('logs/refresh_'.$slug.'/migration_.txt');
+        $filePathMigration = storage_path('logs/refresh_'.$slug.'/migration.txt');
         $filePathGit = storage_path('logs/refresh_'.$slug.'/git.txt');
 
         $schedule->exec('mkdir '.storage_path('logs/refresh_'.$slug))
-            ->hourly();
+            ->daily();
 
         $schedule->command('down')
-            ->hourly()
+            ->daily()
             ->withoutOverlapping()
             ->sendOutputTo($filePathMigration);
 
         $schedule->command('migrate:refresh --seed')
-            ->hourly()
+            ->daily()
             ->withoutOverlapping()
             ->appendOutputTo($filePathMigration);
 
         $schedule->exec('cd '.base_path().' && git stash')
-            ->hourly()
+            ->daily()
             ->sendOutputTo($filePathGit);
 
         $schedule->command('up')
-            ->hourly()
+            ->daily()
             ->withoutOverlapping()
             ->appendOutputTo($filePathMigration);
     }

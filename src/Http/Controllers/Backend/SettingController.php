@@ -68,6 +68,10 @@ class SettingController extends Controller
      */
     public function update(SettingRequest $request)
     {
+        if (env('VERSION_DEMO', false)) {
+            return back()->withErrors(['demo_update_settings' => trans('backend.demo.update_settings')]);
+        }
+
         $admin = Auth::guard('admin')->user();
         $setting = setting();
         $inputs = $request->all();
