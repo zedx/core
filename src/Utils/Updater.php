@@ -2,11 +2,11 @@
 
 namespace ZEDx\Utils;
 
+use Carbon\Carbon;
 use Exception;
 use File;
 use ZEDx\Core;
 use Zipper;
-use Carbon\Carbon;
 
 class Updater
 {
@@ -248,13 +248,13 @@ class Updater
     }
 
     /**
-     * Get Api Queries
+     * Get Api Queries.
      *
      * @return string
      */
     protected function getApiQueries()
     {
-        return '?url=' . base64_encode(url('/'));
+        return '?url='.base64_encode(url('/'));
     }
 
     /*

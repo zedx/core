@@ -17,7 +17,7 @@ class UpdateController extends Controller
    */
   public function index()
   {
-    return view_backend('update.index');
+      return view_backend('update.index');
   }
 
   /**
