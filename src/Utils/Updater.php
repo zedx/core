@@ -6,6 +6,7 @@ use Exception;
 use File;
 use ZEDx\Core;
 use Zipper;
+use Carbon\Carbon;
 
 class Updater
 {
@@ -24,6 +25,15 @@ class Updater
 
     public function isLatest()
     {
+        $setting = setting();
+
+        if ($setting->api_checked_at && $setting->api_checked_at->diffInHours() < 12) {
+            return true;
+        }
+
+        $setting->api_checked_at = Carbon::now();
+        $setting->save();
+
         return Core::VERSION == $this->getLatestVersion();
     }
 
@@ -106,7 +116,7 @@ class Updater
             $this->progress(20, trans('backend.update.events.downlading_update_file'), 20);
 
             //download archive file
-            File::put($zipFile, file_get_contents($json->archive));
+            File::put($zipFile, file_get_contents($json->archive.$this->getApiQueries()));
 
             $this->progress(40, trans('backend.update.events.extracting_update_files'), 40);
 
@@ -167,7 +177,7 @@ class Updater
             return $this->latestJson;
         }
 
-        $this->latestJson = json_decode(file_get_contents(Core::API));
+        $this->latestJson = json_decode(file_get_contents(Core::API.$this->getApiQueries()));
 
         return $this->latestJson;
     }
@@ -178,7 +188,7 @@ class Updater
             return $this->updateJson;
         }
 
-        $this->updateJson = json_decode(file_get_contents(Core::API.'/update/'.Core::VERSION));
+        $this->updateJson = json_decode(file_get_contents(Core::API.'/update/'.Core::VERSION.$this->getApiQueries()));
 
         if ($this->updateJson === null) {
             throw new Exception('Whoops, looks like something went wrong with the API.');
@@ -235,6 +245,16 @@ class Updater
         $this->eventId = $id;
         $this->eventProgress = $progress ?: $this->eventProgress;
         $this->log($message);
+    }
+
+    /**
+     * Get Api Queries
+     *
+     * @return string
+     */
+    protected function getApiQueries()
+    {
+        return '?url=' . base64_encode(url('/'));
     }
 
     /*
