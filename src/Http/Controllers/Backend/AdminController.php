@@ -41,6 +41,10 @@ class AdminController extends Controller
      */
     public function update(UpdateAdminRequest $request)
     {
+        if (env('VERSION_DEMO', false)) {
+            return back()->withErrors(['demo_update_admin_profile' => trans('backend.demo.update_admin_profile')]);
+        }
+
         $inputs = $request->all();
         $admin = $this->admin;
 

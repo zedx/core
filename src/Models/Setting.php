@@ -17,4 +17,8 @@ class Setting extends Model
         'tell_client_new_subscr', 'tell_me_payment_received', 'default_ad_currency',
         'social_auths', 'language',
     ];
+
+    protected $casts = [
+        'api_checked_at' => 'date',
+    ];
 }

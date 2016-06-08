@@ -17,8 +17,7 @@ class UpdateController extends Controller
    */
   public function index()
   {
-      //dd(Updater::update(true));
-    return view_backend('update.index');
+      return view_backend('update.index');
   }
 
   /**
