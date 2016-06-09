@@ -3,6 +3,7 @@
 namespace ZEDx\Http\Controllers\Frontend\User;
 
 use Auth;
+use Route;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\UpdateUserRequest;
 use ZEDx\Services\Frontend\PageService;
@@ -36,7 +37,7 @@ class UserController extends Controller
         $this->pageService = $service;
         $this->user = Auth::user();
 
-        if ($this->user && !$this->user->is_validate) {
+        if (!Route::is('user.edit') && $this->user && !$this->user->is_validate) {
             redirect()->route('user.edit')->send();
         }
     }
