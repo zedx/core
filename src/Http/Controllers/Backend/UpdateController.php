@@ -10,26 +10,6 @@ use ZEDx\Http\Controllers\Controller;
 
 class UpdateController extends Controller
 {
-    /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-  public function index()
-  {
-      return view_backend('update.index');
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-      return view_backend('page.create');
-  }
-
   /**
    * Show specific resource.
    *
