@@ -85,6 +85,7 @@ module.exports = function (elixir, fs) {
             'libs/jquery-minicolors/jquery.minicolors.min.js',
             'libs/jquery-form/jquery.form.js',
             'libs/lazyYT/lazyYT.js',
+            'libs/bootstrap.youtubepopup/bootstrap.youtubepopup.js',
             'libs/pnotify/pnotify.js',
             'libs/mustache.js/mustache.min.js',
             'libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js',
