@@ -11,12 +11,13 @@ use ZEDx\Http\Controllers\Controller;
 class UpdateController extends Controller
 {
     /**
-     * Show update
+     * Show update.
      *
-     * @param  Request $request
-     * @param  string  $type
-     * @param  string  $group
-     * @param  string  $name
+     * @param Request $request
+     * @param string  $type
+     * @param string  $group
+     * @param string  $name
+     *
      * @return Response
      */
     public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
@@ -30,8 +31,8 @@ class UpdateController extends Controller
         }
 
         $changedFiles = Updater::getChangedFiles();
-        $hasForce     = $request->has('force');
-        $force        = $hasForce && $request->get('force') == 'true';
+        $hasForce = $request->has('force');
+        $force = $hasForce && $request->get('force') == 'true';
 
         $data = compact('type', 'group', 'name', 'changedFiles', 'force');
         if ($type == 'zedx') {
@@ -42,19 +43,20 @@ class UpdateController extends Controller
     }
 
     /**
-     * Start update
+     * Start update.
      *
-     * @param  Request $request
-     * @param  string  $type
-     * @param  string  $group
-     * @param  string  $name
+     * @param Request $request
+     * @param string  $type
+     * @param string  $group
+     * @param string  $name
+     *
      * @return Response
      */
     protected function startUpdate(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
     {
         $response = new StreamedResponse(function () use ($request) {
             $hasForce = $request->has('force');
-            $force    = $hasForce && $request->get('force') == 'true';
+            $force = $hasForce && $request->get('force') == 'true';
 
             Updater::update($force);
         });
