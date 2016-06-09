@@ -113,7 +113,7 @@ class UserService
      *
      * @return array
      */
-    public function store(array $data, $actor)
+    public function store(array $data, $actor, $provider = false)
     {
         $subscription = Subscription::whereIsDefault(1)->firstOrFail();
         $role = Role::whereName('user')->firstOrFail();
@@ -123,7 +123,11 @@ class UserService
             $adtypes[$adtype->id] = ['number' => $adtype->pivot->number];
         }
 
-        $user = new User($data);
+        $user = new User();
+        $user->fill($data);
+        if ($provider) {
+            $user->is_validate = $data['is_validate'];
+        }
         $user->subscription_id = $subscription->id;
         $user->role_id = $role->id;
         $user->subscribed_at = Carbon::now()->format('d/m/Y');
