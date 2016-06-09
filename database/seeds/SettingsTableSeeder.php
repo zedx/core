@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
     {
         Setting::create([
             'website_name'                => 'ZEDx',
-            'website_url'                 => 'http://zedx.local/',
+            'website_url'                 => 'https://demo.zedx.io',
             'website_title'               => 'Titre',
             'website_description'         => 'Description',
             'website_tracking_code'       => '',
