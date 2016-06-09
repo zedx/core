@@ -51,7 +51,7 @@ abstract class SocialiteController extends Controller
             $this->connectUsertoProvider($user, $socialId, $userProviderId);
         } else {
             $request = [
-                'email'       => $userProvider->getEmail() ? $userProvider->getEmail() : $userProviderId.'@'.$driver,
+                'email'       => $userProvider->getEmail() ?: $userProviderId.'@'.$driver,
                 'password'    => str_random(10),
                 'name'        => $userProvider->getName(),
                 'is_validate' => $userProvider->getEmail() ? '1' : '0',

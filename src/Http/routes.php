@@ -184,8 +184,8 @@ Route::group(['middleware' => 'web'], function () {
 
         /* Auth User */
         Route::group(['prefix' => 'user/auth', 'namespace' => 'User\Auth'], function () {
-            Route::get('auth/provider/{provider}', ['as' => 'auth.provider', 'uses' => 'SocialProviderController@redirectToProvider']);
-            Route::get('auth/provider/{provider}/callback', ['as' => 'auth.provider.callback', 'uses' => 'SocialProviderController@handleProviderCallback']);
+            Route::get('provider/{provider}', ['as' => 'auth.provider', 'uses' => 'SocialProviderController@redirectToProvider']);
+            Route::get('provider/{provider}/callback', ['as' => 'auth.provider.callback', 'uses' => 'SocialProviderController@handleProviderCallback']);
 
             Route::get('login', ['as' => 'user.login', 'uses' => 'AuthController@getLogin']);
             Route::post('login', ['as' => 'user.login', 'uses' => 'AuthController@login']);
