@@ -2,6 +2,9 @@
 
 namespace ZEDx\Http\Requests;
 
+use Auth;
+use Route;
+
 class UpdateUserRequest extends Request
 {
     /**
@@ -23,11 +26,13 @@ class UpdateUserRequest extends Request
     {
         $rules = [];
 
-        if (\Route::is('user.update')) {
-            $user = \Auth::user();
-            $rules = [
-                'current_password' => 'required',
-            ];
+        if (Route::is('user.update')) {
+            $user = Auth::user();
+            if ($user->is_validate) {
+                $rules = [
+                    'current_password' => 'required',
+                ];
+            }
         } else {
             $user = $this->route('user');
         }
