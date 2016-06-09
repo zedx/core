@@ -10,38 +10,51 @@ use ZEDx\Http\Controllers\Controller;
 
 class UpdateController extends Controller
 {
-  /**
-   * Show specific resource.
-   *
-   * @return Response
-   */
-  public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
-  {
-      if ($request->has('install') && $request->get('_token') == Session::token()) {
-          return $this->startUpdate($request, $type, $group, $name);
-      }
+    /**
+     * Show update
+     *
+     * @param  Request $request
+     * @param  string  $type
+     * @param  string  $group
+     * @param  string  $name
+     * @return Response
+     */
+    public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
+    {
+        if ($request->has('install') && $request->get('_token') == Session::token()) {
+            return $this->startUpdate($request, $type, $group, $name);
+        }
 
-      if (Updater::isLatest()) {
-          return redirect()->route('zxadmin.dashboard.index');
-      }
+        if (Updater::isLatest()) {
+            return redirect()->route('zxadmin.dashboard.index');
+        }
 
-      $changedFiles = Updater::getChangedFiles();
-      $hasForce = $request->has('force');
-      $force = $hasForce && $request->get('force') == 'true';
+        $changedFiles = Updater::getChangedFiles();
+        $hasForce     = $request->has('force');
+        $force        = $hasForce && $request->get('force') == 'true';
 
-      $data = compact('type', 'group', 'name', 'changedFiles', 'force');
-      if ($type == 'zedx') {
-          return view_backend('update.zedx', $data);
-      }
+        $data = compact('type', 'group', 'name', 'changedFiles', 'force');
+        if ($type == 'zedx') {
+            return view_backend('update.zedx', $data);
+        }
 
-      return view_backend('update.component', $data);
-  }
+        return view_backend('update.component', $data);
+    }
 
+    /**
+     * Start update
+     *
+     * @param  Request $request
+     * @param  string  $type
+     * @param  string  $group
+     * @param  string  $name
+     * @return Response
+     */
     protected function startUpdate(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
     {
         $response = new StreamedResponse(function () use ($request) {
             $hasForce = $request->has('force');
-            $force = $hasForce && $request->get('force') == 'true';
+            $force    = $hasForce && $request->get('force') == 'true';
 
             Updater::update($force);
         });
