@@ -2,7 +2,7 @@
 
 namespace ZEDx\Gateways;
 
-class PaypalRest extends Driver
+class PayPalRest extends Driver
 {
     public function getConfig($transaction)
     {

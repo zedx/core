@@ -2,7 +2,7 @@
 
 namespace ZEDx\Gateways;
 
-class PaypalExpress extends Driver
+class PayPalExpress extends Driver
 {
     public function getConfig($transaction)
     {
