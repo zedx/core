@@ -21,6 +21,7 @@ return merge_trans('frontend', [
         'pending_ad'        => 'Annonce en attente',
         'expired_ad'        => 'Annonce expirée',
         'banished_ad'       => 'Annonce refusée',
+        'trashed_ad'        => 'Annonce en corbeille',
         'all_ads'           => 'Toutes les annonces',
         'description'       => 'Description',
         'contact'           => [
