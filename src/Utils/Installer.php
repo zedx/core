@@ -388,6 +388,9 @@ class Installer
             case 'zipLibrary':
                 $result = class_exists('ZipArchive');
                 break;
+            case 'procOpen':
+                $result = function_exists('proc_open');
+                break;
         }
 
         $this->log('Requirement %s %s', $code, ($result ? '[ OK ]' : '[ FAIL ]'));
