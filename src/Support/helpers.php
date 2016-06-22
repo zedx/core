@@ -395,6 +395,7 @@ if (!function_exists('renderMenu')) {
     function renderMenu($groupName, $config = [])
     {
         static $first = true;
+        $render = '';
 
         if (is_string($groupName)) {
             $nested = Menu::whereGroupName($groupName)->orderBy('lft')->get();
@@ -427,22 +428,24 @@ if (!function_exists('renderMenu')) {
 
             $caret = $hasChildren ? '<span class="caret"></span>' : '';
 
-            echo '<li '.$li.'>'
+            $render .= '<li '.$li.'>'
             .'  <a href="'.$url.'" '.$link.'>'
             .'    <i class="'.$menu->icon.'"></i> '.$menu->name.' '.$caret
                 .'  </a>';
 
             if ($hasChildren) {
                 $first = false;
-                echo '<ul '.$ul.'>';
+                $render .= '<ul '.$ul.'>';
                 foreach ($menu->children as $child) {
                     renderMenu([$child], $config);
                 }
 
-                echo '</ul>';
+                $render .= '</ul>';
             }
-            echo '</li>';
+            $render .= '</li>';
         }
+
+        return $render;
     }
 }
 
