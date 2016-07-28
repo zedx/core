@@ -34,17 +34,26 @@
      <fieldset>
           <legend>{!! trans('backend.field.visibility') !!}</legend>
           <div class="row">
-
+            <div class="col-xs-12">
+              <div class="checkbox">
+                <label>
+                <input type="hidden" name="is_in_ads_list" value="0">
+                  {!! Form::checkbox('is_in_ads_list', 1, null) !!} {!! trans('backend.field.visible_in_ads_list') !!}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-xs-12">
               <div class="checkbox">
                 <label>
                 <input type="hidden" name="is_in_ad" value="0">
-                  {!! Form::checkbox('is_in_ad', 1, null) !!} {!! trans('backend.field.visible_in_ads') !!}
+                  {!! Form::checkbox('is_in_ad', 1, null) !!} {!! trans('backend.field.visible_in_ad') !!}
                 </label>
               </div>
             </div>
-            </div>
-            <div class="row">
+          </div>
+          <div class="row">
             <div class="col-xs-12">
               <div class="checkbox">
                 <label>
