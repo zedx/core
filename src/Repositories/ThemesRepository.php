@@ -242,7 +242,7 @@ class ThemesRepository
         $path = $additionalPath ?: '';
 
         $defaultThemePath = base_path('themes/'.$this->getActive().'/views/'.$path);
-        $userThemePath = base_path('resources/views/'.$path);
+        $userThemePath = base_path('resources/views/frontend/'.$path);
 
         if (File::exists($userThemePath)) {
             return $userThemePath;
