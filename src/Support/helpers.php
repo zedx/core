@@ -93,11 +93,11 @@ if (!function_exists('elixir_backend')) {
 
 if (!function_exists('make_array')) {
     /**
-     * Make array
+     * Make array.
      *
      * @param string/array $data
      *
-     * @return Array
+     * @return array
      */
     function make_array($data)
     {
@@ -330,7 +330,7 @@ if (!function_exists('getAdFields')) {
     /**
      * Get Ad fields.
      *
-     * @param Ad     $ad
+     * @param Ad $ad
      *
      * @return Collection
      */
