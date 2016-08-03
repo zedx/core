@@ -170,7 +170,7 @@ class AdService extends Controller
         $ads = $ads->join('adtypes', 'ads.adtype_id', '=', 'adtypes.id')
             ->orderBy('is_headline', 'desc')
             ->orderBy('published_at', 'desc')
-            ->select('ads.id', 'adcontents.title', 'published_at', 'is_headline')
+            ->select('ads.*', 'adcontents.title', 'is_headline')
             ->groupBy('ads.id')
             ->paginate(20);
 
