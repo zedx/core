@@ -13,7 +13,7 @@ class AddIsInAdsListToFieldsTable extends Migration
     public function up()
     {
         Schema::table('fields', function (Blueprint $table) {
-            $table->boolean('is_in_ads_list');
+            $table->boolean('is_in_ads_list')->default(false);
         });
     }
 
