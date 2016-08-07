@@ -91,6 +91,20 @@ if (!function_exists('elixir_backend')) {
     }
 }
 
+if (!function_exists('make_array')) {
+    /**
+     * Make array.
+     *
+     * @param string/array $data
+     *
+     * @return array
+     */
+    function make_array($data)
+    {
+        return is_array($data) ? $data : [$data];
+    }
+}
+
 if (!function_exists('view_widget')) {
     /**
      * Get the evaluated view widget contents for the given view.
@@ -311,7 +325,40 @@ if (!function_exists('image_route')) {
     }
 }
 
-if (!function_exists('getCurrency')) {
+
+if (!function_exists('getAdFields')) {
+    /**
+     * Get Ad fields.
+     *
+     * @param Ad $ad
+     *
+     * @return Collection
+     */
+    function getAdFields($ad)
+    {
+        $mergedFields = [];
+
+        if (!$ad->has('fields')) {
+            return [];
+        }
+
+        $fields = $ad->fields()->orderBy('is_price', 'desc')->with('select')->whereIsInAd(true)->get();
+
+        foreach ($fields as $field) {
+            $value = $field->type != 5 ? $field->pivot->value : $field->pivot->string;
+            if (isset($mergedFields[$field->id])) {
+                $oldValue = $mergedFields[$field->id]['value'];
+                $mergedFields[$field->id]['value'] = is_array($oldValue) ? array_merge($oldValue, [$value]) : [$oldValue, $value];
+            } else {
+                $mergedFields[$field->id] = ['value' => $value];
+            }
+        }
+
+        return collect($mergedFields);
+    }
+}
+
+if (!function_exists('getAdCurrency')) {
     /**
      * Get ad currency.
      *
@@ -336,7 +383,7 @@ if (!function_exists('getCurrency')) {
 
         $country = Country::whereCode($countryCode)->first();
         if ($country) {
-            return $country->currency;
+            return $country->currency_symbole ?: $country->currency;
         }
 
         return $default;
@@ -395,6 +442,7 @@ if (!function_exists('renderMenu')) {
     function renderMenu($groupName, $config = [])
     {
         static $first = true;
+        $render = '';
 
         if (is_string($groupName)) {
             $nested = Menu::whereGroupName($groupName)->orderBy('lft')->get();
@@ -427,22 +475,24 @@ if (!function_exists('renderMenu')) {
 
             $caret = $hasChildren ? '<span class="caret"></span>' : '';
 
-            echo '<li '.$li.'>'
+            $render .= '<li '.$li.'>'
             .'  <a href="'.$url.'" '.$link.'>'
             .'    <i class="'.$menu->icon.'"></i> '.$menu->name.' '.$caret
                 .'  </a>';
 
             if ($hasChildren) {
                 $first = false;
-                echo '<ul '.$ul.'>';
+                $render .= '<ul '.$ul.'>';
                 foreach ($menu->children as $child) {
                     renderMenu([$child], $config);
                 }
 
-                echo '</ul>';
+                $render .= '</ul>';
             }
-            echo '</li>';
+            $render .= '</li>';
         }
+
+        return $render;
     }
 }
 

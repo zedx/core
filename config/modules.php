@@ -22,9 +22,9 @@ return [
     |
      */
 
-    'stubs'     => [
-        'path'         => core_src_path().'/Console/Commands/Module/stubs',
-        'files'        => [
+    'stubs' => [
+        'path'  => core_src_path().'/Console/Commands/Module/stubs',
+        'files' => [
             'start'           => 'start.php',
             'routes'          => 'Http/routes.php',
             'json'            => 'zedx.json',
@@ -52,7 +52,7 @@ return [
             ],
         ],
     ],
-    'paths'     => [
+    'paths' => [
         /*
         |--------------------------------------------------------------------------
         | Modules path
@@ -62,7 +62,7 @@ return [
         |
          */
 
-        'modules'   => base_path('modules'),
+        'modules' => base_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -70,7 +70,7 @@ return [
         |
          */
 
-        'assets'    => public_path('modules'),
+        'assets' => public_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | Generator path
@@ -104,7 +104,7 @@ return [
     |
      */
 
-    'composer'  => [
+    'composer' => [
         'vendor' => 'ZEDx',
         'author' => [
             'name'  => 'Amine OUDJEHIH',

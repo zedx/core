@@ -24,9 +24,13 @@ class DatabaseSeeder extends Seeder
         $this->call(MenusTableSeeder::class);
         $this->call(SubscriptionsTableSeeder::class);
         $this->call(AdtypesTableSeeder::class);
-        //$this->call(UsersTableSeeder::class); // For demo
+        if (env('VERSION_DEMO', false)) {
+            $this->call(UsersTableSeeder::class); // For demo
+        }
         $this->call(SubscriptionAdtypesTableSeeder::class);
-        //$this->call(UserAdtypesTableSeeder::class); // For demo
+        if (env('VERSION_DEMO', false)) {
+            $this->call(UserAdtypesTableSeeder::class); // For demo
+        }
         $this->call(GatewaysTableSeeder::class);
         $this->call(DashboardWidgetsTableSeeder::class);
         $this->call(ThemepartialsTableSeeder::class);
@@ -35,7 +39,9 @@ class DatabaseSeeder extends Seeder
         $this->call(LanguageTableSeeder::class);
         $this->call(PageTableSeeder::class);
         $this->call(CategoriesFieldsSeeder::class);
-        //$this->call(AdsTableSeeder::class); // For demo
+        if (env('VERSION_DEMO', false)) {
+            $this->call(AdsTableSeeder::class); // For demo
+        }
         $this->call(FixedPagesSeeder::class);
 
         Model::reguard();

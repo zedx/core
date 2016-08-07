@@ -7,6 +7,7 @@ use Request;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\CountryPersonalizeRequest;
 use ZEDx\Http\Requests\CountrySwitchRequest;
+use ZEDx\Http\Requests\CountryUpdateSymboleRequest;
 use ZEDx\Http\Requests\CountryUploadMapRequest;
 use ZEDx\Models\Country;
 
@@ -36,6 +37,20 @@ class CountryController extends Controller
     {
         $is_activate = Maps::exists($country->code) ? $request->get('is_activate') : '0';
         $country->update(['is_activate' => $is_activate]);
+    }
+
+    /**
+     * Update country currency symbole.
+     *
+     * @param CountryUpdateSymboleRequest $request
+     * @param Country                     $country
+     *
+     * @return Response
+     */
+    public function updateSymbole(CountryUpdateSymboleRequest $request, Country $country)
+    {
+        $country->currency_symbole = $request->symbole;
+        $country->save();
     }
 
     /**

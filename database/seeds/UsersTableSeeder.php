@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         $user = $role->users()->create([
         'name'                    => 'ZEDx demo',
         'email'                   => 'demo@zedx.io',
-        'avatar'                  => 'https://pbs.twimg.com/profile_images/690567537591992320/lLsNP_Od.png',
+        'avatar'                  => 'zedx.png',
         'phone'                   => '0606060606',
         'is_phone'                => true,
         'is_validate'             => true,

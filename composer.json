@@ -26,7 +26,8 @@
         "zorx/zipper": "^0.6.2",
         "zorx/baum": "1.1.*",
         "unikent/tfilecache": "^1.0",
-        "barryvdh/laravel-async-queue": "0.4.x"
+        "barryvdh/laravel-async-queue": "0.4.x",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.4",

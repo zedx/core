@@ -146,7 +146,7 @@ class ZedxInstallCommand extends Command
         $codes = [
             'writePermission', 'phpVersion', 'pdoLibrary',
             'mcryptLibrary', 'mbstringLibrary', 'sslLibrary',
-            'gdLibrary', 'curlLibrary', 'zipLibrary',
+            'gdLibrary', 'curlLibrary', 'zipLibrary', 'procOpen',
         ];
 
         foreach ($codes as $code) {

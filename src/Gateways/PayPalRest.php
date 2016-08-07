@@ -2,7 +2,7 @@
 
 namespace ZEDx\Gateways;
 
-class PaypalRest extends Driver
+class PayPalRest extends Driver
 {
     public function getConfig($transaction)
     {
@@ -19,7 +19,7 @@ class PaypalRest extends Driver
                     'currency'    => $transaction['item']['currency'],
                 ],
             ],
-            'currency'    => $transaction['item']['currency'],
+            'currency' => $transaction['item']['currency'],
         ];
 
         return $config;

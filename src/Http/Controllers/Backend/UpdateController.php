@@ -11,53 +11,47 @@ use ZEDx\Http\Controllers\Controller;
 class UpdateController extends Controller
 {
     /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-  public function index()
-  {
-      //dd(Updater::update(true));
-    return view_backend('update.index');
-  }
+     * Show update.
+     *
+     * @param Request $request
+     * @param string  $type
+     * @param string  $group
+     * @param string  $name
+     *
+     * @return Response
+     */
+    public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
+    {
+        if ($request->has('install') && $request->get('_token') == Session::token()) {
+            return $this->startUpdate($request, $type, $group, $name);
+        }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-      return view_backend('page.create');
-  }
+        if (Updater::isLatest()) {
+            return redirect()->route('zxadmin.dashboard.index');
+        }
 
-  /**
-   * Show specific resource.
-   *
-   * @return Response
-   */
-  public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
-  {
-      if ($request->has('install') && $request->get('_token') == Session::token()) {
-          return $this->startUpdate($request, $type, $group, $name);
-      }
+        $changedFiles = Updater::getChangedFiles();
+        $hasForce = $request->has('force');
+        $force = $hasForce && $request->get('force') == 'true';
 
-      if (Updater::isLatest()) {
-          return redirect()->route('zxadmin.dashboard.index');
-      }
+        $data = compact('type', 'group', 'name', 'changedFiles', 'force');
+        if ($type == 'zedx') {
+            return view_backend('update.zedx', $data);
+        }
 
-      $changedFiles = Updater::getChangedFiles();
-      $hasForce = $request->has('force');
-      $force = $hasForce && $request->get('force') == 'true';
+        return view_backend('update.component', $data);
+    }
 
-      $data = compact('type', 'group', 'name', 'changedFiles', 'force');
-      if ($type == 'zedx') {
-          return view_backend('update.zedx', $data);
-      }
-
-      return view_backend('update.component', $data);
-  }
-
+    /**
+     * Start update.
+     *
+     * @param Request $request
+     * @param string  $type
+     * @param string  $group
+     * @param string  $name
+     *
+     * @return Response
+     */
     protected function startUpdate(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
     {
         $response = new StreamedResponse(function () use ($request) {

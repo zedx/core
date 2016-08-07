@@ -140,33 +140,11 @@ class AdService extends Controller
     public function edit(Ad $ad)
     {
         $adtype = $ad->adtype;
-        $fields = $this->getAdFields($ad);
+        $fields = getAdFields($ad);
 
         return [
             'data' => compact('ad', 'adtype', 'fields'),
         ];
-    }
-
-    protected function getAdFields(Ad $ad)
-    {
-        $mergedFields = [];
-
-        if (!$ad->has('fields')) {
-            return [];
-        }
-
-        $fields = $ad->fields()->with('select')->whereIsInAd(true)->get();
-
-        foreach ($fields as $field) {
-            if (isset($mergedFields[$field->id])) {
-                $value = $mergedFields[$field->id]['value'];
-                $mergedFields[$field->id]['value'] = is_array($value) ? array_merge($value, [$field->pivot->value]) : [$value, $field->pivot->value];
-            } else {
-                $mergedFields[$field->id] = ['value' => $field->pivot->value];
-            }
-        }
-
-        return collect($mergedFields);
     }
 
     /**
@@ -244,7 +222,8 @@ class AdService extends Controller
         if ($this->canAttachFieldToAd($authorizedFields, $fieldId, $value)) {
             $values = is_array($value) ? $value : [$value];
             foreach ($values as $value) {
-                $ad->fields()->attach($fieldId, ['value' => $value]);
+                $pivot = $authorizedFields[$fieldId] == 5 ? ['string' => $value] : ['value' => $value];
+                $ad->fields()->attach($fieldId, $pivot);
             }
         }
     }
@@ -267,6 +246,10 @@ class AdService extends Controller
 
             case '4':
                 return is_numeric($value);
+                break;
+
+            case '5':
+                return true;
                 break;
 
             default:

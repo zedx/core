@@ -98,6 +98,8 @@ Route::group(['middleware' => 'web'], function () {
             Route::group(['prefix' => 'country'], function () {
                 Route::get('/', ['as' => 'zxadmin.country.index', 'uses' => 'CountryController@index']);
                 Route::put('{country}/swap', ['as' => 'zxadmin.country.swap', 'uses' => 'CountryController@swap']);
+                Route::put('{country}/symbole', ['as' => 'zxadmin.country.update.symbole', 'uses' => 'CountryController@updateSymbole']);
+
                 Route::put('{country}/personalize', ['as' => 'zxadmin.country.personalize', 'uses' => 'CountryController@personalize']);
                 //Route::post('{country}/upload', ['as' => 'zxadmin.country.upload', 'uses' => 'CountryController@upload']);
             });
@@ -171,7 +173,6 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('admin', 'AdminController', ['names' => constructRouteNames('zxadmin.admin')]);
 
             /* User : /zxadmin/update */
-            Route::get('update', ['as' => 'zxadmin.update.index', 'uses' => 'UpdateController@index']);
             Route::get('update/{type?}/{group?}/{name?}', ['as' => 'zxadmin.update.show', 'uses' => 'UpdateController@show']);
         });
     });
@@ -184,8 +185,8 @@ Route::group(['middleware' => 'web'], function () {
 
         /* Auth User */
         Route::group(['prefix' => 'user/auth', 'namespace' => 'User\Auth'], function () {
-            Route::get('auth/provider/{provider}', ['as' => 'auth.provider', 'uses' => 'SocialProviderController@redirectToProvider']);
-            Route::get('auth/provider/{provider}/callback', ['as' => 'auth.provider.callback', 'uses' => 'SocialProviderController@handleProviderCallback']);
+            Route::get('provider/{provider}', ['as' => 'auth.provider', 'uses' => 'SocialProviderController@redirectToProvider']);
+            Route::get('provider/{provider}/callback', ['as' => 'auth.provider.callback', 'uses' => 'SocialProviderController@handleProviderCallback']);
 
             Route::get('login', ['as' => 'user.login', 'uses' => 'AuthController@getLogin']);
             Route::post('login', ['as' => 'user.login', 'uses' => 'AuthController@login']);

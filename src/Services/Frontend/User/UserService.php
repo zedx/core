@@ -43,29 +43,31 @@ class UserService
      *
      * @return bool
      */
-    public function update(UpdateUserRequest $request)
+    public function update($request)
     {
         $inputs = $request->all();
 
-        if (!$this->user->is_validate || Hash::check($inputs['current_password'], $this->user->password)) {
-            if (!$this->user->is_validate && empty($inputs['password'])) {
-                return false;
-            }
-
-            if (empty($inputs['password'])) {
-                array_forget($inputs, ['password', 'password_confirm']);
-            }
-
-            if ($request->hasFile('avatar')) {
-                $this->makeAvatarFor($this->user, $request->file('avatar'));
-            }
-
-            $this->user->fill($inputs);
-            $this->user->is_validate = 1;
-            event(new UserWillBeUpdated($this->user, $this->user));
-            $this->user->save();
-            event(new UserWasUpdated($this->user, $this->user));
+        if ($this->user->is_validate && !Hash::check($inputs['current_password'], $this->user->password)) {
+            return false;
         }
+
+        if (!$this->user->is_validate && empty($inputs['password'])) {
+            return false;
+        }
+
+        if (empty($inputs['password'])) {
+            array_forget($inputs, ['password', 'password_confirm']);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $this->makeAvatarFor($this->user, $request->file('avatar'));
+        }
+
+        $this->user->fill($inputs);
+        $this->user->is_validate = 1;
+        event(new UserWillBeUpdated($this->user, $this->user));
+        $this->user->save();
+        event(new UserWasUpdated($this->user, $this->user));
 
         return true;
     }
@@ -113,7 +115,7 @@ class UserService
      *
      * @return array
      */
-    public function store(array $data, $actor)
+    public function store(array $data, $actor, $provider = false)
     {
         $subscription = Subscription::whereIsDefault(1)->firstOrFail();
         $role = Role::whereName('user')->firstOrFail();
@@ -123,7 +125,11 @@ class UserService
             $adtypes[$adtype->id] = ['number' => $adtype->pivot->number];
         }
 
-        $user = new User($data);
+        $user = new User();
+        $user->fill($data);
+        if ($provider) {
+            $user->is_validate = $data['is_validate'];
+        }
         $user->subscription_id = $subscription->id;
         $user->role_id = $role->id;
         $user->subscribed_at = Carbon::now()->format('d/m/Y');

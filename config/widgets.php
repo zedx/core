@@ -21,7 +21,7 @@ return [
     |
      */
 
-    'path'      => base_path().'/'.'widgets',
+    'path' => base_path().'/'.'widgets',
 
     /*
     |--------------------------------------------------------------------------
@@ -31,10 +31,10 @@ return [
     | Default widget stubs.
     |
      */
-    'stubs'     => [
-        'path'         => core_src_path().'/Console/Commands/Widget/stubs',
-        'folders'      => ['views', 'assets'],
-        'files'        => [
+    'stubs' => [
+        'path'    => core_src_path().'/Console/Commands/Widget/stubs',
+        'folders' => ['views', 'assets'],
+        'files'   => [
             'json'          => 'zedx.json',
             'views/index'   => 'views/index.blade.php',
             'views/setting' => 'views/setting.blade.php',
@@ -49,7 +49,7 @@ return [
                 'STUDLY_AUTHOR',
                 'LOWER_NAME',
             ],
-            'widget'      => [
+            'widget' => [
                 'LOWER_TYPE',
                 'LOWER_AUTHOR',
                 'LOWER_NAME',
@@ -59,7 +59,7 @@ return [
             ],
         ],
     ],
-    'paths'     => [
+    'paths' => [
         /*
         |--------------------------------------------------------------------------
         | Widgets path
@@ -69,7 +69,7 @@ return [
         |
          */
 
-        'widgets'   => base_path('widgets'),
+        'widgets' => base_path('widgets'),
         /*
         |--------------------------------------------------------------------------
         | Widgets assets path
@@ -77,6 +77,6 @@ return [
         |
          */
 
-        'assets'    => public_path('widgets'),
+        'assets' => public_path('widgets'),
     ],
 ];

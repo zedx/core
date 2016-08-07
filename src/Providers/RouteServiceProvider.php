@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
 
       $router->bind('adPreview', function ($id) {
           if (Auth::guard('admin')->check()) {
-              return Ad::with('content')->findOrFail($id);
+              return Ad::with('content')->withTrashed()->findOrFail($id);
           }
 
           if (Auth::guard('user')->check()) {

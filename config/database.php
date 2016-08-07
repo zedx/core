@@ -13,7 +13,7 @@ return [
     |
      */
 
-    'fetch'       => PDO::FETCH_CLASS,
+    'fetch' => PDO::FETCH_CLASS,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
      */
 
-    'default'     => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
             'prefix'   => env('DB_PREFIX', 'zedx_'),
         ],
 
-        'mysql'  => [
+        'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'forge'),
@@ -65,7 +65,7 @@ return [
             'port'      => env('DB_PORT', 3306),
         ],
 
-        'pgsql'  => [
+        'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE', 'forge'),
@@ -101,7 +101,7 @@ return [
     |
      */
 
-    'migrations'  => 'migrations',
+    'migrations' => 'migrations',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +114,7 @@ return [
     |
      */
 
-    'redis'       => [
+    'redis' => [
 
         'cluster' => false,
 

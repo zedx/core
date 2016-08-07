@@ -9,14 +9,16 @@ class Field extends Model
 {
     protected $fillable = [
         'name', 'type', 'status', 'title', 'unit',
-        'is_price', 'is_in_ad', 'is_in_search', 'is_format',
+        'is_price', 'is_in_ads_list', 'is_in_ad',
+        'is_in_search', 'is_format',
     ];
 
     protected $casts = [
-        'is_price'     => 'boolean',
-        'is_in_ad'     => 'boolean',
-        'is_in_search' => 'boolean',
-        'is_format'    => 'boolean',
+        'is_price'       => 'boolean',
+        'is_in_ads_list' => 'boolean',
+        'is_in_ad'       => 'boolean',
+        'is_in_search'   => 'boolean',
+        'is_format'      => 'boolean',
     ];
 
     public function search()

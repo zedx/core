@@ -21,7 +21,7 @@
 		          <div class="caption">
 		            <div class="btn-group btn-group-justified" role="group">
 		              <div class="btn-group">
-		                <button type="button" class="btn btn-xs btn-primary btn-file btn-block"><i class="fa fa-picture-o"></i> <span class="text">{!! trans('backend.ad.add_a_photo') !!}</span> <input class="addAdPhotos" type="file" name="photos[]"></button>
+		                <div class="btn btn-xs btn-primary btn-file btn-block"><i class="fa fa-picture-o"></i> <span class="text">{!! trans('backend.ad.add_a_photo') !!}</span> <input class="addAdPhotos" type="file" name="photos[]"></div>
 		              </div>
 		            </div>
 		          </div>
@@ -62,7 +62,7 @@
 		  <div id="videos" class="row" data-max-videos="{{ $adtype->nbr_video }}" data-videos="{{ isset($ad) ? $ad->videos : '[]' }}">
 		    <script type="x-tmpl-mustache" id="videoTemplate">
 		      @{{#.}}
-		        <div class="col-md-3" data-video id="video_@{{link}}">
+		        <div class="col-md-4" data-video id="video_@{{link}}">
 		            <div class="thumbnail">
 		              <div class="js-lazyYT" data-youtube-id="@{{link}}" data-ratio="16:9"></div>
 		              @if (!isset($ad) || isset($ad) && $adtype->can_update_video)

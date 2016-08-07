@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
     {
         Setting::create([
             'website_name'                => 'ZEDx',
-            'website_url'                 => 'http://zedx.local/',
+            'website_url'                 => 'https://demo.zedx.io',
             'website_title'               => 'Titre',
             'website_description'         => 'Description',
             'website_tracking_code'       => '',
@@ -44,37 +44,37 @@ class SettingsTableSeeder extends Seeder
     protected function getDefaultProviders()
     {
         return [
-            'facebook'   => [
+            'facebook' => [
                 'icon'       => 'facebook',
                 'client_id'  => '',
                 'secret_key' => '',
                 'enabled'    => false,
             ],
-            'github'     => [
+            'github' => [
                 'icon'       => 'github',
                 'client_id'  => '',
                 'secret_key' => '',
                 'enabled'    => false,
             ],
-            'google'     => [
+            'google' => [
                 'icon'       => 'google-plus',
                 'client_id'  => '',
                 'secret_key' => '',
                 'enabled'    => false,
             ],
-            'linkedin'   => [
+            'linkedin' => [
                 'icon'       => 'linkedin',
                 'client_id'  => '',
                 'secret_key' => '',
                 'enabled'    => false,
             ],
-            'twitter'    => [
+            'twitter' => [
                 'icon'       => 'twitter',
                 'client_id'  => '',
                 'secret_key' => '',
                 'enabled'    => false,
             ],
-            'bitbucket'  => [
+            'bitbucket' => [
                 'icon'       => 'bitbucket',
                 'client_id'  => '',
                 'secret_key' => '',

@@ -262,8 +262,8 @@ class Installer
             'host'   => $this->post('db_host', ''),
             'name'   => $this->post('db_name', ''),
             'port'   => $this->post('db_port', ''),
-            'user'   => $this->post('db_user', ''),
-            'pass'   => $this->post('db_pass', ''),
+            'user'   => $this->post('db_username', ''),
+            'pass'   => $this->post('db_password', ''),
             'prefix' => $this->post('db_prefix', 'zedx').'_',
         ]);
 
@@ -387,6 +387,9 @@ class Installer
                 break;
             case 'zipLibrary':
                 $result = class_exists('ZipArchive');
+                break;
+            case 'procOpen':
+                $result = function_exists('proc_open');
                 break;
         }
 

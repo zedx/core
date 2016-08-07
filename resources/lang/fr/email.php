@@ -3,27 +3,27 @@
 return merge_trans('email', [
 
     'admin' => [
-        'payment_received'       => [
+        'payment_received' => [
             'subject' => '',
             'content' => 'Vous venez de recevoir la somme de :amount :currency via :gateway',
         ],
-        'user_created'           => [
+        'user_created' => [
             'subject' => '',
             'content' => ":user vient de s'inscrire",
         ],
-        'ad_created'             => [
+        'ad_created' => [
             'subject' => '',
             'content' => ":user vient d'ajouter l'annonce :ad",
         ],
-        'ad_updated'             => [
+        'ad_updated' => [
             'subject' => '',
             'content' => ":user vient de modifier l'annonce :ad",
         ],
-        'ad_renew_request'       => [
+        'ad_renew_request' => [
             'subject' => '',
             'content' => ":user vient de faire une demande de renouvellement pour l'annonce :d",
         ],
-        'adtype_purchased'       => [
+        'adtype_purchased' => [
             'subject' => '',
             'content' => ":user vient d'acheter une annonce de type :adtype",
         ],
@@ -31,33 +31,33 @@ return merge_trans('email', [
             'subject' => '',
             'content' => ':user vient de souscrire un abonnement payant [ :subscription ]',
         ],
-        'password_reset'         => [
+        'password_reset' => [
             'subject' => 'Réintialisation du mot de passe',
             'content' => 'Click here to reset your password: <a href=":link"> :link </a>',
         ],
     ],
-    'user'  => [
-        'ad_validated'           => [
+    'user' => [
+        'ad_validated' => [
             'subject' => '',
             'content' => "Votre annonce :ad vient d'être validée",
         ],
-        'ad_refused'             => [
+        'ad_refused' => [
             'subject' => '',
             'content' => "Votre annonce :ad vient d'être refusée pour les raisons suivantes :",
         ],
-        'ad_deleted'             => [
+        'ad_deleted' => [
             'subject' => '',
             'content' => "Votre annonce :ad vient d'être supprimée",
         ],
-        'ad_expired'             => [
+        'ad_expired' => [
             'subject' => '',
             'content' => "Votre annonce :ad vient d'expirer",
         ],
-        'adtype_changed'         => [
+        'adtype_changed' => [
             'subject' => '',
             'content' => 'Votre annonce :ad vient de passer en :adtype',
         ],
-        'adtype_purchased'       => [
+        'adtype_purchased' => [
             'subject' => '',
             'content' => "Vous venez d'acheter :number annonce(s) de type :adtype",
         ],
@@ -65,11 +65,11 @@ return merge_trans('email', [
             'subject' => '',
             'content' => "Vous venez de souscrire l'abonnement :subscription",
         ],
-        'password_reset'         => [
+        'password_reset' => [
             'subject' => 'Réintialisation du mot de passe',
             'content' => 'Click here to reset your password: <a href=":link"> :link </a>',
         ],
-        'contact_user'           => [
+        'contact_user' => [
             'subject' => 'Votre annonce ":ad_title" sur :website_title',
             'content' => '
 :message
