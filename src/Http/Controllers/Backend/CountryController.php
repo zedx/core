@@ -7,8 +7,8 @@ use Request;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\CountryPersonalizeRequest;
 use ZEDx\Http\Requests\CountrySwitchRequest;
-use ZEDx\Http\Requests\CountryUploadMapRequest;
 use ZEDx\Http\Requests\CountryUpdateSymboleRequest;
+use ZEDx\Http\Requests\CountryUploadMapRequest;
 use ZEDx\Models\Country;
 
 class CountryController extends Controller
@@ -43,7 +43,7 @@ class CountryController extends Controller
      * Update country currency symbole.
      *
      * @param CountryUpdateSymboleRequest $request
-     * @param Country              $country
+     * @param Country                     $country
      *
      * @return Response
      */
