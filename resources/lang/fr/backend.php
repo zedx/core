@@ -590,6 +590,7 @@ return merge_trans('backend', [
         'code'                           => 'Code',
         'country'                        => 'Pays',
         'currency'                       => 'Devise',
+        'currency_symbole'               => 'Symbole',
         'available'                      => 'Disponible',
         'activated'                      => 'Activée',
         'personalize'                    => 'Personnaliser',

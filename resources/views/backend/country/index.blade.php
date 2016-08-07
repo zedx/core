@@ -25,6 +25,7 @@
             <th>{!! trans('backend.map.code') !!}</th>
             <th>{!! trans('backend.map.country') !!}</th>
             <th>{!! trans('backend.map.currency') !!}</th>
+            <th>{!! trans('backend.map.currency_symbole') !!}</th>
             <th>{!! trans('backend.map.available') !!}</th>
             <th>{!! trans('backend.map.activated') !!}</th>
             <th style="width: 40px"></th>
@@ -36,6 +37,7 @@
             <td>{{ $country->code }}</td>
             <td>{{ $country->en }}</td>
             <td>{{ $country->currency }}</td>
+            <td><span class="map-symbole" data-url="{{ route('zxadmin.country.update.symbole', $country->id) }}">{{ $country->currency_symbole }}</span></td>
             <td>
               @if (Maps::exists($country->code))
               <i class="fa fa-check text-green"></i>

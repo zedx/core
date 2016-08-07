@@ -383,7 +383,7 @@ if (!function_exists('getAdCurrency')) {
 
         $country = Country::whereCode($countryCode)->first();
         if ($country) {
-            return $country->currency;
+            return $country->currency_symbole ?: $country->currency;
         }
 
         return $default;

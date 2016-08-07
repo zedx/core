@@ -98,6 +98,8 @@ Route::group(['middleware' => 'web'], function () {
             Route::group(['prefix' => 'country'], function () {
                 Route::get('/', ['as' => 'zxadmin.country.index', 'uses' => 'CountryController@index']);
                 Route::put('{country}/swap', ['as' => 'zxadmin.country.swap', 'uses' => 'CountryController@swap']);
+                Route::put('{country}/symbole', ['as' => 'zxadmin.country.update.symbole', 'uses' => 'CountryController@updateSymbole']);
+
                 Route::put('{country}/personalize', ['as' => 'zxadmin.country.personalize', 'uses' => 'CountryController@personalize']);
                 //Route::post('{country}/upload', ['as' => 'zxadmin.country.upload', 'uses' => 'CountryController@upload']);
             });
