@@ -95,15 +95,15 @@ class AdtypeEventListener
         $actorRole = is_string($event->actor) ? 'system' : $event->actor->role->name;
 
         Notification::create([
-            'actor_name'     => $actorName,
-            'actor_id'       => $actorId,
-            'actor_role'     => $actorRole,
-            'notified_name'  => $event->adtype->title,
-            'notified_id'    => $event->adtype->id,
-            'data'           => $event->order->quantity,
-            'action'         => $action,
-            'type'           => 'adtype',
-            'is_visible'     => $is_visible,
+            'actor_name'    => $actorName,
+            'actor_id'      => $actorId,
+            'actor_role'    => $actorRole,
+            'notified_name' => $event->adtype->title,
+            'notified_id'   => $event->adtype->id,
+            'data'          => $event->order->quantity,
+            'action'        => $action,
+            'type'          => 'adtype',
+            'is_visible'    => $is_visible,
         ]);
     }
 

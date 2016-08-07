@@ -10,6 +10,6 @@ return [
     |
      */
 
-    'path'      => base_path().'/'.'maps',
+    'path' => base_path().'/'.'maps',
 
 ];

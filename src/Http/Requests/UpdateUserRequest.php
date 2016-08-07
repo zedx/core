@@ -38,10 +38,10 @@ class UpdateUserRequest extends Request
         }
 
         return array_merge($rules, [
-            'name'             => 'required|max:255',
-            'email'            => 'required|email|max:255|unique:users,email,'.$user->id,
-            'password'         => 'confirmed|min:6',
-            'status'           => 'required|integer|between:0,1',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'confirmed|min:6',
+            'status'   => 'required|integer|between:0,1',
         ]);
     }
 }

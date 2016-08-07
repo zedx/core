@@ -19,7 +19,7 @@ class PayPalRest extends Driver
                     'currency'    => $transaction['item']['currency'],
                 ],
             ],
-            'currency'    => $transaction['item']['currency'],
+            'currency' => $transaction['item']['currency'],
         ];
 
         return $config;
