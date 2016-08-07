@@ -10,7 +10,7 @@ return [
     |
      */
 
-    'path'      => base_path().'/'.'themes',
+    'path' => base_path().'/'.'themes',
 
     /*
     |--------------------------------------------------------------------------
@@ -20,9 +20,9 @@ return [
     | Default theme stubs.
     |
      */
-    'stubs'     => [
-        'path'         => core_src_path().'/Console/Commands/Theme/stubs',
-        'files'        => [
+    'stubs' => [
+        'path'  => core_src_path().'/Console/Commands/Theme/stubs',
+        'files' => [
             'json' => 'zedx.json',
         ],
         'replacements' => [

@@ -4,10 +4,10 @@ return merge_trans('frontend', [
     'demonstration' => [
         'disabled' => 'Cette fonctionnalité a été désactivée dans la version de démonstration',
     ],
-    'zedx'          => [
+    'zedx' => [
         'credits' => "Propulsé par <a href='https://zedx.io' title='CMS de petites annonces' target='_blank'>ZEDx</a>",
     ],
-    'format'        => [
+    'format' => [
         'date'   => '',
         'number' => [
             'decimals'      => '0',
@@ -15,16 +15,16 @@ return merge_trans('frontend', [
             'thousands_sep' => ' ',
         ],
     ],
-    'ad'            => [
-        'preview_mode'      => 'Mode Prévisualisation',
-        'validated_ad'      => 'Annonce acceptée',
-        'pending_ad'        => 'Annonce en attente',
-        'expired_ad'        => 'Annonce expirée',
-        'banished_ad'       => 'Annonce refusée',
-        'trashed_ad'        => 'Annonce en corbeille',
-        'all_ads'           => 'Toutes les annonces',
-        'description'       => 'Description',
-        'contact'           => [
+    'ad' => [
+        'preview_mode' => 'Mode Prévisualisation',
+        'validated_ad' => 'Annonce acceptée',
+        'pending_ad'   => 'Annonce en attente',
+        'expired_ad'   => 'Annonce expirée',
+        'banished_ad'  => 'Annonce refusée',
+        'trashed_ad'   => 'Annonce en corbeille',
+        'all_ads'      => 'Toutes les annonces',
+        'description'  => 'Description',
+        'contact'      => [
             'contact_announcer'    => 'Contacter l\'annonceur',
             'name'                 => 'Nom',
             'email'                => 'Email',
@@ -51,23 +51,23 @@ return merge_trans('frontend', [
             'empty_ads_text'  => "Aucune annonce ne correspond à vos critères pour l'instant",
         ],
     ],
-    'page'          => [
+    'page' => [
         'page_not_found_title' => '404 Page Introuvable',
         'page_not_found_text'  => 'La page que vous recherchez est introuvable.',
         'back_home'            => "Retour à la page d'accueil",
     ],
-    'payment'       => [
+    'payment' => [
         'success' => [
             'title'   => 'Paiement Accepté',
             'content' => 'Votre paiement a été accepté.',
         ],
-        'error'   => [
+        'error' => [
             'title'   => 'Paiement refusé',
             'content' => 'Votre paiement a été refusé ou vous avez annulé la transaction.',
         ],
     ],
-    'user'          => [
-        'ad'             => [
+    'user' => [
+        'ad' => [
             'add_ad'                             => "Ajouter l'annonce",
             'edit_ad'                            => "Modifier l'annonce",
             'subscription_expired'               => 'Votre abonnement a expiré, veuillez le renouveller en cliquant sur la rubrique Abonnements.',
@@ -104,7 +104,7 @@ return merge_trans('frontend', [
             'videos'                             => 'Videos',
             'add_video'                          => 'Ajouter la vidéo',
         ],
-        'profile'        => [
+        'profile' => [
             'name'                           => 'Nom complet',
             'status'                         => 'Statut',
             'edit_avatar'                    => 'Modifier',
@@ -123,7 +123,7 @@ return merge_trans('frontend', [
             'no'                             => 'Non',
             'yes'                            => 'Oui',
         ],
-        'account'        => [
+        'account' => [
             'logout'                         => 'Se Déconnecter',
             'login_in'                       => 'Se Connecter',
             'my_account'                     => 'Mon compte',
@@ -144,7 +144,7 @@ return merge_trans('frontend', [
             'no'                             => 'Non',
             'yes'                            => 'Oui',
         ],
-        'login'          => [
+        'login' => [
             'login_in'           => 'Se Connecter',
             'or'                 => 'Ou',
             'create_account'     => 'Créer un compte',
@@ -161,7 +161,7 @@ return merge_trans('frontend', [
             'reset_password'        => 'Réinitialiser le mot de passe',
             'send_reset_link'       => "M'envoyer le lien de réinitialisation",
         ],
-        'adtype'         => [
+        'adtype' => [
             'headline_ad'           => 'Annonce à la une',
             'renew_an_ad'           => 'Renouveler une annonce',
             'edit_an_ad'            => 'Modifier une annonce',
@@ -188,7 +188,7 @@ return merge_trans('frontend', [
                 'total_price'    => 'Prix total',
             ],
         ],
-        'subscription'   => [
+        'subscription' => [
             'subscription_type'      => "Type d'abonnement",
             'nbr_ads'                => "Nombre d'annonces :title",
             'display_time'           => "Durée d'affichage",
