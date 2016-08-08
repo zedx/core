@@ -28,7 +28,6 @@ class Updater
         $setting = setting();
 
         if (!$force && $setting->api_checked_at && $setting->api_checked_at->diffInHours() < 12) {
-
             if ($setting->api_latest_version) {
                 return Core::VERSION == $setting->api_latest_version;
             }
