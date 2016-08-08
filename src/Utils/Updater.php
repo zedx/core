@@ -23,18 +23,25 @@ class Updater
         $this->logData = [];
     }
 
-    public function isLatest()
+    public function isLatest($force = false)
     {
         $setting = setting();
 
-        if ($setting->api_checked_at && $setting->api_checked_at->diffInHours() < 12) {
+        if (!$force && $setting->api_checked_at && $setting->api_checked_at->diffInHours() < 12) {
+            if ($setting->api_latest_version) {
+                return Core::VERSION == $setting->api_latest_version;
+            }
+
             return true;
         }
 
+        $latestVersion = $this->getLatestVersion();
+
         $setting->api_checked_at = Carbon::now();
+        $setting->api_latest_version = $latestVersion;
         $setting->save();
 
-        return Core::VERSION == $this->getLatestVersion();
+        return Core::VERSION == $latestVersion;
     }
 
     public function getLatestVersion()
@@ -89,7 +96,7 @@ class Updater
         $this->is_console = $is_console;
 
         try {
-            if ($this->isLatest()) {
+            if ($this->isLatest(true)) {
                 return;
             }
 
