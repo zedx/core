@@ -17,6 +17,7 @@ class Updater
     protected $eventProgress;
     protected $logData = [];
     protected $storageUpdateFolder;
+    protected $initEventMessage = false;
 
     public function __construct()
     {
@@ -237,14 +238,20 @@ class Updater
 
     protected function sendEventMessage($message, $time)
     {
+        if (!$this->initEventMessage) {
+            @ob_start();
+            echo str_repeat(' ', 2048);
+            $this->initEventMessage = true;
+        }
+
         $data = ['message' => $message, 'progress' => $this->eventProgress, 'time' => $time];
 
         echo 'id: '.$this->eventId.PHP_EOL;
         echo 'data: '.json_encode($data).PHP_EOL;
         echo PHP_EOL;
 
-        ob_flush();
-        flush();
+        @ob_flush();
+        @flush();
     }
 
     protected function progress($id, $message, $progress = null)
