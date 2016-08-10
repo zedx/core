@@ -22,27 +22,29 @@ return [
     |
      */
 
-    'stubs' => [
-        'path'  => core_src_path().'/Console/Commands/Module/stubs',
-        'files' => [
-            'start'           => 'start.php',
-            'routes'          => 'Http/routes.php',
-            'json'            => 'zedx.json',
-            'views/index'     => 'Resources/views/index.blade.php',
-            'views/master'    => 'Resources/views/layouts/master.blade.php',
-            'scaffold/config' => 'Config/config.php',
-            'scaffold/module' => 'Module.php',
-            'composer'        => 'composer.json',
+    'stubs'     => [
+        'path'         => core_src_path() . '/Console/Commands/Module/stubs',
+        'files'        => [
+            'start'               => 'start.php',
+            'routes'              => 'Http/routes.php',
+            'json'                => 'zedx.json',
+            'views/backend-index' => 'Resources/views/backend/index.blade.php',
+            'views/index'         => 'Resources/views/index.blade.php',
+            'views/master'        => 'Resources/views/layouts/master.blade.php',
+            'scaffold/config'     => 'Config/config.php',
+            'scaffold/module'     => 'Module.php',
+            'composer'            => 'composer.json',
         ],
         'replacements' => [
-            'start'           => ['LOWER_NAME'],
-            'routes'          => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'views/index'     => ['LOWER_NAME'],
-            'views/master'    => ['STUDLY_NAME'],
-            'scaffold/config' => ['STUDLY_NAME'],
-            'scaffold/module' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'composer'        => [
+            'start'               => ['LOWER_NAME'],
+            'routes'              => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'json'                => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'views/backend-index' => ['LOWER_NAME'],
+            'views/index'         => ['LOWER_NAME'],
+            'views/master'        => ['STUDLY_NAME'],
+            'scaffold/config'     => ['STUDLY_NAME'],
+            'scaffold/module'     => ['LOWER_NAME', 'STUDLY_NAME'],
+            'composer'            => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
                 'VENDOR',
@@ -52,7 +54,7 @@ return [
             ],
         ],
     ],
-    'paths' => [
+    'paths'     => [
         /*
         |--------------------------------------------------------------------------
         | Modules path
@@ -62,7 +64,7 @@ return [
         |
          */
 
-        'modules' => base_path('modules'),
+        'modules'   => base_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -70,7 +72,7 @@ return [
         |
          */
 
-        'assets' => public_path('modules'),
+        'assets'    => public_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | Generator path
@@ -104,7 +106,7 @@ return [
     |
      */
 
-    'composer' => [
+    'composer'  => [
         'vendor' => 'ZEDx',
         'author' => [
             'name'  => 'Amine OUDJEHIH',

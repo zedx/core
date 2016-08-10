@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
         Commands\Module\ModuleArchiveCommand::class,
         Commands\Module\ModuleMakeCommand::class,
         Commands\Module\ModuleMakeControllerCommand::class,
+        Commands\Module\ModuleMakeBackendControllerCommand::class,
         Commands\Module\ModuleMakeProviderCommand::class,
         Commands\Module\ModuleMakeSeedCommand::class,
         Commands\Module\ModuleMakeRequestCommand::class,
