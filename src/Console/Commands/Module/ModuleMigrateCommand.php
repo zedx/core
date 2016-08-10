@@ -3,7 +3,7 @@
 namespace ZEDx\Console\Commands\Module;
 
 use Illuminate\Console\Command;
-use Module;
+use Modules;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
