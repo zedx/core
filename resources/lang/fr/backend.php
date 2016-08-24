@@ -659,9 +659,9 @@ return merge_trans('backend', [
     ],
 
     'update' => [
-        'update_system'      => 'Mise à jour du système',
+        'update_system'      => 'Système de mise à jour',
         'updates_list'       => 'Liste des mises à jours disponibles',
-        'update_log'         => 'Mise à jour du fichier erreur',
+        'update_log'         => 'Informations sur la mise à jour',
         'waiting_for_update' => 'En attente de mise à jour',
         'new_version'        => 'Nouvelle version',
         'added_files'        => 'Fichiers ajoutés',
