@@ -35,7 +35,7 @@
                 @foreach ($modules as $module)
                 <tr>
                   <td><input type="checkbox" class="flat-red" /></td>
-                  <td>{{ $module->get('title') }}</td>
+                  <td><a href="{{ url('zxadmin/module/' . $module->getLowerName()) }}">{{ $module->get('title') }}</a></td>
                   <td>{{ $module->get('version') }}</td>
                   <td>{{ $module->get('description') }}</td>
                   <td>
