@@ -4,7 +4,7 @@ return merge_trans('email', [
 
     'admin' => [
         'payment_received' => [
-            'subject' => '',
+            'subject' => 'Paiment reçu',
             'content' => 'Vous venez de recevoir la somme de :amount :currency via :gateway',
         ],
         'user_created' => [
@@ -24,7 +24,7 @@ return merge_trans('email', [
             'content' => ":user vient de faire une demande de renouvellement pour l'annonce :d",
         ],
         'adtype_purchased' => [
-            'subject' => '',
+            'subject' => "Type d'annonce acheté",
             'content' => ":user vient d'acheter une annonce de type :adtype",
         ],
         'subscription_purchased' => [
@@ -58,7 +58,7 @@ return merge_trans('email', [
             'content' => 'Votre annonce :ad vient de passer en :adtype',
         ],
         'adtype_purchased' => [
-            'subject' => '',
+            'subject' => "Achat d'un type d'annonce",
             'content' => "Vous venez d'acheter :number annonce(s) de type :adtype",
         ],
         'subscription_activated' => [
