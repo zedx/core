@@ -74,6 +74,8 @@ class AdtypeController extends Controller
     protected function getAdtypeInputs($request)
     {
         $inputs = $request->all();
+        $inputs['nbr_pic'] = $request->get('nbr_pic', 0);
+        $inputs['nbr_video'] = $request->get('nbr_video', 0);
 
         $inputs['nbr_pic'] = $request->get('can_add_pic') && $inputs['nbr_pic'] > 0 ? $inputs['nbr_pic'] : 0;
         $inputs['can_update_pic'] = $inputs['nbr_pic'] > 0 ? $inputs['can_update_pic'] : 0;
