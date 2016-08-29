@@ -15,7 +15,7 @@ class Category extends Node
 
     protected $casts = [
     'is_private' => 'boolean',
-    'is_visible' => 'boolean',
+    // 'is_visible' => 'boolean',
   ];
 
     public function ads()

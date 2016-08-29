@@ -7,7 +7,7 @@
       </div>
       <div class="form-group">
         {!! Form::label("is_visible", trans("backend.category.visibility"), ['class' => 'label-text']) !!}
-        {!! Form::select("is_visible", array(trans('backend.category.hidden_category'), trans('backend.category.visible_category')), null, ['class' => 'form-control']) !!}
+        {!! Form::select("is_visible", [1 => trans('backend.category.visible_category'), 0 => trans('backend.category.hidden_category')], null, ['class' => 'form-control']) !!}
       </div>
 
       <div class="row">
