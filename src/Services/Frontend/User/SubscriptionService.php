@@ -32,7 +32,7 @@ class SubscriptionService extends Controller
     {
         $currency = setting('currency');
         $subscriptions = Subscription::all();
-        $user_subscription = $this->user->subscription()->first();
+        $user_subscription = $this->user->subscription;
         $user = $this->user;
 
         return [
