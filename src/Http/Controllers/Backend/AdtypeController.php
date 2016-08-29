@@ -50,9 +50,10 @@ class AdtypeController extends Controller
     }
 
     /**
-     * Attach An Adtype To Subscriptions
+     * Attach An Adtype To Subscriptions.
      *
-     * @param  Adtype $adtype
+     * @param Adtype $adtype
+     *
      * @return void
      */
     protected function attachToSubscriptions(Adtype $adtype)
@@ -64,9 +65,10 @@ class AdtypeController extends Controller
     }
 
     /**
-     * Attach An Adtype To Users
+     * Attach An Adtype To Users.
      *
-     * @param  Adtype $adtype
+     * @param Adtype $adtype
+     *
      * @return void
      */
     protected function attachToUsers(Adtype $adtype)
