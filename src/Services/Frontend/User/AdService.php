@@ -80,10 +80,18 @@ class AdService extends Controller
      */
     public function store(Adtype $adtype, CreateAdUserRequest $request)
     {
-        if (($number = $this->numberAdtype($adtype)) <= 0) {
+        if (($number = $this->numberAdtype($adtype)) <= 0 && $adtype->price > 0) {
             return [
                 'adId' => null,
             ];
+        }
+
+        if ($this->user->subscription_expired_at) {
+            if ($this->user->subscription_expired_at->diffInDays(null, false) >= 0) {
+                return [
+                    'adId' => null,
+                ];
+            }
         }
 
         $geo = new GeolocationHelper($request->get('geolocation_data'));
@@ -119,7 +127,7 @@ class AdService extends Controller
         }
         $this->syncAdFields($ad, $request);
 
-        if ($number < 9999) {
+        if ($number < 9999 && $number > 0) {
             $this->user->adtypes->find($adtype->id)->pivot->decrement('number');
         }
 
