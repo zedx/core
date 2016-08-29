@@ -79,7 +79,7 @@ class UserController extends Controller
           $inputs['is_phone'] = false;
       }
 
-      $user = new User;
+      $user = new User();
       $user->fill($inputs);
       $user->subscription_id = $subscription->id;
       $user->role_id = $role->id;
