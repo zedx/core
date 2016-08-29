@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\AdtypeRequest;
 use ZEDx\Models\Adtype;
+use ZEDx\Models\Subscription;
+use ZEDx\Models\User;
 
 class AdtypeController extends Controller
 {
@@ -41,7 +43,38 @@ class AdtypeController extends Controller
         $inputs = $this->getAdtypeInputs($request);
         $adtype = Adtype::create($inputs);
 
+        $this->attachToSubscriptions($adtype);
+        $this->attachToUsers($adtype);
+
         return redirect()->route('zxadmin.adtype.edit', $adtype->id);
+    }
+
+    /**
+     * Attach An Adtype To Subscriptions
+     *
+     * @param  Adtype $adtype
+     * @return void
+     */
+    protected function attachToSubscriptions(Adtype $adtype)
+    {
+        $subscriptions = Subscription::all();
+        foreach ($subscriptions as $subscription) {
+            $subscription->adtypes()->attach($adtype, ['number' => 0]);
+        }
+    }
+
+    /**
+     * Attach An Adtype To Users
+     *
+     * @param  Adtype $adtype
+     * @return void
+     */
+    protected function attachToUsers(Adtype $adtype)
+    {
+        $subscriptions = User::all();
+        foreach ($subscriptions as $subscription) {
+            $subscription->adtypes()->attach($adtype, ['number' => 0]);
+        }
     }
 
     /**
