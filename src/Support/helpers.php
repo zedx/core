@@ -473,7 +473,7 @@ if (!function_exists('renderMenu')) {
             $link = array_get($config, $element.'.link.'.$attrType);
             $ul = array_get($config, $element.'.ul');
 
-            $caret = $hasChildren ? '<span class="caret"></span>' : '';
+            $caret = $hasChildren ? array_get($config, $element.'.angle', '<span class="caret"></span>') : '';
 
             $render .= '<li '.$li.'>'
             .'  <a href="'.$url.'" '.$link.'>'
