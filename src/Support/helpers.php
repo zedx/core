@@ -484,7 +484,7 @@ if (!function_exists('renderMenu')) {
                 $first = false;
                 $render .= '<ul '.$ul.'>';
                 foreach ($menu->children as $child) {
-                    renderMenu([$child], $config);
+                    $render .= renderMenu([$child], $config);
                 }
 
                 $render .= '</ul>';
