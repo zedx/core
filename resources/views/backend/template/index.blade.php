@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.template.template"))
 @section('page_description', trans("backend.template.template_list"))
 @section('page_right')
-<a href="{{ route('zxadmin.template.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.template.list') !!}</span></a>
+<a href="{{ route('zxadmin.template.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.template.list') !!}</span></a>
 <a href="{{ route('zxadmin.template.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.template.add') !!}</span></a>
 @endsection
 
