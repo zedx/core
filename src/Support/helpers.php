@@ -347,10 +347,10 @@ if (!function_exists('getAdFields')) {
         foreach ($fields as $field) {
             $value = $field->type != 5 ? $field->pivot->value : $field->pivot->string;
             if (isset($mergedFields[$field->id])) {
-                $oldValue = $mergedFields[$field->id]['value'];
-                $mergedFields[$field->id]['value'] = is_array($oldValue) ? array_merge($oldValue, [$value]) : [$oldValue, $value];
+                $oldValue = $mergedFields[$field->id];
+                $mergedFields[$field->id] = is_array($oldValue) ? array_merge($oldValue, [$value]) : [$oldValue, $value];
             } else {
-                $mergedFields[$field->id] = ['value' => $value];
+                $mergedFields[$field->id] = $value;
             }
         }
 
