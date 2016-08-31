@@ -9,7 +9,7 @@
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#general" data-toggle="tab"><i class="fa fa-cogs"></i> {!! trans("backend.setting.general") !!}</a></li>
-        <li><a href="#ads" data-toggle="tab"><i class="fa fa-building-o"></i> {!! trans("backend.setting.ads") !!}</a></li>
+        <li><a href="#ads" data-toggle="tab"><i class="fa fa-paper-plane-o"></i> {!! trans("backend.setting.ads") !!}</a></li>
         <li><a href="#auth" data-toggle="tab"><i class="fa fa-key"></i> {!! trans("backend.setting.auth") !!}</a></li>
         <li><a href="#notifications" data-toggle="tab"><i class="fa fa-bell-o"></i> {!! trans("backend.setting.notifications") !!}</a></li>
       </ul>
