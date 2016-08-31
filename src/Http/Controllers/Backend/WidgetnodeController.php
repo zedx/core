@@ -55,13 +55,15 @@ class WidgetnodeController extends Controller
         if ($request->has('config')) {
             $widgetnode->config = json_encode($request->get('config'));
             $widgetnode->save();
-
-            return back();
         }
 
         if ($request->ajax() && $request->has('title')) {
             $widgetnode->title = $request->get('title');
             $widgetnode->save();
+        }
+
+        if (!$request->ajax()) {
+            return back();
         }
     }
 
