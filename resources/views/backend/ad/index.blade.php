@@ -23,7 +23,7 @@
             <div class="input-group">
               <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
               <div class="input-group-btn">
-                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                <button class="btn btn-sm btn-default"><i class="fa fa-list-ul"></i></button>
               </div>
             </div>
           </form>
