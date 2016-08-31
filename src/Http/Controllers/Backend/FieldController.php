@@ -21,7 +21,7 @@ class FieldController extends Controller
      */
     public function index()
     {
-        $fields = Field::paginate(10);
+        $fields = Field::searchFor(\Request::get('q'))->paginate(10);
 
         return view_backend('field.index', compact('fields'));
     }
