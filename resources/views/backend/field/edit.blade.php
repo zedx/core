@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.field.advanced_field"))
 @section('page_description', trans("backend.field.edit_a_field"))
 @section('page_right')
-<a href="{{ route('zxadmin.field.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans("backend.field.list") !!}</span></a>
+<a href="{{ route('zxadmin.field.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans("backend.field.list") !!}</span></a>
 <a href="{{ route('zxadmin.field.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans("backend.field.add") !!}</span></a>
 @endsection
 

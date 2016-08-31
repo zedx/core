@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.category.category"))
 @section('page_description', trans("backend.category.edit_a_category"))
 @section('page_right')
-<a href="{{ route('zxadmin.category.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans("backend.category.list") !!}</span></a>
+<a href="{{ route('zxadmin.category.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans("backend.category.list") !!}</span></a>
 <a href="{{ route('zxadmin.category.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans("backend.category.add") !!}</span></a>
 @endsection
 

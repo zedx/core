@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.adtype.ad_type"))
 @section('page_description', trans("backend.adtype.add_an_ad_type"))
 @section('page_right')
-<a href="{{ route('zxadmin.adtype.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.adtype.list') !!}</span></a>
+<a href="{{ route('zxadmin.adtype.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.adtype.list') !!}</span></a>
 <a href="{{ route('zxadmin.adtype.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.adtype.add') !!}</span></a>
 @endsection
 

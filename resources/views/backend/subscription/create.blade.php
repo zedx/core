@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.subscription.subscription"))
 @section('page_description', trans("backend.subscription.create_a_subscription"))
 @section('page_right')
-<a href="{{ route('zxadmin.subscription.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">Liste</span></a>
+<a href="{{ route('zxadmin.subscription.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">Liste</span></a>
 <a href="{{ route('zxadmin.subscription.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">Ajouter</span></a>
 @endsection
 
