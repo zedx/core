@@ -249,6 +249,14 @@ return merge_trans('backend', [
             'title'       => 'Titre',
             'icon'        => 'Icône',
         ],
+        'route' => [
+            'route'        => 'Route',
+            'routes'       => 'Routes',
+            'add_to_menu'  => 'Ajouter au menu',
+            'label'        => 'Nom',
+            'title'        => 'Titre',
+            'icon'         => 'Icône',
+        ],
         'page' => [
             'page'        => 'Page',
             'pages'       => 'Pages',

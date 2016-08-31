@@ -458,12 +458,13 @@ if (!function_exists('renderMenu')) {
             if ($menu->type == 'page') {
                 $page = Page::find($menu->link);
                 $url = $page ? route('page.show', $page->shortcut) : '#';
+            } elseif ($menu->type == 'route') {
+                $url = Route::has($menu->link) ? route($menu->link) : '#';
             } else {
                 $url = starts_with($menu->link, '/') ? url($menu->link) : $menu->link;
             }
 
             $active = url()->current() == $url ? 'active' : '';
-
             $hasChildren = $menu->children()->count() > 0;
             $element = $first ? 'parent' : 'children';
             $attrType = $hasChildren ? 'withChildren' : 'withoutChildren';
