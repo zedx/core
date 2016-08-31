@@ -25,7 +25,7 @@ class MenuRequest extends Request
             'name'       => 'required|min:1',
             'group_name' => 'required',
             'link'       => 'required',
-            'type'       => 'required|in:link,page',
+            'type'       => 'required|in:link,page,route',
         ];
     }
 }

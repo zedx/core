@@ -55,6 +55,10 @@ class UserService
             return false;
         }
 
+        if (!isset($inputs['phone']) || empty($inputs['phone'])) {
+            $inputs['is_phone'] = false;
+        }
+
         if (empty($inputs['password'])) {
             array_forget($inputs, ['password', 'password_confirm']);
         }
@@ -123,6 +127,10 @@ class UserService
 
         foreach ($subscription->adtypes as $adtype) {
             $adtypes[$adtype->id] = ['number' => $adtype->pivot->number];
+        }
+
+        if (!isset($data['phone']) || empty($data['phone'])) {
+            $data['is_phone'] = false;
         }
 
         $user = new User();

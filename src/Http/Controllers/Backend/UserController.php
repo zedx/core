@@ -73,7 +73,14 @@ class UserController extends Controller
       $subscription = Subscription::findOrFail($request->get('subscription_id'));
       $role = Role::whereName('user')->firstOrFail();
 
-      $user = new User($request->all());
+      $inputs = $request->all();
+
+      if (!isset($inputs['phone']) || empty($inputs['phone'])) {
+          $inputs['is_phone'] = false;
+      }
+
+      $user = new User();
+      $user->fill($inputs);
       $user->subscription_id = $subscription->id;
       $user->role_id = $role->id;
       $user->subscribed_at = $request->get('subscribed_at');
@@ -128,6 +135,10 @@ class UserController extends Controller
 
       if (empty($inputs['password'])) {
           array_forget($inputs, ['password', 'password_confirm']);
+      }
+
+      if (!isset($inputs['phone']) || empty($inputs['phone'])) {
+          $inputs['is_phone'] = false;
       }
 
       $user->fill($inputs);

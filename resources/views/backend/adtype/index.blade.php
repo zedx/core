@@ -40,7 +40,7 @@
             @endif
             <td><a href="{{ route('zxadmin.adtype.edit', $adtype->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {!! trans('backend.adtype.edit') !!}</span></a></td>
             <td>
-              <a href="#" class="btn btn-xs btn-danger" data-element-action data-element-action-text='{!! trans("backend.adtype.ad_type_deleted") !!}' data-element-action-route = '{{ route("zxadmin.adtype.destroy", [$adtype->id]) }}' data-toggle="modal" data-target="#confirmDeleteAction" data-title="{{ $adtype->title }}" data-message="{!! trans('backend.adtype.deleted_ad_type_confirmation') !!}"><i class="fa fa-remove"></i> {!! trans('backend.adtype.delete') !!}</a>
+              <a href="#" class="btn btn-xs btn-danger" data-element-action data-element-action-text='{!! trans("backend.adtype.deleted_ad_type") !!}' data-element-action-route = '{{ route("zxadmin.adtype.destroy", [$adtype->id]) }}' data-toggle="modal" data-target="#confirmDeleteAction" data-title="{{ $adtype->title }}" data-message="{!! trans('backend.adtype.delete_ad_type_confirmation') !!}"><i class="fa fa-remove"></i> {!! trans('backend.adtype.delete') !!}</a>
             </td>
           </tr>
           @endforeach

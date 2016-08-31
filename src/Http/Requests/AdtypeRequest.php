@@ -23,18 +23,16 @@ class AdtypeRequest extends Request
     public function rules()
     {
         return [
-            'title'              => 'required|min:3',
-            'nbr_days'           => 'required|integer',
-            'is_headline'        => 'required|integer|between:0,1',
-            'can_renew'          => 'required|integer|between:0,1',
-            'can_edit'           => 'required|integer|between:0,1',
-                'can_update_pic' => 'required|integer|between:0,1',
-            'nbr_pic'            => 'required|integer',
-            'can_add_video'      => 'required|integer|between:0,1',
-                'nbr_video'      => 'required|integer',
-            'can_update_video'   => 'required|integer|between:0,1',
-            'price'              => 'required|numeric',
-            'can_add_pic'        => 'required|integer|between:0,1',
+            'title'            => 'required|min:3',
+            'nbr_days'         => 'required|integer',
+            'is_headline'      => 'required|integer|between:0,1',
+            'can_renew'        => 'required|integer|between:0,1',
+            'can_edit'         => 'required|integer|between:0,1',
+            'can_update_pic'   => 'required|integer|between:0,1',
+            'can_add_video'    => 'required|integer|between:0,1',
+            'can_update_video' => 'required|integer|between:0,1',
+            'price'            => 'required|numeric',
+            'can_add_pic'      => 'required|integer|between:0,1',
         ];
     }
 }
