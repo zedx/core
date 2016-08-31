@@ -9,24 +9,37 @@ use ZEDx\Events\Adtype\AdtypeWasUpdated;
 use ZEDx\Events\Adtype\AdtypeWillBeCreated;
 use ZEDx\Events\Adtype\AdtypeWillBeDeleted;
 use ZEDx\Events\Adtype\AdtypeWillBeUpdated;
+use Sofa\Eloquence\Eloquence;
 
 class Adtype extends Model
 {
+    use Eloquence;
+
     protected $fillable = [
-    'title', 'is_headline', 'can_renew', 'can_edit', 'is_customized',
-    'can_update_pic', 'nbr_pic', 'nbr_days', 'can_add_video',
-    'nbr_video', 'can_update_video', 'price', 'can_add_pic',
-  ];
+        'title', 'is_headline', 'can_renew', 'can_edit', 'is_customized',
+        'can_update_pic', 'nbr_pic', 'nbr_days', 'can_add_video',
+        'nbr_video', 'can_update_video', 'price', 'can_add_pic',
+    ];
+
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchableColumns = [
+        'id'    => 10,
+        'title'  => 10,
+    ];
 
     protected $casts = [
-      'is_headline'      => 'boolean',
-      'can_renew'        => 'boolean',
-      'can_edit'         => 'boolean',
-      'can_update_pic'   => 'boolean',
-      'can_add_video'    => 'boolean',
-      'can_update_video' => 'boolean',
-      'can_add_pic'      => 'boolean',
-  ];
+        'is_headline'      => 'boolean',
+        'can_renew'        => 'boolean',
+        'can_edit'         => 'boolean',
+        'can_update_pic'   => 'boolean',
+        'can_add_video'    => 'boolean',
+        'can_update_video' => 'boolean',
+        'can_add_pic'      => 'boolean',
+    ];
 
     public function ads()
     {

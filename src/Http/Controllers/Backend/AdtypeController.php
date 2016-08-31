@@ -18,7 +18,7 @@ class AdtypeController extends Controller
      */
     public function index()
     {
-        $adtypes = Adtype::notCustomized()->paginate(10);
+        $adtypes = Adtype::notCustomized()->search(\Request::get('q'))->paginate(10);
 
         return view_backend('adtype.index', compact('adtypes'));
     }
