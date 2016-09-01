@@ -27,9 +27,9 @@ class Field extends Model
             return $query;
         }
 
-        return $query->where('name', 'like', '%' . $q . '%')
-            ->orWhere('title', 'like', '%' . $q . '%')
-            ->orWhere('id', 'like', '%' . $q . '%');
+        return $query->where('name', 'like', '%'.$q.'%')
+            ->orWhere('title', 'like', '%'.$q.'%')
+            ->orWhere('id', 'like', '%'.$q.'%');
     }
 
     public function search()

@@ -9,13 +9,13 @@ use Illuminate\Routing\Router;
 use ZEDx\Models\Ad;
 use ZEDx\Models\Adstatus;
 use ZEDx\Models\Adtype;
+use ZEDx\Models\Category;
 use ZEDx\Models\Field;
 use ZEDx\Models\Order;
 use ZEDx\Models\Subscription;
 use ZEDx\Models\Template;
 use ZEDx\Models\Templateblock;
 use ZEDx\Models\User;
-use ZEDx\Models\Category;
 use ZEDx\Models\Widgetnode;
 
 class RouteServiceProvider extends ServiceProvider

@@ -3,13 +3,13 @@
 namespace ZEDx\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Sofa\Eloquence\Eloquence;
 use ZEDx\Events\Adtype\AdtypeWasCreated;
 use ZEDx\Events\Adtype\AdtypeWasDeleted;
 use ZEDx\Events\Adtype\AdtypeWasUpdated;
 use ZEDx\Events\Adtype\AdtypeWillBeCreated;
 use ZEDx\Events\Adtype\AdtypeWillBeDeleted;
 use ZEDx\Events\Adtype\AdtypeWillBeUpdated;
-use Sofa\Eloquence\Eloquence;
 
 class Adtype extends Model
 {
@@ -27,7 +27,7 @@ class Adtype extends Model
      * @var array
      */
     protected $searchableColumns = [
-        'id'    => 10,
+        'id'     => 10,
         'title'  => 10,
     ];
 
