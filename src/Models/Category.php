@@ -19,20 +19,21 @@ class Category extends Node
   ];
 
     /**
-       * Return an key-value array indicating the node's depth with $seperator
-       *
-       * @return Array
-       */
-    public static function getNestedList($column, $key = null, $seperator = ' ') {
-        $instance = new static;
+     * Return an key-value array indicating the node's depth with $seperator.
+     *
+     * @return array
+     */
+    public static function getNestedList($column, $key = null, $seperator = ' ')
+    {
+        $instance = new static();
         $key = $key ?: $instance->getKeyName();
         $depthColumn = $instance->getDepthColumnName();
         $nodes = $instance->newNestedSetQuery()->visible()->get()->toArray();
 
-        return array_combine(array_map(function($node) use($key) {
+        return array_combine(array_map(function ($node) use ($key) {
             return $node[$key];
-        }, $nodes), array_map(function($node) use($seperator, $depthColumn, $column) {
-            return str_repeat($seperator, $node[$depthColumn]) . $node[$column];
+        }, $nodes), array_map(function ($node) use ($seperator, $depthColumn,$column) {
+            return str_repeat($seperator, $node[$depthColumn]).$node[$column];
         }, $nodes));
     }
 
