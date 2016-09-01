@@ -241,7 +241,7 @@ class AdService extends Controller
 
         return [
             'field' => $field,
-            'type' => $type,
+            'type'  => $type,
         ];
     }
 
