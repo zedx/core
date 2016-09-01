@@ -4,13 +4,26 @@ namespace ZEDx\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use ZEDx\Events\Subscription\SubscriptionWasDeleted;
+use Sofa\Eloquence\Eloquence;
 
 class Subscription extends Model
 {
+    use Eloquence;
+    
     protected $fillable = [
         'title', 'description',
         'days', 'is_default', 'price',
     ];
+
+  /**
+   * Searchable rules.
+   *
+   * @var array
+   */
+  protected $searchableColumns = [
+    'title' => 10,
+    'description' => 10,
+  ];
 
     protected $casts = [
         'is_default' => 'boolean',
