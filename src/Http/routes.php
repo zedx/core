@@ -10,8 +10,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::group([], function () {
         Route::group(['prefix' => '_zxajax', 'namespace' => 'ZxAjax'], function () {
             Route::get('map/{map}', ['as' => 'zxajax.map.show', 'uses' => 'MapController@show']);
-            Route::get('category/{category}/adFields', ['as' => 'zxajax.category.adFields', 'uses' => 'CategoryController@adFields']);
-            Route::get('category/{category}/searchFields', ['as' => 'zxajax.category.searchFields', 'uses' => 'CategoryController@searchFields']);
+            Route::get('category/{visibleCategory}/adFields', ['as' => 'zxajax.category.adFields', 'uses' => 'CategoryController@adFields']);
+            Route::get('category/{visibleCategory}/searchFields', ['as' => 'zxajax.category.searchFields', 'uses' => 'CategoryController@searchFields']);
         });
     });
 

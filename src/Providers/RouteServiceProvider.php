@@ -15,6 +15,7 @@ use ZEDx\Models\Subscription;
 use ZEDx\Models\Template;
 use ZEDx\Models\Templateblock;
 use ZEDx\Models\User;
+use ZEDx\Models\Category;
 use ZEDx\Models\Widgetnode;
 
 class RouteServiceProvider extends ServiceProvider
@@ -121,6 +122,10 @@ class RouteServiceProvider extends ServiceProvider
 
       $router->bind('field', function ($id) {
           return Field::with('search')->findOrFail($id);
+      });
+
+      $router->bind('visibleCategory', function ($id) {
+          return Category::visible()->findOrFail($id);
       });
 
       $router->bind('templateblock', function ($identifier) use ($router) {

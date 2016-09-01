@@ -24,7 +24,7 @@ class AdRequest extends Request
         return [
             'content.title' => 'required|min:3',
             'content.body'  => 'required|min:3',
-            'category_id'   => 'required|integer|exists:categories,id',
+            'category_id'   => 'required|integer|exists:categories,id,is_visible,1',
         ];
     }
 }

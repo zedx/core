@@ -144,7 +144,7 @@ class AdService extends Controller
             });
         }
 
-        if ($category = Category::find($filters->category_id)) {
+        if ($category = Category::visible()->find($filters->category_id)) {
             $categories = $category->getDescendantsAndSelf(['id'])->keyBy('id')->keys()->toArray();
             $ads = $ads->whereIn('category_id', $categories);
         }

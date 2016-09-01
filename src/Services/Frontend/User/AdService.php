@@ -96,7 +96,7 @@ class AdService extends Controller
 
         $geo = new GeolocationHelper($request->get('geolocation_data'));
         $adstatus = Adstatus::whereTitle('pending')->first();
-        $category = Category::findOrFail($request->get('category_id'));
+        $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $geolocation = new Geolocation();
         $geolocation->fill($geo->get());
@@ -173,7 +173,7 @@ class AdService extends Controller
         $oldStatus = $ad->adstatus->title;
         $geo = new GeolocationHelper($request->get('geolocation_data'));
         $adstatus = Adstatus::whereTitle('pending')->first();
-        $category = Category::findOrFail($request->get('category_id'));
+        $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $ad->category()->associate($category);
         $ad->adstatus()->associate($adstatus);

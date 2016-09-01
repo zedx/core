@@ -33,7 +33,7 @@ class CreateAdUserRequest extends Request
         return [
             'content.title' => 'required|min:3',
             'content.body'  => 'required|min:'.$setting->ad_descr_min.'|max:'.$setting->ad_descr_max,
-            'category_id'   => 'required|exists:categories,id',
+            'category_id'   => 'required|exists:categories,id,is_visible,1',
         ];
     }
 }

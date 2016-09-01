@@ -105,7 +105,7 @@
 				{!! Form::label("category_id", trans("backend.ad.category"), ['class' => 'label-text']) !!}
 				<select class="select2 form-control" id="category_id" name="category_id">
 					<option>{!! trans("backend.ad.choose_a_category") !!}</option>
-				@foreach (ZEDx\Models\Category::all() as $category)
+				@foreach (ZEDx\Models\Category::visible()->orderBy('lft', 'ASC')->get() as $category)
 				@if ($category->isLeaf())
 					<option value="{{ $category->id }}" {{ isset($ad) && $category->id == $ad->category_id ? 'selected': '' }} data-category-api-url= "{{ route('zxajax.category.adFields', $category->id) }}">{{ $category->name }}</option>
 				@else
