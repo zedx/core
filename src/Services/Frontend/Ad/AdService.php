@@ -172,7 +172,7 @@ class AdService extends Controller
         $ads = $this->joinFields($ads, $filters->fields);
         $ads = $ads->join('adtypes', 'ads.adtype_id', '=', 'adtypes.id')
             ->orderBy('is_headline', 'desc')
-            ->orderBy('published_at', 'desc')
+            ->orderBy($filters->order['field'], $filters->order['type'])
             ->select('ads.*', 'adcontents.title', 'is_headline')
             ->groupBy('ads.id')
             ->paginate(20);
@@ -200,6 +200,7 @@ class AdService extends Controller
         $category_id = Request::get('c');
         $lat = Request::get('lat');
         $lng = Request::get('lng');
+        $order = $this->getOrder();
         $radius = Request::get('radius');
         $fields_data = Request::get('fields');
         $fields = Cache::rememberForever('search-fields-'.$fields_data, function () use ($fields_data) {
@@ -215,6 +216,32 @@ class AdService extends Controller
             'lng'         => $lng,
             'radius'      => $radius,
             'fields'      => $fields,
+            'order'       => $order,
+        ];
+    }
+
+    protected function getOrder()
+    {
+        switch (Request::get('o')) {
+            case '1':
+                $field = 'price';
+                $type = 'ASC';
+                break;
+
+            case '2':
+                $field = 'price';
+                $type = 'DESC';
+                break;
+
+            default:
+                $field = 'published_at';
+                $type = 'DESC';
+                break;
+        }
+
+        return [
+            'field' => $field,
+            'type' => $type,
         ];
     }
 
