@@ -149,7 +149,10 @@ class AdService extends Controller
             $ads = $ads->whereIn('category_id', $categories);
         }
 
-        $ads = $ads->join('adcontents', 'ads.id', '=', 'adcontents.ad_id');
+        $ads = $ads->join('adcontents', function ($join) {
+            $join->on('ads.id', '=', 'adcontents.ad_id')
+                ->on('ads.adstatus_id', '=', \DB::raw('1'));
+        });
 
         /*
         // Fulltext (valid only on MySql)
