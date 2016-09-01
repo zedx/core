@@ -9,6 +9,16 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
+	<li class="pull-right col-sm-12 col-xs-12 col-sm-4 col-md-3">
+          <form action="{{ Request::url() }}" >
+            <div class="input-group">
+              <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
+              <div class="input-group-btn">
+                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+        </li>
 		<div class="box box-primary">
       <div class="box-body no-padding">
         @if (count($subscriptions))
