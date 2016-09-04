@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscription::paginate(10);
+        $subscriptions = Subscription::search(\Request::get('q'))->paginate(10);
 
         return view_backend('subscription.index', compact('subscriptions'));
     }
