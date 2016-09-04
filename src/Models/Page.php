@@ -4,13 +4,27 @@ namespace ZEDx\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use ZEDx\Events\Page\PageWasDeleted;
+use Sofa\Eloquence\Eloquence;
 
 class Page extends Model
 {
+    use Eloquence;
+    
     protected $fillable = [
         'name', 'shortcut',
         'description', 'is_home',
     ];
+
+  /**
+   * Searchable rules.
+   *
+   * @var array
+   */
+    protected $searchableColumns = [
+        'name' => 10,
+        'shortcut' => 5,
+        'description' => 10,
+  ];
 
     protected $casts = [
         'is_home' => 'boolean',
