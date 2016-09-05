@@ -17,7 +17,7 @@
     <div class="col-md-6">
       <div class="form-group">
         {!! Form::label("name", trans("backend.category.category_name"), ['class' => 'label-text']) !!}
-        {!! Form::text("name", null, ['class' => 'form-control', 'placeholder' => 'Ex : Basic']) !!}
+        {!! Form::text("name", null, ['class' => 'form-control']) !!}
       </div>
       <div class="form-group">
         {!! Form::label("is_visible", trans("backend.category.visibility"), ['class' => 'label-text']) !!}
