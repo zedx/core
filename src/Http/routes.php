@@ -173,7 +173,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('admin', 'AdminController', ['names' => constructRouteNames('zxadmin.admin')]);
 
             /* User : /zxadmin/update */
-            Route::get('update/{type?}/{group?}/{name?}', ['as' => 'zxadmin.update.show', 'uses' => 'UpdateController@show']);
+            Route::get('update/{type?}', ['as' => 'zxadmin.update.index', 'uses' => 'UpdateController@index']);
+            Route::get('update/{type}/details', ['as' => 'zxadmin.update.show', 'uses' => 'UpdateController@show']);
+            Route::get('update/{type}/install', ['as' => 'zxadmin.update.update', 'uses' => 'UpdateController@update']);
         });
     });
 
