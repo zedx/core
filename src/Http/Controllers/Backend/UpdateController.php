@@ -3,21 +3,20 @@
 namespace ZEDx\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use Session;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Updater;
-use ZEDx\Http\Controllers\Controller;
 use ZEDx\Core;
+use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\UpdaterRequest;
 
 class UpdateController extends Controller
 {
-
     /**
      * Show list of components to update.
      *
-     * @param  Request $request
-     * @param  string  $type
+     * @param Request $request
+     * @param string  $type
+     *
      * @return Reponse
      */
     public function index(Request $request, $type = 'core')
@@ -40,8 +39,9 @@ class UpdateController extends Controller
     /**
      * Show update files for a specific package.
      *
-     * @param  UpdaterRequest $request
-     * @param  string         $type
+     * @param UpdaterRequest $request
+     * @param string         $type
+     *
      * @return Response
      */
     public function show(UpdaterRequest $request, $type = 'core')
@@ -57,10 +57,11 @@ class UpdateController extends Controller
     }
 
     /**
-     * Start updating package
+     * Start updating package.
      *
-     * @param  UpdaterRequest $request
-     * @param  string         $type
+     * @param UpdaterRequest $request
+     * @param string         $type
+     *
      * @return Reponse
      */
     public function update(UpdaterRequest $request, $type = 'core')
@@ -79,10 +80,10 @@ class UpdateController extends Controller
     }
 
     /**
-     * Set package details
+     * Set package details.
      *
      * @param UpdaterRequest $request
-     * @param string $type
+     * @param string         $type
      */
     protected function setPackage(UpdaterRequest $request, $type)
     {

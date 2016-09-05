@@ -32,7 +32,7 @@ class Category extends Node
 
         return array_combine(array_map(function ($node) use ($key) {
             return $node[$key];
-        }, $nodes), array_map(function ($node) use ($seperator, $depthColumn,$column) {
+        }, $nodes), array_map(function ($node) use ($seperator, $depthColumn, $column) {
             return str_repeat($seperator, $node[$depthColumn]).$node[$column];
         }, $nodes));
     }
