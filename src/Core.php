@@ -16,7 +16,7 @@ class Core
      *
      * @var string
      */
-    const API = 'https://api.zedx.io/';
+    const API = 'https://api.zedx.io';
 
     /**
      * ZEDx GITHUB.
