@@ -17,7 +17,7 @@
           <td>{{ $widget->version }}</td>
           <td>{{ $widget->description }}</td>
           <td class="pull-right">
-          @if (Widgets::exists($widget->namespace, $widget->author, $widget->name))
+          @if (Widgets::noType()->exists($widget->namespace.'\\'.$widget->author.'\\'.$widget->name))
           <button class="btn btn-block btn-xs btn-success" disabled="true"><i class="fa fa-check"></i> Installed</button>
           @else
           <button class="zedx-install-component btn btn-block btn-xs btn-primary" data-url="{{ route('zxadmin.widget.download', [$widget->namespace, $widget->author, $widget->name]) }}" data-component-type="widget" data-component-name="{{ $widget->name }}"><i class="fa fa-download"></i> Installer</button>
