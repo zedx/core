@@ -1,6 +1,6 @@
 @extends('backend::layout')
 @section('page_header', trans("backend.update.update_system"))
-@section('page_description', ucfirst($name))
+@section('page_description', ucfirst($type))
 @section('page_right')
 
 @endsection
@@ -16,10 +16,17 @@
           <i class="fa fa-refresh pull-left" style="font-size:58px"></i>
         </div>
         <!-- /.widget-user-image -->
-        <h3 class="widget-user-username">ZEDx</h3>
-        <h5 class="widget-user-desc">{{ ZEDx\Core::VERSION }}</h5>
+        <h3 class="widget-user-username">{{ Request::get('namespace') }}</h3>
+        <h5 class="widget-user-desc"><span class="label label-default">{{ $version }}</span></h5>
       </div>
-      <div class="box-body no-paddisng">
+      <div class="box-body">
+        @if (Updater::isLatestPackage($type, Request::get('namespace')))
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="text-green"><center><i class="fa fa-check-circle-o"></i> {{ trans('backend.update.latest_version') }}</center></h3>
+          </div>
+        </div>
+        @else
         <div class="row">
           <div class="col-md-6">
             @include('backend::update._patials.details')
@@ -32,10 +39,12 @@
             @endif
           </div>
         </div>
+        @endif
       </div>
     </div>
   </div>
 </div>
+@if (!Updater::isLatestPackage('core', 'ZEDx'))
 <div class="row">
   <div class="col-md-12">
     <div class="panel box box-primary">
@@ -55,4 +64,5 @@
     </div>
   </div>
 </div>
+@endif
 @endsection
