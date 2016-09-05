@@ -10,19 +10,19 @@
 <div class="row">
   <div class="col-md-12">
     <div class="nav-tabs-custom">
-        <div class="box-header">
-         <form action="{{ Request::url() }}" >
+      <ul class="nav nav-tabs pull-s">
+        <li @if (Route::is('zxadmin.page.index')) class="active" @endif><a href="{{ route('zxadmin.page.index') }}" class="text-blue"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.my_pages') !!}</span></a></li>
+        <li @if (Route::is('zxadmin.page.core')) class="active" @endif><a href="{{ route('zxadmin.page.core') }}" class="text-red"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.core_pages') !!}</span></a></li>
+        <li class="pull-right col-sm-12 col-xs-12 col-sm-4 col-md-3">
+          <form action="{{ Request::url() }}" >
            <div class="input-group">
              <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
              <div class="input-group-btn">
                <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
              </div>
            </div>
-         </form>
-      </div>
-      <ul class="nav nav-tabs pull-s">
-        <li @if (Route::is('zxadmin.page.index')) class="active" @endif><a href="{{ route('zxadmin.page.index') }}" class="text-blue"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.my_pages') !!}</span></a></li>
-        <li @if (Route::is('zxadmin.page.core')) class="active" @endif><a href="{{ route('zxadmin.page.core') }}" class="text-red"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.core_pages') !!}</span></a></li>
+          </form>
+        </li>
       </ul>
       <div class="tab-content no-padding">
         <div class="box box-solid">
