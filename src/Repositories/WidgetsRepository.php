@@ -127,7 +127,7 @@ class WidgetsRepository implements ComponentInterface, Countable
      *
      * @return array
      */
-    protected function scan($group = null)
+    protected function scan($group = null, $withoutSymlink = false)
     {
         $path = $this->getScanPath();
         $widgets = [];
@@ -137,6 +137,10 @@ class WidgetsRepository implements ComponentInterface, Countable
         is_array($manifests) || $manifests = [];
 
         foreach ($manifests as $manifest) {
+            if ($withoutSymlink && is_link(dirname(dirname($manifest)))) {
+                continue;
+            }
+
             $json = Json::make($manifest);
 
             $groups = $json->get('groups');
@@ -194,9 +198,9 @@ class WidgetsRepository implements ComponentInterface, Countable
      *
      * @return array
      */
-    public function all($group = null)
+    public function all($group = null, $withoutSymlink = false)
     {
-        return $this->scan($group);
+        return $this->scan($group, $withoutSymlink);
     }
 
     /**
@@ -204,9 +208,9 @@ class WidgetsRepository implements ComponentInterface, Countable
      *
      * @return Collection
      */
-    public function toCollection()
+    public function toCollection($group = null, $withoutSymlink = false)
     {
-        return collect($this->scan());
+        return collect($this->scan($group, $withoutSymlink));
     }
 
     /**
