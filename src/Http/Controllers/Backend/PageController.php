@@ -45,7 +45,8 @@ class PageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  string $type
+     * @param string $type
+     *
      * @return Response
      */
     protected function pageList($type)
