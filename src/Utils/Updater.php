@@ -123,12 +123,18 @@ class Updater
                 $this->setPackageType($type);
                 $this->setPackageNamespace($package);
 
+                $latest = $this->getLatest();
+
                 $model = Package::firstOrNew([
                     'type'      => $type,
                     'namespace' => $package,
                 ]);
 
-                $latest = $this->getLatest();
+                if ($latest == null) {
+                    $model->delete();
+                    continue;
+                }
+
 
                 $model->api_version = $latest->version;
                 $model->date = Carbon::createFromFormat('F d Y H:i:s', $latest->date);
