@@ -31,7 +31,9 @@ class PageController extends Controller
     {
         $pages = Page::whereType('page')->paginate(15);
         $type = 'page';
-
+        
+        $pages = Page::search(\Request::get('q'))->paginate(15);
+        
         return view_backend('page.index', compact('pages', 'type'));
     }
 
