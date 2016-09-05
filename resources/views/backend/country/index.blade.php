@@ -6,17 +6,14 @@
 	<div class="col-md-12">
 		<div class="box box-primary">
       <div class="box-header">
-        <h3 class="box-title">&nbsp;</h3>
-        <div class="box-tools">
-          <form action="{{ Request::url() }}" >
-            <div class="input-group">
-              <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" style="width: 150px;" placeholder="Search"/>
-              <div class="input-group-btn">
-                <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-              </div>
+        <form action="{{ Request::url() }}" >
+          <div class="input-group">
+            <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div><!-- /.box-header -->
       <div class="box-body no-padding">
         <table class="table table-striped">
