@@ -5,12 +5,12 @@ namespace ZEDx\Utils;
 use Carbon\Carbon;
 use Exception;
 use File;
-use Zipper;
-use ZEDx\Core;
-use Themes;
 use Modules;
+use Themes;
 use Widgets;
+use ZEDx\Core;
 use ZEDx\Models\Package;
+use Zipper;
 
 class Updater
 {
@@ -66,11 +66,12 @@ class Updater
     public function isLatestPackage($type, $namespace)
     {
         $list = $this->getUpdatesList();
+
         return (bool) !array_get($list, $type.'.'.$namespace, false);
     }
 
     /**
-     * Get all updates that should be updated
+     * Get all updates that should be updated.
      *
      * @return mixed
      */
@@ -84,9 +85,9 @@ class Updater
 
         $result = [
             'core'    => [],
-            'theme'  => [],
-            'widget' => [],
-            'module' => [],
+            'theme'   => [],
+            'widget'  => [],
+            'module'  => [],
         ];
 
         $setting = setting();
@@ -98,15 +99,15 @@ class Updater
         $packages = Package::all();
         $componentsVersions = $this->getPackagesVersions();
 
-        foreach($packages as $package) {
+        foreach ($packages as $package) {
             if (array_get($componentsVersions, $package->type.'.'.$package->namespace) == $package->api_version) {
                 continue;
             }
 
             $result[$package->type][$package->namespace] = [
                 'namespace' => $package->namespace,
-                'date' => $package->date,
-                'version' => $package->api_version,
+                'date'      => $package->date,
+                'version'   => $package->api_version,
             ];
         }
 
@@ -117,13 +118,13 @@ class Updater
     {
         $list = $this->getPackagesVersions();
 
-        foreach($list as $type => $packages) {
+        foreach ($list as $type => $packages) {
             foreach ($packages as $package => $version) {
                 $this->setPackageType($type);
                 $this->setPackageNamespace($package);
 
                 $model = Package::firstOrNew([
-                    'type' => $type,
+                    'type'      => $type,
                     'namespace' => $package,
                 ]);
 
@@ -143,7 +144,7 @@ class Updater
     }
 
     /**
-     * Get all packages versions
+     * Get all packages versions.
      *
      * @return mixed
      */
@@ -151,9 +152,9 @@ class Updater
     {
         $components = [
             'core'    => [],
-            'theme'  => [],
-            'widget' => [],
-            'module' => [],
+            'theme'   => [],
+            'widget'  => [],
+            'module'  => [],
         ];
 
         $components['core']['ZEDx'] = Core::VERSION;
@@ -190,7 +191,7 @@ class Updater
         $list = [];
         $json = $this->getJsonUpdate();
 
-        if(!isset($json->files)){
+        if (!isset($json->files)) {
             return $list;
         }
 

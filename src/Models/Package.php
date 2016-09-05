@@ -10,7 +10,7 @@ class Package extends Model
 
     protected $fillable = [
         'type', 'namespace',
-        'version', 'updated_at'
+        'version', 'updated_at',
     ];
 
     protected $casts = [
