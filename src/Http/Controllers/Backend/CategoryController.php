@@ -126,6 +126,7 @@ class CategoryController extends Controller
     {
         if (!$request->parent_id) {
             $category->makeRoot();
+
             return;
         }
 
@@ -138,7 +139,6 @@ class CategoryController extends Controller
         if ($parent) {
             $category->makeChildOf($parent);
         }
-
     }
 
     /**
