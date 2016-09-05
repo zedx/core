@@ -32,7 +32,9 @@ class CategoryController extends Controller
     {
         $fields = Field::all();
 
-        return view_backend('category.create', compact('fields'));
+        $parent_id = Request::get('parent_id');
+
+        return view_backend('category.create', compact('fields', 'parent_id'));
     }
 
     /**
@@ -46,6 +48,8 @@ class CategoryController extends Controller
     {
         $input = $request->all();
         $category = Category::create($input);
+
+        $this->setCategoryParent($category, $request);
 
         $this->saveCategoryFields($category, $request);
 
@@ -87,8 +91,9 @@ class CategoryController extends Controller
         $selectedFieldsId = array_reverse($category->fields()->lists('fields.id')->toArray());
 
         $fields = Field::whereNotIn('id', $selectedFieldsId)->get();
+        $parent_id = $category->parent_id;
 
-        return view_backend('category.edit', compact('category', 'codes', 'fields'));
+        return view_backend('category.edit', compact('category', 'codes', 'fields', 'parent_id'));
     }
 
     /**
@@ -103,6 +108,8 @@ class CategoryController extends Controller
         $input = $request->all();
         $category->update($input);
 
+        $this->setCategoryParent($category, $request);
+
         $this->saveCategoryFields($category, $request);
 
         $category->codes()->delete();
@@ -113,6 +120,25 @@ class CategoryController extends Controller
         event(new CategoryWasUpdated($category));
 
         return redirect()->route('zxadmin.category.edit', $category->id)->with('message', 'success');
+    }
+
+    protected function setCategoryParent($category, $request)
+    {
+        if (!$request->parent_id) {
+            $category->makeRoot();
+            return;
+        }
+
+        if ($request->parent_id == $category->id) {
+            return;
+        }
+
+        $parent = Category::find($request->parent_id);
+
+        if ($parent) {
+            $category->makeChildOf($parent);
+        }
+
     }
 
     /**

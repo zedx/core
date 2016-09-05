@@ -1,5 +1,19 @@
 <div class="box-body">
   <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        {!! Form::label("parent_id", trans("backend.category.sub_category_of"), ['class' => 'label-text']) !!}
+        <select class="select2 form-control" id="parent_id" name="parent_id">
+        <option value="">{!! trans("backend.category.category_no_parent") !!}</option>
+        @foreach (ZEDx\Models\Category::getNestedList('name', 'id', '-') as $id => $name)
+        <option value="{{ $id }}" data-category-api-url= "{{ route('zxajax.category.searchFields', $id) }}" {{ $parent_id == $id ? 'selected': '' }}>
+        {{ $name }}</option>
+        @endforeach
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6">
       <div class="form-group">
         {!! Form::label("name", trans("backend.category.category_name"), ['class' => 'label-text']) !!}

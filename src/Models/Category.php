@@ -10,13 +10,13 @@ use ZEDx\Events\Category\CategoryWasMoved;
 class Category extends Node
 {
     protected $fillable = [
-    'name', 'is_private', 'is_visible',
-  ];
+        'name', 'is_private', 'is_visible',
+    ];
 
     protected $casts = [
-    'is_private' => 'boolean',
-    // 'is_visible' => 'boolean',
-  ];
+        'is_private' => 'boolean',
+        // 'is_visible' => 'boolean',
+    ];
 
     /**
      * Return an key-value array indicating the node's depth with $seperator.

@@ -508,6 +508,8 @@ if (!function_exists('renderNode')) {
      */
     function renderNode($node, $type)
     {
+        $additional = '';
+
         switch ($type) {
             case 'menu':
                 $label = '<span class="label label-info">'.trans('backend.menu.'.$node->type.'.'.$node->type).'</span>';
@@ -523,6 +525,12 @@ if (!function_exists('renderNode')) {
                 break;
         }
 
+        if ($type == 'category') {
+            $additional = '   <a href="'.route('zxadmin.category.create').'?parent_id='.$node->id.'" class="btn-edit-category btn btn-xs btn-success">'
+                .'     <i class="fa fa-plus"></i> '.trans('backend.category.add_sub_category')
+                .'   </a>';
+        }
+
         $text = trans('backend.'.$type.'.deleted_'.$type);
         $message = trans('backend.'.$type.'.delete_'.$type.'_confirmation');
 
@@ -530,6 +538,7 @@ if (!function_exists('renderNode')) {
         .'<div class="dd-handle fa fa-arrows dd3-handle"></div>'
         .'<div class="dd3-content">'.$name
         .' <span class="pull-right">'.$label
+        .$additional
         .'   <a href="'.$route.'" class="btn-edit-'.$type.' btn btn-xs btn-primary" '.$modal.'>'
         .'     <i class="fa fa-edit"></i> '.trans('backend.'.$type.'.edit')
         .'   </a>'
