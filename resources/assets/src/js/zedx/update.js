@@ -7,33 +7,41 @@ $(document).ready(function() {
       $('#updater-log').html("");
 
       var deferred = jQuery.Deferred();
+
       var es = new EventSource(url);
 
-      //a message is received
-      es.addEventListener('message', function(e) {
-        var result = JSON.parse(e.data);
-        zedxUpdater.addLog(result);
+      var progressHandler = function(e) {
+          var result = JSON.parse( e.data );
 
-        if (e.lastEventId == 'COMPLETE') {
+          zedxUpdater.addLog(result);
+          zedxUpdater.progress(result.progress);
+      }
+
+      var completeHandler = function(e) {
+          var result = JSON.parse(e.data);
+
+          zedxUpdater.addLog(result);
           es.close();
           zedxUpdater.progress(100);
-          deferred.resolve(result);
-        } else if (e.lastEventId == 'ERROR') {
-          es.close();
-          deferred.reject(result);
-        } else {
-          zedxUpdater.progress(result.progress);
-        }
-      });
-      es.addEventListener('error', function(e) {
-        var result = JSON.parse(e.data);
 
-        zedxUpdater.addLog(result);
-        es.close();
-        deferred.reject({
-          message: 'Something going wrong ...'
-        });
-      });
+          deferred.resolve(result);
+      }
+
+      var errorHandler = function(e) {
+          var result = JSON.parse(e.data);
+
+          zedxUpdater.addLog(result);
+          es.close();
+
+          deferred.reject({
+            message: 'Something going wrong ...'
+          });
+      }
+
+      es.addEventListener('progress', progressHandler, false);
+      es.addEventListener('complete', completeHandler, false);
+      es.addEventListener('error', errorHandler, false);
+
       return deferred.promise();
     },
     addLog: function(result) {
@@ -46,8 +54,9 @@ $(document).ready(function() {
 
     var token = $('meta[name="csrf-token"]').attr('content'),
       $this = $(this),
-      force = $this.data('force') == '1' ? 'force=true&' : '',
-      url = $this.data('update-url') + '?install=true&' + force + '_token=' + token;
+      force = $this.data('force') == '1' ? '&force=true' : '',
+      namespace = $this.data('namespace'),
+      url = $this.data('update-url') + '?namespace=' + namespace + '&_token=' + token + force;
 
     $this.prop('disabled', true);
     $('.fa-refresh').addClass('fa-spin');
