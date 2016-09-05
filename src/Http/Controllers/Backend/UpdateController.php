@@ -7,56 +7,68 @@ use Session;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Updater;
 use ZEDx\Http\Controllers\Controller;
+use ZEDx\Core;
+use ZEDx\Http\Requests\UpdaterRequest;
 
 class UpdateController extends Controller
 {
+
     /**
-     * Show update.
+     * Show list of components to update.
      *
-     * @param Request $request
-     * @param string  $type
-     * @param string  $group
-     * @param string  $name
-     *
-     * @return Response
+     * @param  Request $request
+     * @param  string  $type
+     * @return Reponse
      */
-    public function show(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
+    public function index(Request $request, $type = 'core')
     {
-        if ($request->has('install') && $request->get('_token') == Session::token()) {
-            return $this->startUpdate($request, $type, $group, $name);
+        $updatesList = Updater::getUpdatesList();
+
+        $data = compact('updatesList', 'type');
+
+        if ($type == 'core') {
+            return view_backend('update.core.index', $data);
         }
 
-        if (Updater::isLatest()) {
-            return redirect()->route('zxadmin.dashboard.index');
+        if (in_array($type, ['module', 'widget', 'theme'])) {
+            return view_backend('update.component.index', $data);
         }
 
-        $changedFiles = Updater::getChangedFiles();
-        $hasForce = $request->has('force');
-        $force = $hasForce && $request->get('force') == 'true';
-
-        $data = compact('type', 'group', 'name', 'changedFiles', 'force');
-        if ($type == 'zedx') {
-            return view_backend('update.zedx', $data);
-        }
-
-        return view_backend('update.component', $data);
+        return redirect()->route('zxadmin.dashboard.index');
     }
 
     /**
-     * Start update.
+     * Show update files for a specific package.
      *
-     * @param Request $request
-     * @param string  $type
-     * @param string  $group
-     * @param string  $name
-     *
+     * @param  UpdaterRequest $request
+     * @param  string         $type
      * @return Response
      */
-    protected function startUpdate(Request $request, $type = 'zedx', $group = 'zedx', $name = 'zedx')
+    public function show(UpdaterRequest $request, $type = 'core')
     {
+        $force = $request->has('force') && $request->force == 'true';
+
+        $this->setPackage($request, $type);
+
+        $changedFiles = Updater::getChangedFiles();
+        $version = Updater::getPackageVersion();
+
+        return view_backend('update.component.show', compact('type', 'force', 'version', 'changedFiles'));
+    }
+
+    /**
+     * Start updating package
+     *
+     * @param  UpdaterRequest $request
+     * @param  string         $type
+     * @return Reponse
+     */
+    public function update(UpdaterRequest $request, $type = 'core')
+    {
+        $this->setPackage($request, $type);
+
         $response = new StreamedResponse(function () use ($request) {
-            $hasForce = $request->has('force');
-            $force = $hasForce && $request->get('force') == 'true';
+            $force = $request->has('force') && $request->force == 'true';
 
             Updater::update($force);
         });
@@ -64,5 +76,28 @@ class UpdateController extends Controller
         $response->headers->set('Content-Type', 'text/event-stream');
 
         return $response;
+    }
+
+    /**
+     * Set package details
+     *
+     * @param UpdaterRequest $request
+     * @param string $type
+     */
+    protected function setPackage(UpdaterRequest $request, $type)
+    {
+        $packagesVersions = Updater::getPackagesVersions();
+
+        $namespace = $request->namespace;
+
+        $version = array_get($packagesVersions, $type.'.'.$namespace, false);
+
+        if ($version === false) {
+            abort(404);
+        }
+
+        Updater::setPackageType($type);
+        Updater::setPackageNamespace($namespace);
+        Updater::setPackageVersion($version);
     }
 }
