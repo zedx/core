@@ -439,7 +439,7 @@ if (!function_exists('renderMenu')) {
      *
      * @return void
      */
-    function renderMenu($groupName, $config = [], $first=true)
+    function renderMenu($groupName, $config = [], $first = true)
     {
         $render = '';
 
