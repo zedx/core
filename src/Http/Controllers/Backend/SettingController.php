@@ -4,6 +4,8 @@ namespace ZEDx\Http\Controllers\Backend;
 
 use Auth;
 use File;
+use Image;
+use Intervention\Image\Exception\NotReadableException;
 use ZEDx\Events\Setting\SettingWasUpdated;
 use ZEDx\Events\Setting\SettingWillBeUpdated;
 use ZEDx\Http\Controllers\Controller;
@@ -82,14 +84,44 @@ class SettingController extends Controller
         event(new SettingWasUpdated($setting, $admin));
 
         $this->setToEnv($setting);
+        $this->saveUploads($request);
 
         return redirect()->route('zxadmin.setting.index')->with('message', 'success');
     }
 
     /**
+     * Save new logo & watermark images.
+     *
+     * @param SettingRequest $request
+     *
+     * @return void
+     */
+    protected function saveUploads(SettingRequest $request)
+    {
+        if ($request->hasFile('logo')) {
+            $this->uploadImage($request->file('logo'), public_path('logo.png'));
+        }
+
+        if ($request->hasFile('watermark')) {
+            $this->uploadImage($request->file('watermark'), public_path('uploads/watermark.png'));
+        }
+    }
+
+    protected function uploadImage($image, $path)
+    {
+        try {
+            $img = Image::make($image);
+        } catch (NotReadableException $e) {
+            return;
+        }
+
+        $img->save($path, 100);
+    }
+
+    /**
      * Set settings to Environement file.
      *
-     * @param Setting $setting [description]
+     * @param Setting $setting
      */
     protected function setToEnv(Setting $setting)
     {

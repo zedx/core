@@ -1,4 +1,11 @@
 <div class="form-group">
+  {!! Form::label("watermark", trans("backend.setting.watermark"), ['class' => 'col-sm-2 control-label label-text']) !!}
+  <div class="col-sm-8 parent">
+    <span class="image"><img src="{{ public_asset('uploads/watermark.png') }}" class="preview-logo"></span>
+    <div class="btn btn-xs btn-info btn-file"><i class="fa fa-edit"></i> {{ trans("backend.setting.change") }} <input type="file" name="watermark" data-type="watermark" class="edit-image-setting"></div>
+  </div>
+</div>
+<div class="form-group">
   {!! Form::label("ad_descr_min", trans("backend.setting.ad_descr_min"), ['class' => 'col-sm-2 control-label label-text']) !!}
   <div class="col-sm-10">
   {!! Form::text("ad_descr_min", null, ['class' => 'form-control']) !!}
