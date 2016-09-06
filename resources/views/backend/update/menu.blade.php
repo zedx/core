@@ -17,7 +17,7 @@
             <a href="{{ route('zxadmin.update.index', ['core']) }}">
               <i class="fa fa-heart text-red"></i> {!! trans('backend.update.update_available', ['package' => 'ZEDx', 'version' => Updater::getLatest()->version]) !!}</small>
               <br>
-              <small class="time"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse(Updater::getLatest()->date)->diffForHumans() }}</small>
+              <small class="time"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse(head($list)['date'])->diffForHumans() }}</small>
             </a>
           </li>
           @elseif (!empty($list))
