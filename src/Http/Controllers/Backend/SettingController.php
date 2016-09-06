@@ -4,6 +4,8 @@ namespace ZEDx\Http\Controllers\Backend;
 
 use Auth;
 use File;
+use Image;
+use Intervention\Image\Exception\NotReadableException;
 use ZEDx\Events\Setting\SettingWasUpdated;
 use ZEDx\Events\Setting\SettingWillBeUpdated;
 use ZEDx\Http\Controllers\Controller;
@@ -11,8 +13,6 @@ use ZEDx\Http\Requests\SettingRequest;
 use ZEDx\Models\Country;
 use ZEDx\Models\Language;
 use ZEDx\Models\Setting;
-use Image;
-use Intervention\Image\Exception\NotReadableException;
 
 class SettingController extends Controller
 {
@@ -92,7 +92,8 @@ class SettingController extends Controller
     /**
      * Save new logo & watermark images.
      *
-     * @param  SettingRequest $request
+     * @param SettingRequest $request
+     *
      * @return void
      */
     protected function saveUploads(SettingRequest $request)
@@ -111,7 +112,6 @@ class SettingController extends Controller
         try {
             $img = Image::make($image);
         } catch (NotReadableException $e) {
-            dd("Oops", $e->getMessage());
             return;
         }
 
@@ -121,7 +121,7 @@ class SettingController extends Controller
     /**
      * Set settings to Environement file.
      *
-     * @param Setting $setting [description]
+     * @param Setting $setting
      */
     protected function setToEnv(Setting $setting)
     {
