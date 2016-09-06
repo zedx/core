@@ -55,6 +55,7 @@ module.exports = function (elixir, fs) {
             'css/zedx/uploader.css',
             'css/zedx/widget.css',
             'css/zedx/accordion.css',
+            'css/zedx/setting.css',
             'css/custom.css'
         ], 'public/backend/css/styles.css', _root);
 
