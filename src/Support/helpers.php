@@ -439,9 +439,8 @@ if (!function_exists('renderMenu')) {
      *
      * @return void
      */
-    function renderMenu($groupName, $config = [])
+    function renderMenu($groupName, $config = [], $first=true)
     {
-        static $first = true;
         $render = '';
 
         if (is_string($groupName)) {
@@ -482,12 +481,8 @@ if (!function_exists('renderMenu')) {
                 .'  </a>';
 
             if ($hasChildren) {
-                $first = false;
                 $render .= '<ul '.$ul.'>';
-                foreach ($menu->children as $child) {
-                    $render .= renderMenu([$child], $config);
-                }
-
+                $render .= renderMenu($menu->children, $config, false);
                 $render .= '</ul>';
             }
             $render .= '</li>';
