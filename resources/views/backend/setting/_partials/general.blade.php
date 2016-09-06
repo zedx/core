@@ -1,4 +1,11 @@
 <div class="form-group">
+  {!! Form::label("logo", trans("backend.setting.logo"), ['class' => 'col-sm-2 control-label label-text']) !!}
+  <div class="col-sm-8 parent">
+    <span class="image"><img src="{{ public_asset('logo.png') }}" class="preview-logo"></span>
+    <div class="btn btn-xs btn-info btn-file"><i class="fa fa-edit"></i> {{ trans("backend.setting.change") }} <input type="file" name="logo" data-type="logo" class="edit-image-setting"></div>
+  </div>
+</div>
+<div class="form-group">
   {!! Form::label("website_name", trans("backend.setting.website_name"), ['class' => 'col-sm-2 control-label label-text']) !!}
   <div class="col-sm-10">
   {!! Form::text("website_name", null, ['class' => 'form-control']) !!}
