@@ -169,8 +169,8 @@ class Updater
             $components['theme'][$theme['manifest']['name']] = $theme['manifest']['version'];
         }
 
-        foreach (Widgets::noType()->all(null, true) as $namespace => $widget) {
-            $components['widget'][$namespace] = $widget->version;
+        foreach (Widgets::noType()->noFilter()->all(null, true) as $namespace => $widget) {
+            $components['widget'][$namespace] = $widget->get('version');
         }
 
         foreach (Modules::all() as $module) {
