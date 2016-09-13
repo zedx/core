@@ -103,6 +103,12 @@ $(document).ready(function() {
     });
 
     $(document).on("click", '[data-elements-action]', function() {
+        if (getCheckedElements() == false) {
+            $($(this).data('target')).find(".modal-message").html("Veuillez selectionner un élément.");
+            $($(this).data('target')).find("#confirm").hide();
+        }else{
+            $($(this).data('target')).find("#confirm").show();
+        }
         elementAction(this, false, true);
     });
 
@@ -139,4 +145,4 @@ $(document).ready(function() {
         var $element = $(this).data('parent').children();
         deleteResource($element, true);
     });
-})
+});
