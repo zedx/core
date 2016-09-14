@@ -2,7 +2,6 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
-use Request;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\DashboardWidgetCreateRequest;
 use ZEDx\Http\Requests\DashboardWidgetUpdateRequest;
