@@ -32,12 +32,17 @@ class DashBoardController extends Controller
    */
   public function update(Dashboardwidget $dashboardwidget, DashboardWidgetUpdateRequest $request)
   {
-      if (Request::ajax()) {
-          $dashboardwidget->update(array_filter($request->only('title', 'size')));
+      if ($request->has('config')) {
+          $dashboardwidget->config = $request->get('config');
+          $dashboardwidget->save();
+      }
 
-          return [];
-      } else {
-          abort(404);
+      if ($request->ajax()) {
+          $dashboardwidget->update(array_filter($request->only('title', 'size')));
+      }
+
+      if (!$request->ajax()) {
+          return back();
       }
   }
 
