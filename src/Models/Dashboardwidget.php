@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Dashboardwidget extends Model
 {
     protected $fillable = [
-    'size', 'title', 'namespace',
-    'config', 'position',
-  ];
+        'size', 'title', 'namespace',
+        'config', 'position',
+    ];
+
+    protected $casts = [
+        'config' => 'array',
+    ];
 }

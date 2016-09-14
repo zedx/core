@@ -70,7 +70,8 @@ return merge_trans('backend', [
         'add_widget'                 => 'Ajouter',
         'upload_new_widget'          => 'Charger un nouveau',
         'delete_widget_confirmation' => 'Êtes-vous sûr de bien vouloir supprimer ce widget ?',
-
+        'save'                       => 'Enregistrer',
+        'cancel'                     => 'Annuler',
     ],
     'ad'             => [
         'ad'                                 => 'Annonce',

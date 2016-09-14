@@ -49,8 +49,7 @@
         <h3 class="box-title"><i class="fa fa-edit"></i> <a href="#" class="dashboard-widget-name" data-name="title" data-type="text" >{{ $dashboardWidget->title }}</a></h3>
 
         <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool"><i class="fa fa-resize"></i></button>
-          <button type="button" class="btn btn-box-tool"><i class="fa fa-wrench"></i></button>
+          <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#backendWidgetSetting{{ $dashboardWidget->id }}" ><i class="fa fa-wrench"></i></button>
           <form method="POST" action="{{ route('zxadmin.dashboard.destroy', $dashboardWidget->id) }}" accept-charset="UTF-8" style="display:inline">
             <input name="_method" type="hidden" value="DELETE">
             {{ csrf_field() }}
@@ -67,6 +66,7 @@
       </div>
     </div>
   </section>
+  @include('backend::widget.modals.setting', ['widgetnode' => $dashboardWidget])
   @endforeach
 </div>
 @include('backend::widget.modals.delete')
