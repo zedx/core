@@ -53,7 +53,7 @@ class WidgetnodeController extends Controller
     public function update(Page $page, $templateblock, Widgetnode $widgetnode, Request $request)
     {
         if ($request->has('config')) {
-            $widgetnode->config = json_encode($request->get('config'));
+            $widgetnode->config = $request->get('config');
             $widgetnode->save();
         }
 

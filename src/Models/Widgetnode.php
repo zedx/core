@@ -16,12 +16,8 @@ class Widgetnode extends Model
 
     protected $casts = [
         'is_enabled' => 'boolean',
+        'config'     => 'array',
     ];
-
-    public function getConfigAttribute($value)
-    {
-        return json_decode($value, true);
-    }
 
     public function block()
     {
