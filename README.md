@@ -1,4 +1,4 @@
-# ZEDx Core
+# ZEDx Core [![StyleCI](https://styleci.io/repos/60201634/shield)](https://styleci.io/repos/60201634)
 
 This repository contains the core code of ZEDx. If you want to create a website using ZEDx, visit the main [ZEDx repository](https://github.com/zedx/zedx).
 
