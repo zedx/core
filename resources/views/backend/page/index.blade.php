@@ -59,7 +59,13 @@
                 @else
                 <td><a href="{{ route('page.show', $page->shortcut) }}" target="_blank"><i class="fa fa-link"></i> {{ $page->shortcut }}</a></td>
                 @endif
-                <td><input type="radio" {{ $page->is_home ? 'checked' : '' }} data-url="{{ route('zxadmin.page.beHomepage', $page->id) }}" class="flat-red homepage-switch" name="is_home"></td>
+                <td>
+                  @if ($page->type == 'page' || in_array($page->shortcut, ['ad.search', 'user.login', 'user.register']))
+                  <input type="radio" {{ $page->is_home ? 'checked' : '' }} data-url="{{ route('zxadmin.page.beHomepage', $page->id) }}" class="flat-red homepage-switch" name="is_home">
+                  @else
+                  <i class="fa fa-ban text-red"></i>
+                  @endif
+                </td>
                 <td><a href="{{ route('zxadmin.page.edit', [$page->id, $page->template->blocks()->firstOrFail()->identifier]) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {!! trans('backend.page.edit') !!}</span></a></td>
                 @if ($type == 'page')
                 <td>
