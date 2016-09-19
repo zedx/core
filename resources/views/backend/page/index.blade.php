@@ -39,9 +39,7 @@
                 @else
                 <th>{!! trans("backend.page.shortcut") !!}</th>
                 @endif
-                @if ($type == 'page')
                 <th>{!! trans("backend.page.home_page") !!}</th>
-                @endif
                 <th style="width: 40px"></th>
                 @if ($type == 'page')
                 <th style="width: 40px"></th>
@@ -61,9 +59,7 @@
                 @else
                 <td><a href="{{ route('page.show', $page->shortcut) }}" target="_blank"><i class="fa fa-link"></i> {{ $page->shortcut }}</a></td>
                 @endif
-                @if ($type == 'page')
                 <td><input type="radio" {{ $page->is_home ? 'checked' : '' }} data-url="{{ route('zxadmin.page.beHomepage', $page->id) }}" class="flat-red homepage-switch" name="is_home"></td>
-                @endif
                 <td><a href="{{ route('zxadmin.page.edit', [$page->id, $page->template->blocks()->firstOrFail()->identifier]) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {!! trans('backend.page.edit') !!}</span></a></td>
                 @if ($type == 'page')
                 <td>
