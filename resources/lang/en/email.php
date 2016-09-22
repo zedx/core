@@ -9,7 +9,7 @@ return merge_trans('email', [
         ],
         'user_created' => [
             'subject' => 'New user was registered',
-            'content' => ":user create an account",
+            'content' => ':user create an account',
         ],
         'ad_created' => [
             'subject' => 'New ad was created',
@@ -17,15 +17,15 @@ return merge_trans('email', [
         ],
         'ad_updated' => [
             'subject' => 'An ad was updated',
-            'content' => ":user update the ad [ :ad ]",
+            'content' => ':user update the ad [ :ad ]',
         ],
         'ad_renew_request' => [
             'subject' => 'An Ad is waiting for renew',
-            'content' => ":user just request a renewal for :ad",
+            'content' => ':user just request a renewal for :ad',
         ],
         'adtype_purchased' => [
-            'subject' => "An Adtype was purchased",
-            'content' => ":user just bought an Adtype [ :adtype ]",
+            'subject' => 'An Adtype was purchased',
+            'content' => ':user just bought an Adtype [ :adtype ]',
         ],
         'subscription_purchased' => [
             'subject' => 'A subscription was purchased',
@@ -39,31 +39,31 @@ return merge_trans('email', [
     'user' => [
         'ad_validated' => [
             'subject' => 'Ad validated',
-            'content' => "Your Ad :ad is validated",
+            'content' => 'Your Ad :ad is validated',
         ],
         'ad_refused' => [
             'subject' => 'Ad refused',
-            'content' => "Your Ad :ad has been refused for the following reasons :",
+            'content' => 'Your Ad :ad has been refused for the following reasons :',
         ],
         'ad_deleted' => [
             'subject' => 'Ad deleted',
-            'content' => "Your Ad :ad has been deleted",
+            'content' => 'Your Ad :ad has been deleted',
         ],
         'ad_expired' => [
             'subject' => 'Ad expired',
-            'content' => "Your Ad :ad is expired",
+            'content' => 'Your Ad :ad is expired',
         ],
         'adtype_changed' => [
             'subject' => 'Ad type changed',
             'content' => 'Your Ad :ad became a :adtype ad',
         ],
         'adtype_purchased' => [
-            'subject' => "Ad type purchased",
-            'content' => "You have purchased :number :adtype ad(s)",
+            'subject' => 'Ad type purchased',
+            'content' => 'You have purchased :number :adtype ad(s)',
         ],
         'subscription_activated' => [
             'subject' => 'Subscription activated',
-            'content' => "You just subscribe :subscription subscription",
+            'content' => 'You just subscribe :subscription subscription',
         ],
         'password_reset' => [
             'subject' => 'Password reset',
