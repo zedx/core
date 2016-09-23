@@ -43,9 +43,9 @@ class ModuleMakeWidgetCommand extends Command
      */
     public function handle()
     {
-        $name   = $this->argument('name');
+        $name = $this->argument('name');
         $module = $this->getModuleName();
-        $force  = $this->option('force');
+        $force = $this->option('force');
 
         // Publishing empty widgets (creates symlinks)
         $this->call('module:publish-widget', [
