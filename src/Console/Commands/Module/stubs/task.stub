@@ -1,0 +1,39 @@
+module.exports = function (elixir, fs, publicPath) {
+    'use strict';
+
+    /*
+     |--------------------------------------------------------------------------
+     | Elixir Asset Management
+     |--------------------------------------------------------------------------
+     |
+     | Elixir provides a clean, fluent API for defining some basic Gulp tasks
+     | for your Laravel application. By default, we are compiling the Less
+     | file for our application, as well as publishing vendor resources.
+     |
+     */
+
+    elixir(function(mix) {
+
+        var _base = __dirname + "/Resources/assets/";
+        var _src  = _base + "src/";
+        var _dist = _base + 'dist/';
+
+        /* Scripts */
+
+        mix.webpack('js/app.js', _dist + 'js/module.js', _src);
+
+        mix.scripts([
+          //
+        ], _dist + 'js/scripts.js', _src);
+
+        /* Styles */
+
+        mix.styles([
+          //
+        ], _dist + 'css/styles.css', _src);
+
+        /* Copy Frontend Assets */
+
+        //mix.copy(_src + "...", _dist + "...");
+    });
+};

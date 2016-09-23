@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         Commands\Module\ModuleMakeProviderCommand::class,
         Commands\Module\ModuleMakeSeedCommand::class,
         Commands\Module\ModuleMakeRequestCommand::class,
+        Commands\Module\ModuleMakeWidgetCommand::class,
         Commands\Module\ModuleSeedCommand::class,
         Commands\Module\ModuleMigrateCommand::class,
         Commands\Module\ModuleMigrateResetCommand::class,
@@ -42,6 +43,7 @@ class Kernel extends ConsoleKernel
         Commands\Module\ModuleMakeModelCommand::class,
         Commands\Module\ModuleMakeConsoleCommand::class,
         Commands\Module\ModulePublishCommand::class,
+        Commands\Module\ModulePublishWidgetCommand::class,
 
         /* Widget Commands */
         Commands\Widget\WidgetMakeCommand::class,
