@@ -49,12 +49,12 @@ class ModulePublishWidgetCommand extends Command
     public function linkWidget()
     {
         $module = $this->getModuleName();
-        $force  = $this->option('force');
+        $force = $this->option('force');
 
         // Checking symbolic links in back/front-end
         foreach (['Backend', 'Frontend'] as $type) {
-            $link   = config('widgets.path') . "/$type/$module";
-            $target = base_path('modules') . "/$module/Widgets/$type";
+            $link = config('widgets.path')."/$type/$module";
+            $target = base_path('modules')."/$module/Widgets/$type";
 
             if (File::exists($target) && !File::exists($link)) {
                 symlink($target, $link);
