@@ -349,7 +349,7 @@ class Updater
             return $this->latestJson[$namespace];
         }
 
-        return $this->latestJson[$namespace] = json_decode(file_get_contents($this->getPackageDownloadUrl()));
+        return $this->latestJson[$namespace] = @json_decode(file_get_contents($this->getPackageDownloadUrl()));
     }
 
     protected function getPackageDownloadUrl()
