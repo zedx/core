@@ -16,6 +16,18 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
+        {!! Form::label("thumbnail", trans("backend.category.thumbnail"), ['class' => 'label-text']) !!}
+        <div class="col-sm-12 parent thumbnail">
+          <span class="image">
+            @if (isset($category) && $category->thumbnail)
+            <img src="{{ public_asset('uploads/categories/' . $category->thumbnail) }}">
+            @endif
+            </span>
+          <div class="btn btn-xs btn-info btn-file pull-right"><i class="fa fa-edit"></i> {{ trans("backend.setting.change") }} <input type="file" name="thumbnail" data-type="thumbnail" class="edit-image-category"></div>
+        </div>
+      </div>
+      <hr />
+      <div class="form-group">
         {!! Form::label("name", trans("backend.category.category_name"), ['class' => 'label-text']) !!}
         {!! Form::text("name", null, ['class' => 'form-control']) !!}
       </div>

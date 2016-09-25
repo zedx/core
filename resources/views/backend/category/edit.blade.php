@@ -12,7 +12,7 @@
     <div class="box box-primary">
       <div class="box-header">
       </div><!-- /.box-header -->
-      {!! Form::model($category, ['method' => 'PATCH', 'route' => ['zxadmin.category.update', $category->id]]) !!}
+      {!! Form::model($category, ['method' => 'PATCH', 'files' => true, 'route' => ['zxadmin.category.update', $category->id]]) !!}
       @include('backend::category._form', array("submitButton" => trans("backend.category.edit_category")))
       {!! Form::close() !!}
     </div>

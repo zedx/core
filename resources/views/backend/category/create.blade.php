@@ -12,8 +12,8 @@
 		<div class="box box-primary">
       <div class="box-header">
       </div><!-- /.box-header -->
-      {!! Form::open(array('route' => 'zxadmin.category.store')) !!}
-      @include('backend::category._form', array("submitButton" => trans("backend.category.add_category")))
+      {!! Form::open(['route' => 'zxadmin.category.store', 'files' => true]) !!}
+      @include('backend::category._form', ["submitButton" => trans("backend.category.add_category")])
       {!! Form::close() !!}
     </div>
   </div>

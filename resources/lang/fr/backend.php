@@ -269,6 +269,7 @@ return merge_trans('backend', [
     ],
     'category'       => [
         'category'                     => 'Catégorie',
+        'thumbnail'                    => 'Vignette',
         'add_a_category'               => 'Créer une catégorie',
         'list'                         => 'Liste',
         'add'                          => 'Ajouter',

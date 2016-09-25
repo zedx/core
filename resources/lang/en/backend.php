@@ -269,6 +269,7 @@ return merge_trans('backend', [
     ],
     'category'       => [
         'category'                     => 'Category',
+        'thumbnail'                    => 'Thumbnail',
         'add_a_category'               => 'Add a category',
         'list'                         => 'List',
         'add'                          => 'Add',

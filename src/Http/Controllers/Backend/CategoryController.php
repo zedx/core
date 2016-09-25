@@ -2,6 +2,8 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
+use Image;
+use Intervention\Image\Exception\NotReadableException;
 use Request;
 use ZEDx\Events\Category\CategoryWasUpdated;
 use ZEDx\Http\Controllers\Controller;
@@ -46,9 +48,10 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $input = $request->all();
+        $input    = $request->all();
         $category = Category::create($input);
 
+        $this->saveThumbnail($category, $request);
         $this->setCategoryParent($category, $request);
 
         $this->saveCategoryFields($category, $request);
@@ -79,6 +82,35 @@ class CategoryController extends Controller
     }
 
     /**
+     * Save thumbnail.
+     *
+     * @param CategoryRequest $request
+     * @param Category $category
+     *
+     * @return void
+     */
+    protected function saveThumbnail(Category $category, CategoryRequest $request)
+    {
+        if (!$request->hasFile('thumbnail')) {
+            return;
+        }
+        $image = $request->file('thumbnail');
+        $name  = $category->id . '.png';
+        $path  = public_path('uploads/categories/' . $name);
+
+        try {
+            $img = Image::make($image);
+        } catch (NotReadableException $e) {
+            return;
+        }
+
+        $img->save($path, 100);
+
+        $category->thumbnail = $name;
+        $category->save();
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -87,10 +119,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $codes = $category->codes;
+        $codes            = $category->codes;
         $selectedFieldsId = array_reverse($category->fields()->lists('fields.id')->toArray());
 
-        $fields = Field::whereNotIn('id', $selectedFieldsId)->get();
+        $fields    = Field::whereNotIn('id', $selectedFieldsId)->get();
         $parent_id = $category->parent_id;
 
         return view_backend('category.edit', compact('category', 'codes', 'fields', 'parent_id'));
@@ -107,6 +139,8 @@ class CategoryController extends Controller
     {
         $input = $request->all();
         $category->update($input);
+
+        $this->saveThumbnail($category, $request);
 
         $this->setCategoryParent($category, $request);
 

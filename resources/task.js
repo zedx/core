@@ -102,6 +102,7 @@ module.exports = function (elixir, fs) {
             'js/zedx/ad.js',
             'js/zedx/plugin.js',
             'js/zedx/setting.js',
+            'js/zedx/thumb.js',
             'js/zedx/gateway.js',
             'js/zedx/adtype.js',
             'js/zedx/subscription.js',
