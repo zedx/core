@@ -5,6 +5,7 @@ namespace ZEDx\Http\Controllers\Backend;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Image;
 use TemplateSkeleton;
 use Themes;
 use ZEDx\Core;
@@ -12,7 +13,6 @@ use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ThemeSetRequest;
 use ZEDx\Http\Requests\ThemeUploadRequest;
 use Zipper;
-use Image;
 
 class ThemeController extends Controller
 {
@@ -35,7 +35,7 @@ class ThemeController extends Controller
     }
 
     /**
-     * Get theme screenshot
+     * Get theme screenshot.
      *
      * @return Reponse
      */
@@ -45,7 +45,7 @@ class ThemeController extends Controller
             abort(404);
         }
 
-        $screenshot = base_path('themes') . '/' . $theme . '/screenshot.png';
+        $screenshot = base_path('themes').'/'.$theme.'/screenshot.png';
 
         if (!File::exists($screenshot)) {
             return;
@@ -55,13 +55,12 @@ class ThemeController extends Controller
     }
 
     /**
-     * Customize default theme
+     * Customize default theme.
      *
      * @return Reponse
      */
     public function customize()
     {
-
     }
 
     /**
