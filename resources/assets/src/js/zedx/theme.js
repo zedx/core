@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  $('.theme-switch').on('ifChecked', function(event){
-    var theme = this.value,
+  $('.theme-switch').on('click', function(event){
+    var theme = $(this).data('name'),
       url = $('#themesTable').data('seturl');
       token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
@@ -11,11 +11,16 @@ $(document).ready(function() {
             _token: token,
             theme: theme,
         }
+    }).always(function() {
+      location.reload();
     });
   });
 
   $('#recompileThemeTemplates').on('click', function() {
-    var url = $(this).data('url');
+    $('.recompile-icon').addClass('fa-spin');
+
+    var $this = $(this);
+    var url = $this.data('url');
       token = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
@@ -25,6 +30,9 @@ $(document).ready(function() {
         data: {
             _token: token
         }
+    }).always(function() {
+      $this.prop("disabled", true);
+      $('.recompile-icon').removeClass().addClass("fa fa-check");
     });
   })
 });

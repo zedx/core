@@ -12,6 +12,7 @@ use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ThemeSetRequest;
 use ZEDx\Http\Requests\ThemeUploadRequest;
 use Zipper;
+use Image;
 
 class ThemeController extends Controller
 {
@@ -24,9 +25,43 @@ class ThemeController extends Controller
      */
     public function index()
     {
-        $themes = Themes::frontend()->all();
+        $themes = Themes::frontend()->all()->sortByDesc(function ($theme, $name) {
+            return $theme['is_active'] == true;
+        });
 
-        return view_backend('theme.index', compact('themes'));
+        $currentTheme = $themes->shift();
+
+        return view_backend('theme.index', compact('currentTheme', 'themes'));
+    }
+
+    /**
+     * Get theme screenshot
+     *
+     * @return Reponse
+     */
+    public function screenshot($theme)
+    {
+        if (!Themes::has($theme)) {
+            abort(404);
+        }
+
+        $screenshot = base_path('themes') . '/' . $theme . '/screenshot.png';
+
+        if (!File::exists($screenshot)) {
+            return;
+        }
+
+        return Image::make($screenshot)->response();
+    }
+
+    /**
+     * Customize default theme
+     *
+     * @return Reponse
+     */
+    public function customize()
+    {
+
     }
 
     /**

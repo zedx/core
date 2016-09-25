@@ -144,6 +144,10 @@ Route::group(['middleware' => 'web'], function () {
             /* Theme : /zxadmin/theme */
             Route::group(['prefix' => 'theme'], function () {
                 Route::get('/', ['as' => 'zxadmin.theme.index', 'uses' => 'ThemeController@index']);
+
+                Route::get('{theme}/screenshot', ['as' => 'zxadmin.theme.screenshot', 'uses' => 'ThemeController@screenshot']);
+                Route::get('customize', ['as' => 'zxadmin.theme.customize', 'uses' => 'ThemeController@customize']);
+
                 Route::put('/', ['as' => 'zxadmin.theme.set', 'uses' => 'ThemeController@set']);
                 Route::post('download/{theme}', ['as' => 'zxadmin.theme.download', 'uses' => 'ThemeController@download']);
                 Route::get('add', ['as' => 'zxadmin.theme.add', 'uses' => 'ThemeController@add']);
