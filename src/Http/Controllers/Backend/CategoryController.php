@@ -48,7 +48,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $input    = $request->all();
+        $input = $request->all();
         $category = Category::create($input);
 
         $this->saveThumbnail($category, $request);
@@ -85,7 +85,7 @@ class CategoryController extends Controller
      * Save thumbnail.
      *
      * @param CategoryRequest $request
-     * @param Category $category
+     * @param Category        $category
      *
      * @return void
      */
@@ -95,8 +95,8 @@ class CategoryController extends Controller
             return;
         }
         $image = $request->file('thumbnail');
-        $name  = $category->id . '.png';
-        $path  = public_path('uploads/categories/' . $name);
+        $name = $category->id.'.png';
+        $path = public_path('uploads/categories/'.$name);
 
         try {
             $img = Image::make($image);
@@ -119,10 +119,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $codes            = $category->codes;
+        $codes = $category->codes;
         $selectedFieldsId = array_reverse($category->fields()->lists('fields.id')->toArray());
 
-        $fields    = Field::whereNotIn('id', $selectedFieldsId)->get();
+        $fields = Field::whereNotIn('id', $selectedFieldsId)->get();
         $parent_id = $category->parent_id;
 
         return view_backend('category.edit', compact('category', 'codes', 'fields', 'parent_id'));
