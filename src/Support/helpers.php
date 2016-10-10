@@ -264,7 +264,7 @@ if (!function_exists('env_replace')) {
         $envPath = base_path('.env');
         $envContent = file($envPath);
 
-        $newContent = array_map(function ($content) use ($keyToRepace, $value) {
+        $newContent = array_map(function ($content) use ($keyToRepace, &$keyExist, $value) {
             $element = explode('=', $content);
             $key = $element[0];
 
