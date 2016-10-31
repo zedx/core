@@ -91,20 +91,21 @@ class CategoryController extends Controller
      */
     protected function saveThumbnail(Category $category, CategoryRequest $request)
     {
-        if (!$request->hasFile('thumbnail')) {
-            return;
-        }
-        $image = $request->file('thumbnail');
-        $name = $category->id.'.png';
-        $path = public_path('uploads/categories/'.$name);
+        $name = $request->oldThumbnail;
 
-        try {
-            $img = Image::make($image);
-        } catch (NotReadableException $e) {
-            return;
-        }
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+            $name = $category->id.'.png';
+            $path = public_path('uploads/categories/'.$name);
 
-        $img->save($path, 100);
+            try {
+                $img = Image::make($image);
+            } catch (NotReadableException $e) {
+                return;
+            }
+
+            $img->save($path, 100);
+        }
 
         $category->thumbnail = $name;
         $category->save();
