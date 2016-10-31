@@ -147,6 +147,7 @@ Route::group(['middleware' => 'web'], function () {
 
                 Route::get('{theme}/screenshot', ['as' => 'zxadmin.theme.screenshot', 'uses' => 'ThemeController@screenshot']);
                 Route::get('customize', ['as' => 'zxadmin.theme.customize', 'uses' => 'ThemeController@customize']);
+                Route::post('customize', ['as' => 'zxadmin.theme.customize', 'uses' => 'ThemeController@update']);
 
                 Route::put('/', ['as' => 'zxadmin.theme.set', 'uses' => 'ThemeController@set']);
                 Route::post('download/{theme}', ['as' => 'zxadmin.theme.download', 'uses' => 'ThemeController@download']);

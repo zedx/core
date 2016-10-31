@@ -8,9 +8,11 @@
     <div>{{ $currentTheme['manifest']['description'] }}</div>
     <br /><br />
     <div class="row">
+      @if (Widgets::exists('Frontend\Theme\Customize'))
       <div class="col-md-4">
-        <a href="#" class="btn btn-success btn-block"><i class="fa fa-edit"></i> {!! trans('backend.template.personalize') !!}</a>
+        <a href="{{ route('zxadmin.theme.customize') }}" class="btn btn-success btn-block"><i class="fa fa-edit"></i> {!! trans('backend.theme.customize') !!}</a>
       </div>
+      @endif
       <div class="col-md-4">
         <button id="recompileThemeTemplates" data-url="{{ route('zxadmin.theme.recompile') }}" class="btn btn-primary btn-block"><i class="recompile-icon fa fa-cogs"></i> {!! trans('backend.theme.recompile') !!}</button>
       </div>

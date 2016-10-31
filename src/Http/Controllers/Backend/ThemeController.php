@@ -13,6 +13,7 @@ use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ThemeSetRequest;
 use ZEDx\Http\Requests\ThemeUploadRequest;
 use Zipper;
+use Widgets;
 
 class ThemeController extends Controller
 {
@@ -61,6 +62,19 @@ class ThemeController extends Controller
      */
     public function customize()
     {
+        return view_backend('theme.customize');
+    }
+
+    /**
+     * Update default theme.
+     *
+     * @return Reponse
+     */
+    public function update(Request $request)
+    {
+        Widgets::setting("Frontend\Theme\Customize", [], $request);
+
+        return back();
     }
 
     /**
