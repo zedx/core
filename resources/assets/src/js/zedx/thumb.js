@@ -18,6 +18,7 @@ $(document).ready(function() {
                 src = e.target.result;
                 html = '<img src="' + src + '" class="preview-logo" />';
                 $this.closest('.parent').find('.image').html(html);
+                $('#remove-thumbnail').show();
               }
               reader.readAsDataURL(file);
             } else {

@@ -269,7 +269,11 @@ return merge_trans('backend', [
     ],
     'category'       => [
         'category'                     => 'Catégorie',
-        'thumbnail'                    => 'Vignette',
+        'thumbnail'                    => [
+            'thumbnail' => 'Vignette',
+            'change'    => 'Changer',
+            'delete'    => 'Supprimer',
+        ],
         'add_a_category'               => 'Créer une catégorie',
         'list'                         => 'Liste',
         'add'                          => 'Ajouter',
@@ -499,6 +503,8 @@ return merge_trans('backend', [
     'theme'          => [
         'theme'                      => 'Thème',
         'add_a_theme'                => 'Ajouter un thème',
+        'customize'                  => 'Personnaliser',
+        'no_customize'               => "Ce thème ne propose aucune personnalisation",
         'author'                     => 'Auteur [ :author ]',
         'version'                    => 'Version :version',
         'available_themes'           => 'Thèmes disponible',

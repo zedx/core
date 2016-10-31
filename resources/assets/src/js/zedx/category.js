@@ -70,6 +70,14 @@ $(document).ready(function() {
         $(".datepicker").datepicker();
     });
 
+    $(document).on("click", "#remove-thumbnail", function() {
+        var $this = $(this);
+        $('#oldThumbnail').val("");
+        $('#thumbnail').val("");
+        $this.closest('.parent').find('.image').html("");
+        $(this).hide();
+    });
+
     $(document).on("click", ".remove-code", function() {
         $(this).closest("tr").remove();
     });
