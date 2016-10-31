@@ -82,9 +82,9 @@ class Json
      *
      * @return array
      */
-    public function getAttributes()
+    public function getAttributes($assoc = true)
     {
-        return $this->json_clean_decode($this->getContents(), true);
+        return $this->json_clean_decode($this->getContents(), $assoc);
     }
 
     /**
