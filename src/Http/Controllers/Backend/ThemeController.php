@@ -8,12 +8,12 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Image;
 use TemplateSkeleton;
 use Themes;
+use Widgets;
 use ZEDx\Core;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ThemeSetRequest;
 use ZEDx\Http\Requests\ThemeUploadRequest;
 use Zipper;
-use Widgets;
 
 class ThemeController extends Controller
 {

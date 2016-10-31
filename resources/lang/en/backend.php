@@ -504,7 +504,7 @@ return merge_trans('backend', [
         'theme'                      => 'Theme',
         'add_a_theme'                => 'Add a theme',
         'customize'                  => 'Customize',
-        'no_customize'               => "This theme can not be customized",
+        'no_customize'               => 'This theme can not be customized',
         'author'                     => 'Author [ :author ]',
         'version'                    => 'Version :version',
         'available_themes'           => 'Available themes',
