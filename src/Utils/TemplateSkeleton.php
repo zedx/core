@@ -169,11 +169,11 @@ class TemplateSkeleton
         foreach ($xmlRows as $xmlRow) {
             $cols = isset($xmlRow->col->item) ? $xmlRow->col->item : [$xmlRow->col];
             $templateCols = $this->renderCols($cols);
-            $class = str_replace("Empty", '', $xmlRow->attributes->class);
+            $class = str_replace('Empty', '', $xmlRow->attributes->class);
 
             if ($templateCols) {
                 if (!$this->blockEdit) {
-                    $template .= '<div class="'. $class .'">';
+                    $template .= '<div class="'.$class.'">';
                 } else {
                     $template .= '<div class="row template-editing ui-sortable">
           <div class="template-tools clearfix">
@@ -205,7 +205,7 @@ class TemplateSkeleton
 
         $template = '';
         foreach ($xmlCols as $xmlCol) {
-            $class = str_replace("Empty", '', $xmlCol->attributes->class);
+            $class = str_replace('Empty', '', $xmlCol->attributes->class);
 
             if ($xmlCol->row) {
                 $rows = isset($xmlCol->row->item) ? $xmlCol->row->item : [$xmlCol->row];
