@@ -94,6 +94,23 @@ class User extends Model implements
         return $this->belongsTo(Role::class);
     }
 
+    public function hasOnlyOneFreeAdtype()
+    {
+        $adtypes = $this->adtypes;
+
+        if ($adtypes->count() !== 1) {
+            return false;
+        }
+
+        $adtype = $adtypes->first();
+
+        if ($adtype->price == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     protected static function boot()
     {
         parent::boot();
