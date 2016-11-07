@@ -31,7 +31,7 @@ class MenuController extends Controller
     public function filterByGroupName($groupName)
     {
         $groups = $this->getGroups();
-        $menus  = Menu::whereGroupName($groupName)
+        $menus = Menu::whereGroupName($groupName)
             ->orderBy('lft')
             ->get()
             ->toHierarchy();
