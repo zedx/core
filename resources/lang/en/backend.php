@@ -237,9 +237,10 @@ return merge_trans('backend', [
         'menu_name'                => 'Name',
         'menu_type'                => 'Type',
         'group'                    => [
-            'header' => 'Header',
-            'footer' => 'Footer',
-            'user'   => 'User account',
+            'header'      => 'Header',
+            'footer'      => 'Footer',
+            'user'        => 'User account',
+            'user-header' => 'User header',
         ],
         'link'                     => [
             'link'        => 'link',

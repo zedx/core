@@ -7,17 +7,17 @@
 	<div class="col-md-4">
     <div class="row">
       <div class="col-md-12">
-        @include('backend::menu._partials.route')
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
         @include('backend::menu._partials.link')
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         @include('backend::menu._partials.page')
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        @include('backend::menu._partials.route')
       </div>
     </div>
   </div>
