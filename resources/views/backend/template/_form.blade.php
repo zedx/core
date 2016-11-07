@@ -11,6 +11,7 @@
     <div class="template-tools clearfix">
       <a href="javascript:void(0)" title="{!! trans('backend.template.move_row') !!}" class="template-moveRow pull-left"><i class="fa fa-arrows"></i> </a>
       <a title="{!! trans('backend.template.add_col') !!}" class="template-addColumn pull-left"><i class="fa fa-plus"></i> </a>
+      <span class="pull-right"><span class="label label-success">{!! trans('backend.template.class') !!}</span> <span class="template-element-class">row</span></span>
     </div>
     @{{{column}}}
     <div class="template-tools clearfix"><a title="{!! trans('backend.template.delete_row') !!}" class="pull-right template-removeRow"><span class="fa fa-trash-o"></span></a> </div>
@@ -23,6 +24,7 @@
         <a href="javascript:void(0)" title="{!! trans('backend.template.move_col') !!}" class="template-moveCol pull-left"><i class="fa fa-arrows"></i> </a>
         <a href="javascript:void(0)" title="{!! trans('backend.template.decrease_col') !!}" class="template-colDecrease pull-left"><i class="fa fa-minus"></i> </a>
         <a href="javascript:void(0)" title="{!! trans('backend.template.increase_col') !!}" class="template-colIncrease pull-left"><i class="fa fa-plus"></i></a>
+        <span class="pull-right"><span class="label label-danger">{!! trans('backend.template.class') !!}</span> <span class="template-element-class"></span></span>
       </div>
       @{{{block}}}
       <div class="template-tools clearfix">

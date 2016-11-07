@@ -573,6 +573,7 @@ return merge_trans('backend', [
         'delete_row'                    => 'Supprimer la rangée',
         'move_col'                      => 'Déplacer la colonne',
         'add_col'                       => 'Ajouter une colonne',
+        'class'                         => 'Class',
         'delete_col'                    => 'Supprimer la colonne',
         'decrease_col'                  => 'Réduire la taille de la colonne',
         'increase_col'                  => 'Augmenter la taille de la colonne',

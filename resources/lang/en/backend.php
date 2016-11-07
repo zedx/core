@@ -570,6 +570,7 @@ return merge_trans('backend', [
         'title'                         => 'Title',
         'move_row'                      => 'Move row',
         'add_row'                       => 'Add row',
+        'class'                         => 'Class',
         'delete_row'                    => 'Delete row',
         'move_col'                      => 'Move column',
         'add_col'                       => 'Add column',

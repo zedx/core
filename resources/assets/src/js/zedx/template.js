@@ -7,6 +7,7 @@ $(document).ready(function() {
   };
 
   $('.template-block-title').editable(editableOptions);
+  $('.template-element-class').editable(editableOptions);
 
   var token = $('meta[name="csrf-token"]').attr('content');
   var createNewColumn = function(grid) {
@@ -25,6 +26,7 @@ $(document).ready(function() {
     var column = createNewColumn(2);
     $(this).closest('.template-editing').children(".template-tools").last().before(column);
     $('.template-block-title').editable(editableOptions);
+    $('.template-element-class').editable(editableOptions);
     updatePreview();
   });
 
@@ -37,6 +39,7 @@ $(document).ready(function() {
       prevElement.after(row);
     }
     $('.template-block-title').editable(editableOptions);
+    $('.template-element-class').editable(editableOptions);
     updatePreview();
   });
 
@@ -44,6 +47,7 @@ $(document).ready(function() {
     var row = createNewRow(12);
     $('#template-canvas').prepend(row);
     $('.template-block-title').editable(editableOptions);
+    $('.template-element-class').editable(editableOptions);
     updatePreview();
   });
 
@@ -54,6 +58,7 @@ $(document).ready(function() {
         var block = Mustache.to_html($("#TemplateNewBlockTemplate").html());
         column.children(".template-tools").last().before(block);
         $('.template-block-title').editable(editableOptions);
+        $('.template-element-class').editable(editableOptions);
       }
     }
   }
@@ -166,10 +171,16 @@ $(document).ready(function() {
       var rows = [];
       elRows.each(function() {
         generate._html += '<div class="row">';
-        var elRow = $(this);
+        var elRow = $(this),
+          classes = elRow.find('.template-element-class').first().text();
+
         rows.push({
+          "@attributes": {
+            "class": classes
+          },
           col: generate._getCols(elRow)
         });
+
         generate._html += '</div>';
       })
 
@@ -181,9 +192,11 @@ $(document).ready(function() {
       elCols.each(function() {
         var elCol = $(this),
           grid = elCol.data('template-grid'),
+          classes = elCol.find('.template-element-class').text(),
           col = {
             "@attributes": {
-              "grid": grid
+              "grid": grid,
+              "class": classes
             }
           },
           colBlock = elCol.find('> .template-editable-region');
