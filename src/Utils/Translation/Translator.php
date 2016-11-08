@@ -3,9 +3,9 @@
 namespace ZEDx\Utils\Translation;
 
 use App;
+use Exception;
 use File;
 use Themes;
-use Exception;
 
 class Translator
 {
@@ -26,7 +26,7 @@ class Translator
         ])) {
             try {
                 $trans = self::apply($type, array_dot($defaultTrans));
-            }catch(Exception $e) {
+            } catch (Exception $e) {
                 $trans = [];
             }
 
