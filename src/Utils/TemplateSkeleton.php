@@ -169,7 +169,8 @@ class TemplateSkeleton
         foreach ($xmlRows as $xmlRow) {
             $cols = isset($xmlRow->col->item) ? $xmlRow->col->item : [$xmlRow->col];
             $templateCols = $this->renderCols($cols);
-            $class = str_replace('Empty', '', $xmlRow->attributes->class);
+
+            $class = $this->type != 'connection' ? str_replace('Empty', '', $xmlRow->attributes->class) : 'row';
 
             if ($templateCols) {
                 if (!$this->blockEdit) {
@@ -205,7 +206,7 @@ class TemplateSkeleton
 
         $template = '';
         foreach ($xmlCols as $xmlCol) {
-            $class = str_replace('Empty', '', $xmlCol->attributes->class);
+            $class = $this->type != 'connection' ? str_replace('Empty', '', $xmlCol->attributes->class) : '';
 
             if ($xmlCol->row) {
                 $rows = isset($xmlCol->row->item) ? $xmlCol->row->item : [$xmlCol->row];
