@@ -3,7 +3,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				{!! Form::label("content[title]", trans("backend.ad.ad_title"), ['class' => 'label-text']) !!}
-				{!! Form::text("content[title]", null, ['class' => 'form-control', 'placeholder' => 'Ex : Lamborghini egoista V10 600 hp']) !!}
+				{!! Form::text("content[title]", null, ['class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
 				{!! Form::label("content[body]", "&nbsp;", ['class' => 'label-text']) !!}
