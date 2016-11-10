@@ -383,6 +383,16 @@ class Module
     }
 
     /**
+     * Delete the current module.
+     *
+     * @return bool
+     */
+    public function delete()
+    {
+        return File::deleteDirectory($this->getPath(), true);
+    }
+
+    /**
      * Handle call to __get method.
      *
      * @param $key
