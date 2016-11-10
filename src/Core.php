@@ -9,7 +9,7 @@ class Core
      *
      * @var string
      */
-    const VERSION = '3.0.0-beta.3';
+    const VERSION = '3.0.0-beta.4';
 
     /**
      * ZEDx API.
