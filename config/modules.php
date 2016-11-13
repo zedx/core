@@ -23,7 +23,7 @@ return [
      */
 
     'stubs'     => [
-        'path'         => core_src_path() . '/Console/Commands/Module/stubs',
+        'path'         => core_src_path().'/Console/Commands/Module/stubs',
         'files'        => [
             'start'                => 'start.php',
             'routes'               => 'Http/routes.php',

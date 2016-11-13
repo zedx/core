@@ -5,13 +5,13 @@ namespace ZEDx\Http\Controllers\Backend;
 use Exception;
 use File;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Image;
 use Modules;
 use Request;
 use ZEDx\Core;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ModuleUploadRequest;
 use Zipper;
-use Image;
 
 class ModuleController extends Controller
 {
