@@ -2,6 +2,7 @@
 
 namespace ZEDx\Utils;
 
+use Cache;
 use Carbon\Carbon;
 use Exception;
 use File;
@@ -11,7 +12,6 @@ use Widgets;
 use ZEDx\Core;
 use ZEDx\Models\Package;
 use Zipper;
-use Cache;
 
 class Updater
 {
@@ -354,7 +354,7 @@ class Updater
             return $this->latestJson[$namespace];
         }
 
-        $this->latestJson[$namespace] = Cache::remember('updater.getLatest', $this->cacheTime, function() {
+        $this->latestJson[$namespace] = Cache::remember('updater.getLatest', $this->cacheTime, function () {
             return @json_decode(file_get_contents($this->getPackageDownloadUrl()));
         });
 
@@ -384,7 +384,7 @@ class Updater
             return $this->updateJson[$namespace];
         }
 
-        $this->updateJson[$namespace] = Cache::remember('updater.getJsonUpdate', $this->cacheTime, function() {
+        $this->updateJson[$namespace] = Cache::remember('updater.getJsonUpdate', $this->cacheTime, function () {
             return @json_decode(file_get_contents($this->getPackageUpdateUrl()));
         });
 
