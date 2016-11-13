@@ -3,6 +3,7 @@
 namespace ZEDx\Utils\Translation;
 
 use App;
+use Exception;
 use File;
 use Themes;
 
@@ -23,7 +24,13 @@ class Translator
             'pagination', 'passwords',
             'validation', 'auth',
         ])) {
-            return self::apply($type, array_dot($defaultTrans));
+            try {
+                $trans = self::apply($type, array_dot($defaultTrans));
+            } catch (Exception $e) {
+                $trans = [];
+            }
+
+            return $trans;
         }
     }
 
@@ -43,8 +50,8 @@ class Translator
         $locale = App::getLocale();
         $activeTheme = Themes::getActive();
 
-        if ($type == 'frontend' && File::exists(base_path("themes/{$activeTheme}/lang/{$locale}.php"))) {
-            $templateCustomTrans = array_dot(require_once(base_path("themes/{$activeTheme}/lang/{$locale}.php")));
+        if (File::exists(base_path("themes/{$activeTheme}/lang/{$locale}/{$type}.php"))) {
+            $templateCustomTrans = array_dot(require_once(base_path("themes/{$activeTheme}/lang/{$locale}/{$type}.php")));
         }
 
         if (File::exists(base_path("resources/lang/core/{$locale}/{$type}.php"))) {

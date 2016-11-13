@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.user.user"))
 @section('page_description', trans("backend.user.user_list"))
 @section('page_right')
-<a href="{{ route('zxadmin.user.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans("backend.user.list") !!}</span></a>
+<a href="{{ route('zxadmin.user.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans("backend.user.list") !!}</span></a>
 <a href="{{ route('zxadmin.user.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans("backend.user.add") !!}</span></a>
 @endsection
 
@@ -10,6 +10,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="box box-primary">
+      <div class="box-header">
+        <form action="{{ Request::url() }}" >
+          <div class="input-group">
+            <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="box-body no-padding">
       @if (count($users))
         <div class="checkbox-auto-toggle">

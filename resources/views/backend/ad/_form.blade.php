@@ -3,7 +3,7 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				{!! Form::label("content[title]", trans("backend.ad.ad_title"), ['class' => 'label-text']) !!}
-				{!! Form::text("content[title]", null, ['class' => 'form-control', 'placeholder' => 'Ex : Lamborghini egoista V10 600 hp']) !!}
+				{!! Form::text("content[title]", null, ['class' => 'form-control']) !!}
 			</div>
 			<div class="form-group">
 				{!! Form::label("content[body]", "&nbsp;", ['class' => 'label-text']) !!}
@@ -105,7 +105,7 @@
 				{!! Form::label("category_id", trans("backend.ad.category"), ['class' => 'label-text']) !!}
 				<select class="select2 form-control" id="category_id" name="category_id">
 					<option>{!! trans("backend.ad.choose_a_category") !!}</option>
-				@foreach (ZEDx\Models\Category::all() as $category)
+				@foreach (ZEDx\Models\Category::visible()->orderBy('lft', 'ASC')->get() as $category)
 				@if ($category->isLeaf())
 					<option value="{{ $category->id }}" {{ isset($ad) && $category->id == $ad->category_id ? 'selected': '' }} data-category-api-url= "{{ route('zxajax.category.adFields', $category->id) }}">{{ $category->name }}</option>
 				@else

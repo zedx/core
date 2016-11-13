@@ -1,0 +1,18 @@
+<?php
+
+namespace $CLASS_NAMESPACE$;
+
+use ZEDx\Http\Controllers\Controller;
+
+class $CLASS$ extends Controller {
+
+	public function index()
+	{
+		return view_module('$LOWER_NAME$::backend.index');
+	}
+
+    public function config()
+    {
+        return view_module('$LOWER_NAME$::backend.config');
+    }
+}

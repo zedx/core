@@ -55,6 +55,7 @@ module.exports = function (elixir, fs) {
             'css/zedx/uploader.css',
             'css/zedx/widget.css',
             'css/zedx/accordion.css',
+            'css/zedx/setting.css',
             'css/custom.css'
         ], 'public/backend/css/styles.css', _root);
 
@@ -101,6 +102,7 @@ module.exports = function (elixir, fs) {
             'js/zedx/ad.js',
             'js/zedx/plugin.js',
             'js/zedx/setting.js',
+            'js/zedx/thumb.js',
             'js/zedx/gateway.js',
             'js/zedx/adtype.js',
             'js/zedx/subscription.js',

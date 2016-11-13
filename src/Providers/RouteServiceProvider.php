@@ -9,6 +9,7 @@ use Illuminate\Routing\Router;
 use ZEDx\Models\Ad;
 use ZEDx\Models\Adstatus;
 use ZEDx\Models\Adtype;
+use ZEDx\Models\Category;
 use ZEDx\Models\Field;
 use ZEDx\Models\Order;
 use ZEDx\Models\Subscription;
@@ -121,6 +122,10 @@ class RouteServiceProvider extends ServiceProvider
 
       $router->bind('field', function ($id) {
           return Field::with('search')->findOrFail($id);
+      });
+
+      $router->bind('visibleCategory', function ($id) {
+          return Category::visible()->findOrFail($id);
       });
 
       $router->bind('templateblock', function ($identifier) use ($router) {

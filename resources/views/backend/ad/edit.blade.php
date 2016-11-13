@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.ad.ad"))
 @section('page_description', trans("backend.ad.edit_an_ad"))
 @section('page_right')
-<a href="{{ route('zxadmin.ad.status', 'pending') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.ad.list') !!}</span></a>
+<a href="{{ route('zxadmin.ad.status', 'pending') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.ad.list') !!}</span></a>
 <a href="{{ route('zxadmin.ad.choose') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.ad.add') !!}</span></a>
 @endsection
 

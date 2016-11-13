@@ -1,0 +1,17 @@
+@extends('backend::layout')
+@section('page_header', trans("backend.module.module"))
+@section('page_description', config('module_$LOWER_NAME$.name'))
+
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+        <h1>Hello World</h1>
+        <h1>Config page</h1>
+
+        <p>
+            This view is loaded from module: {!! config('module_$LOWER_NAME$.name') !!}
+        </p>
+
+    </div><!-- /.col -->
+</div>
+@endsection

@@ -1,5 +1,13 @@
 <?php
 
-Route::group(['middleware' => 'web', 'prefix' => '$LOWER_NAME$', 'namespace' => '$MODULE_NAMESPACE$\$STUDLY_NAME$\Http\Controllers'], function () {
-    Route::get('/', '$STUDLY_NAME$Controller@index');
+Route::group(['middleware' => 'web', 'namespace' => '$MODULE_NAMESPACE$\$STUDLY_NAME$\Http\Controllers'], function () {
+
+    Route::group(['middleware' => 'auth:admin', 'prefix' => 'zxadmin/module/$LOWER_NAME$', 'namespace' => 'Backend'], function () {
+        Route::get('/', ['as' => 'module_$LOWER_NAME$.admin.index', 'uses' => '$STUDLY_NAME$Controller@index']);
+        Route::get('config', ['as' => 'module_$LOWER_NAME$.admin.config', 'uses' => '$STUDLY_NAME$Controller@config']);
+    });
+
+    Route::group(['prefix' => '$LOWER_NAME$'], function () {
+        Route::get('/', '$STUDLY_NAME$Controller@index');
+    });
 });

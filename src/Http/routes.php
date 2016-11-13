@@ -10,8 +10,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::group([], function () {
         Route::group(['prefix' => '_zxajax', 'namespace' => 'ZxAjax'], function () {
             Route::get('map/{map}', ['as' => 'zxajax.map.show', 'uses' => 'MapController@show']);
-            Route::get('category/{category}/adFields', ['as' => 'zxajax.category.adFields', 'uses' => 'CategoryController@adFields']);
-            Route::get('category/{category}/searchFields', ['as' => 'zxajax.category.searchFields', 'uses' => 'CategoryController@searchFields']);
+            Route::get('category/{visibleCategory}/adFields', ['as' => 'zxajax.category.adFields', 'uses' => 'CategoryController@adFields']);
+            Route::get('category/{visibleCategory}/searchFields', ['as' => 'zxajax.category.searchFields', 'uses' => 'CategoryController@searchFields']);
         });
     });
 
@@ -124,6 +124,7 @@ Route::group(['middleware' => 'web'], function () {
             /* Module : /zxadmin/module */
             Route::group(['prefix' => 'module'], function () {
                 Route::get('/', ['as' => 'zxadmin.module.index', 'uses' => 'ModuleController@index']);
+                Route::get('{module}/screenshot', ['as' => 'zxadmin.module.screenshot', 'uses' => 'ModuleController@screenshot']);
 
                 Route::post('download/{module}', ['as' => 'zxadmin.module.download', 'uses' => 'ModuleController@download']);
                 Route::put('{module}/switchStatus', ['as' => 'zxadmin.module.switchStatus', 'uses' => 'ModuleController@switchStatus']);
@@ -131,6 +132,7 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('add', ['as' => 'zxadmin.module.add', 'uses' => 'ModuleController@add']);
                 Route::get('add/tab/{tab}', ['as' => 'zxadmin.module.addWithTab', 'uses' => 'ModuleController@addWithTab']);
                 //Route::post('add/tab/upload', ['as' => 'zxadmin.module.upload', 'uses' => 'ModuleController@upload']);
+                Route::delete('{module}', ['as' => 'zxadmin.module.destroy', 'uses' => 'ModuleController@destroy']);
             });
 
             /* Widget : /zxadmin/widget */
@@ -144,6 +146,11 @@ Route::group(['middleware' => 'web'], function () {
             /* Theme : /zxadmin/theme */
             Route::group(['prefix' => 'theme'], function () {
                 Route::get('/', ['as' => 'zxadmin.theme.index', 'uses' => 'ThemeController@index']);
+
+                Route::get('{theme}/screenshot', ['as' => 'zxadmin.theme.screenshot', 'uses' => 'ThemeController@screenshot']);
+                Route::get('customize', ['as' => 'zxadmin.theme.customize', 'uses' => 'ThemeController@customize']);
+                Route::post('customize', ['as' => 'zxadmin.theme.customize', 'uses' => 'ThemeController@update']);
+
                 Route::put('/', ['as' => 'zxadmin.theme.set', 'uses' => 'ThemeController@set']);
                 Route::post('download/{theme}', ['as' => 'zxadmin.theme.download', 'uses' => 'ThemeController@download']);
                 Route::get('add', ['as' => 'zxadmin.theme.add', 'uses' => 'ThemeController@add']);
@@ -173,7 +180,9 @@ Route::group(['middleware' => 'web'], function () {
             Route::resource('admin', 'AdminController', ['names' => constructRouteNames('zxadmin.admin')]);
 
             /* User : /zxadmin/update */
-            Route::get('update/{type?}/{group?}/{name?}', ['as' => 'zxadmin.update.show', 'uses' => 'UpdateController@show']);
+            Route::get('update/{type?}', ['as' => 'zxadmin.update.index', 'uses' => 'UpdateController@index']);
+            Route::get('update/{type}/details', ['as' => 'zxadmin.update.show', 'uses' => 'UpdateController@show']);
+            Route::get('update/{type}/install', ['as' => 'zxadmin.update.update', 'uses' => 'UpdateController@update']);
         });
     });
 

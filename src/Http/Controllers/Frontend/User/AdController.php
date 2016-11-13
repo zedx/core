@@ -76,7 +76,7 @@ class AdController extends Controller
      */
     public function create(Adtype $adtype)
     {
-        if ($this->numberAdtype($adtype) <= 0) {
+        if ($this->numberAdtype($adtype) <= 0 && $adtype->price > 0) {
             return redirect()->route('user.adtype.index');
         }
 

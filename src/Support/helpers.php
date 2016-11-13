@@ -264,7 +264,7 @@ if (!function_exists('env_replace')) {
         $envPath = base_path('.env');
         $envContent = file($envPath);
 
-        $newContent = array_map(function ($content) use ($keyToRepace, $value) {
+        $newContent = array_map(function ($content) use ($keyToRepace, &$keyExist, $value) {
             $element = explode('=', $content);
             $key = $element[0];
 
@@ -347,10 +347,10 @@ if (!function_exists('getAdFields')) {
         foreach ($fields as $field) {
             $value = $field->type != 5 ? $field->pivot->value : $field->pivot->string;
             if (isset($mergedFields[$field->id])) {
-                $oldValue = $mergedFields[$field->id]['value'];
-                $mergedFields[$field->id]['value'] = is_array($oldValue) ? array_merge($oldValue, [$value]) : [$oldValue, $value];
+                $oldValue = $mergedFields[$field->id];
+                $mergedFields[$field->id] = is_array($oldValue) ? array_merge($oldValue, [$value]) : [$oldValue, $value];
             } else {
-                $mergedFields[$field->id] = ['value' => $value];
+                $mergedFields[$field->id] = $value;
             }
         }
 
@@ -439,9 +439,8 @@ if (!function_exists('renderMenu')) {
      *
      * @return void
      */
-    function renderMenu($groupName, $config = [])
+    function renderMenu($groupName, $config = [], $first = true)
     {
-        static $first = true;
         $render = '';
 
         if (is_string($groupName)) {
@@ -458,12 +457,13 @@ if (!function_exists('renderMenu')) {
             if ($menu->type == 'page') {
                 $page = Page::find($menu->link);
                 $url = $page ? route('page.show', $page->shortcut) : '#';
+            } elseif ($menu->type == 'route') {
+                $url = Route::has($menu->link) ? route($menu->link) : '#';
             } else {
                 $url = starts_with($menu->link, '/') ? url($menu->link) : $menu->link;
             }
 
             $active = url()->current() == $url ? 'active' : '';
-
             $hasChildren = $menu->children()->count() > 0;
             $element = $first ? 'parent' : 'children';
             $attrType = $hasChildren ? 'withChildren' : 'withoutChildren';
@@ -473,7 +473,7 @@ if (!function_exists('renderMenu')) {
             $link = array_get($config, $element.'.link.'.$attrType);
             $ul = array_get($config, $element.'.ul');
 
-            $caret = $hasChildren ? '<span class="caret"></span>' : '';
+            $caret = $hasChildren ? array_get($config, $element.'.angle', '<span class="caret"></span>') : '';
 
             $render .= '<li '.$li.'>'
             .'  <a href="'.$url.'" '.$link.'>'
@@ -481,12 +481,8 @@ if (!function_exists('renderMenu')) {
                 .'  </a>';
 
             if ($hasChildren) {
-                $first = false;
                 $render .= '<ul '.$ul.'>';
-                foreach ($menu->children as $child) {
-                    renderMenu([$child], $config);
-                }
-
+                $render .= renderMenu($menu->children, $config, false);
                 $render .= '</ul>';
             }
             $render .= '</li>';
@@ -507,6 +503,8 @@ if (!function_exists('renderNode')) {
      */
     function renderNode($node, $type)
     {
+        $additional = '';
+
         switch ($type) {
             case 'menu':
                 $label = '<span class="label label-info">'.trans('backend.menu.'.$node->type.'.'.$node->type).'</span>';
@@ -522,6 +520,12 @@ if (!function_exists('renderNode')) {
                 break;
         }
 
+        if ($type == 'category') {
+            $additional = '   <a href="'.route('zxadmin.category.create').'?parent_id='.$node->id.'" class="btn-edit-category btn btn-xs btn-success">'
+                .'     <i class="fa fa-plus"></i> '.trans('backend.category.add_sub_category')
+                .'   </a>';
+        }
+
         $text = trans('backend.'.$type.'.deleted_'.$type);
         $message = trans('backend.'.$type.'.delete_'.$type.'_confirmation');
 
@@ -529,6 +533,7 @@ if (!function_exists('renderNode')) {
         .'<div class="dd-handle fa fa-arrows dd3-handle"></div>'
         .'<div class="dd3-content">'.$name
         .' <span class="pull-right">'.$label
+        .$additional
         .'   <a href="'.$route.'" class="btn-edit-'.$type.' btn btn-xs btn-primary" '.$modal.'>'
         .'     <i class="fa fa-edit"></i> '.trans('backend.'.$type.'.edit')
         .'   </a>'

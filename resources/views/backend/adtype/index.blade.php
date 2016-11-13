@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.adtype.ad_type"))
 @section('page_description', trans("backend.adtype.ad_type_list"))
 @section('page_right')
-<a href="{{ route('zxadmin.adtype.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.adtype.list') !!}</span></a>
+<a href="{{ route('zxadmin.adtype.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.adtype.list') !!}</span></a>
 <a href="{{ route('zxadmin.adtype.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.adtype.add') !!}</span></a>
 @endsection
 
@@ -10,6 +10,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="box box-primary">
+      <div class="box-header">
+        <form action="{{ Request::url() }}" >
+          <div class="input-group">
+            <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="box-body no-padding">
       @if (count($adtypes))
         <div class="checkbox-auto-toggle">
@@ -40,7 +50,7 @@
             @endif
             <td><a href="{{ route('zxadmin.adtype.edit', $adtype->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {!! trans('backend.adtype.edit') !!}</span></a></td>
             <td>
-              <a href="#" class="btn btn-xs btn-danger" data-element-action data-element-action-text='{!! trans("backend.adtype.ad_type_deleted") !!}' data-element-action-route = '{{ route("zxadmin.adtype.destroy", [$adtype->id]) }}' data-toggle="modal" data-target="#confirmDeleteAction" data-title="{{ $adtype->title }}" data-message="{!! trans('backend.adtype.deleted_ad_type_confirmation') !!}"><i class="fa fa-remove"></i> {!! trans('backend.adtype.delete') !!}</a>
+              <a href="#" class="btn btn-xs btn-danger" data-element-action data-element-action-text='{!! trans("backend.adtype.deleted_ad_type") !!}' data-element-action-route = '{{ route("zxadmin.adtype.destroy", [$adtype->id]) }}' data-toggle="modal" data-target="#confirmDeleteAction" data-title="{{ $adtype->title }}" data-message="{!! trans('backend.adtype.delete_ad_type_confirmation') !!}"><i class="fa fa-remove"></i> {!! trans('backend.adtype.delete') !!}</a>
             </td>
           </tr>
           @endforeach

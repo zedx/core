@@ -80,15 +80,23 @@ class AdService extends Controller
      */
     public function store(Adtype $adtype, CreateAdUserRequest $request)
     {
-        if (($number = $this->numberAdtype($adtype)) <= 0) {
+        if (($number = $this->numberAdtype($adtype)) <= 0 && $adtype->price > 0) {
             return [
                 'adId' => null,
             ];
         }
 
+        if ($this->user->subscription_expired_at) {
+            if ($this->user->subscription_expired_at->diffInDays(null, false) >= 0) {
+                return [
+                    'adId' => null,
+                ];
+            }
+        }
+
         $geo = new GeolocationHelper($request->get('geolocation_data'));
         $adstatus = Adstatus::whereTitle('pending')->first();
-        $category = Category::findOrFail($request->get('category_id'));
+        $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $geolocation = new Geolocation();
         $geolocation->fill($geo->get());
@@ -101,6 +109,7 @@ class AdService extends Controller
         $ad->adtype()->associate($adtype);
         $ad->adstatus()->associate($adstatus);
         $ad->category()->associate($category);
+        $ad->price = $this->getPrice($ad, $request);
 
         event(
             new AdWillBeCreated($ad, $content, $geolocation, $this->user)
@@ -119,7 +128,7 @@ class AdService extends Controller
         }
         $this->syncAdFields($ad, $request);
 
-        if ($number < 9999) {
+        if ($number < 9999 && $number > 0) {
             $this->user->adtypes->find($adtype->id)->pivot->decrement('number');
         }
 
@@ -165,13 +174,14 @@ class AdService extends Controller
         $oldStatus = $ad->adstatus->title;
         $geo = new GeolocationHelper($request->get('geolocation_data'));
         $adstatus = Adstatus::whereTitle('pending')->first();
-        $category = Category::findOrFail($request->get('category_id'));
+        $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $ad->category()->associate($category);
         $ad->adstatus()->associate($adstatus);
 
         $ad->geolocation->fill($geo->get());
         $ad->content->fill($request->get('content'));
+        $ad->price = $this->getPrice($ad, $request);
 
         event(
             new AdWillBeUpdated($ad, $this->user)
@@ -199,6 +209,27 @@ class AdService extends Controller
         return [
             'adId' => $ad->id,
         ];
+    }
+
+    protected function getPrice(Ad $ad, $request)
+    {
+        $fields = $request->get('fields');
+
+        if (!is_array($fields)) {
+            return 0;
+        }
+
+        $priceField = $ad->category->fields()->whereIsPrice(true)->get()->first();
+
+        if (!$priceField) {
+            return 0;
+        }
+
+        if (!isset($fields[$priceField->id])) {
+            return 0;
+        }
+
+        return $fields[$priceField->id];
     }
 
     protected function syncAdFields(Ad $ad, $request)

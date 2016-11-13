@@ -16,7 +16,7 @@
     <div class="alert alert-danger"><i class="icon fa fa-ban"></i> {{ trans('backend.update.conformity_error') }}</div>
   @endif
   @if (empty($changedFiles) || $force)
-  <button id="start-zedx-updater" data-force="{{ $force ? '1' : '0'}}" data-update-url="{{ route('zxadmin.update.show', ['zedx']) }}" class="btn btn-block btn-success"><i class="fa fa-refresh"></i> {{ trans('backend.update.start_update') }}</button>
+  <button id="start-zedx-updater" data-force="{{ $force ? '1' : '0'}}" data-namespace="{{ Request::get('namespace') }}" data-update-url="{{ route('zxadmin.update.update', [$type]) }}" class="btn btn-block btn-success"><i class="fa fa-refresh"></i> {{ trans('backend.update.start_update') }}</button>
   @endif
   </li>
 </ul>

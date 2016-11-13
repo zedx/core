@@ -5,6 +5,7 @@ namespace ZEDx\Http\Controllers\Backend;
 use Exception;
 use File;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Image;
 use Modules;
 use Request;
 use ZEDx\Core;
@@ -191,6 +192,26 @@ class ModuleController extends Controller
     }
 
     /**
+     * Get module screenshot.
+     *
+     * @return Reponse
+     */
+    public function screenshot($module)
+    {
+        if (!Modules::has($module)) {
+            abort(404);
+        }
+
+        $screenshot = base_path('modules').'/'.studly_case($module).'/screenshot.png';
+
+        if (!File::exists($screenshot)) {
+            return;
+        }
+
+        return Image::make($screenshot)->response();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param int $id
@@ -212,8 +233,6 @@ class ModuleController extends Controller
         $modulePath = config('modules.paths.modules').DIRECTORY_SEPARATOR.$moduleName;
 
         File::deleteDirectory($modulePath);
-
-        return redirect()->route('zxadmin.module.index');
     }
 
     protected function getPaginatorFromApi()

@@ -55,6 +55,10 @@ class AdtypeController extends Controller
             }
         }
 
+        if ($this->user->hasOnlyOneFreeAdtype()) {
+            return redirect()->route('user.ad.create', $this->user->adtypes->first());
+        }
+
         $page = (object) $this->pageService->show('user.adtype.index', true);
 
         return view('__templates::'.$page->templateFile, $page->data);

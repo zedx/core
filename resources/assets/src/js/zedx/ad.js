@@ -31,7 +31,7 @@ $(document).ready(function() {
     $.each(field.select, function(key, option) {
       field.select[key].parentId = field.id;
       option.unit = field.unit;
-      option.selected = adFields.hasOwnProperty(field.id) && in_array(option.id, $.makeArray(adFields[field.id].value));
+      option.selected = adFields.hasOwnProperty(field.id) && in_array(option.id, $.makeArray(adFields[field.id]));
     });
 
     var templateType = field.type == 3 ? 'multiple' : 'selectbox';
@@ -42,7 +42,7 @@ $(document).ready(function() {
   var renderInput = function(field) {
     field.input = true;
     if (adFields.hasOwnProperty(field.id)) {
-      field.value = adFields[field.id].value;
+      field.value = adFields[field.id];
     }
     if (field.unit !== "" && field.input === true) {
       field.inputGroup = true;

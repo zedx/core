@@ -4,12 +4,12 @@
 @section('content')
 <div class="row">
   <div class="col-md-12">
-  {!! Form::model($setting, ['method' => 'PATCH', "class"=>"form-horizontal", 'route' => ['zxadmin.setting.update']]) !!}
+  {!! Form::model($setting, ['method' => 'PATCH', 'files' => true, "class"=>"form-horizontal", 'route' => ['zxadmin.setting.update']]) !!}
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#general" data-toggle="tab"><i class="fa fa-cogs"></i> {!! trans("backend.setting.general") !!}</a></li>
-        <li><a href="#ads" data-toggle="tab"><i class="fa fa-building-o"></i> {!! trans("backend.setting.ads") !!}</a></li>
+        <li><a href="#ads" data-toggle="tab"><i class="fa fa-paper-plane-o"></i> {!! trans("backend.setting.ads") !!}</a></li>
         <li><a href="#auth" data-toggle="tab"><i class="fa fa-key"></i> {!! trans("backend.setting.auth") !!}</a></li>
         <li><a href="#notifications" data-toggle="tab"><i class="fa fa-bell-o"></i> {!! trans("backend.setting.notifications") !!}</a></li>
       </ul>

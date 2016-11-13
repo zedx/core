@@ -32,9 +32,9 @@ class MenuController extends Controller
     {
         $groups = $this->getGroups();
         $menus = Menu::whereGroupName($groupName)
-                    ->orderBy('lft')
-                    ->get()
-                    ->toHierarchy();
+            ->orderBy('lft')
+            ->get()
+            ->toHierarchy();
 
         return view_backend('menu.index', compact('menus', 'groupName', 'groups'));
     }
@@ -53,9 +53,10 @@ class MenuController extends Controller
     protected function getDefaultGroupList()
     {
         return [
-            'header' => trans('backend.menu.group.header'),
-            'footer' => trans('backend.menu.group.footer'),
-            'user'   => trans('backend.menu.group.user'),
+            'header'      => trans('backend.menu.group.header'),
+            'footer'      => trans('backend.menu.group.footer'),
+            'user'        => trans('backend.menu.group.user'),
+            'user-header' => trans('backend.menu.group.user-header'),
         ];
     }
 

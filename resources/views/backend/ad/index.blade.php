@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.ad.ad"))
 @section('page_description', trans("backend.ad.ad_list"))
 @section('page_right')
-<a href="{{ route('zxadmin.ad.status', 'pending') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.ad.list') !!}</span></a>
+<a href="{{ route('zxadmin.ad.status', 'pending') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.ad.list') !!}</span></a>
 <a href="{{ route('zxadmin.ad.choose') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.ad.add') !!}</span></a>
 @endsection
 
@@ -12,7 +12,7 @@
     <div class="nav-tabs-custom">
       <!-- Tabs within a box -->
       <ul class="nav nav-tabs pull-s">
-        <li @if (Route::is('zxadmin.ad.index')) class="active" @endif><a href="{{ route('zxadmin.ad.index') }}"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.ad.all_ads') !!}</span></a></li>
+        <li @if (Route::is('zxadmin.ad.index')) class="active" @endif><a href="{{ route('zxadmin.ad.index') }}"><i class="fa fa-paper-plane-o"></i> <span class="hidden-xs">{!! trans('backend.ad.all_ads') !!}</span></a></li>
         <li @if (isset($adstatus) && $adstatus->title == 'pending') class="active" @endif><a href="{{ route('zxadmin.ad.status', 'pending') }}" class="text-blue"><i class="fa fa-hourglass-start"></i> <span class="hidden-xs hidden-sm">{!! trans('backend.ad.pending') !!}</span></a></li>
         <li @if (isset($adstatus) && $adstatus->title == 'validate') class="active" @endif><a href="{{ route('zxadmin.ad.status', 'validate') }}" class="text-green"><i class="fa fa-check"></i> <span class="hidden-xs hidden-sm">{!! trans('backend.ad.validated') !!}</span></a></li>
         <li @if (isset($adstatus) && $adstatus->title == 'expired') class="active" @endif><a href="{{ route('zxadmin.ad.status', 'expired') }}" class="text-orange"><i class="fa fa-hourglass-end"></i> <span class="hidden-xs hidden-sm">{!! trans('backend.ad.expired') !!}</span></a></li>

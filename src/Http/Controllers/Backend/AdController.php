@@ -189,6 +189,7 @@ class AdController extends Controller
         $ad->category()->associate($category);
         $ad->adstatus()->associate($adstatus);
         $ad->adtype()->associate($adtype);
+        $ad->price = $this->getPrice($ad, $request);
 
         event(
             new AdWillBeCreated($ad, $content, $geolocation, $this->admin)
@@ -274,6 +275,7 @@ class AdController extends Controller
 
         $ad->geolocation->fill($geo->get());
         $ad->content->fill($request->get('content'));
+        $ad->price = $this->getPrice($ad, $request);
 
         event(
             new AdWillBeUpdated($ad, $this->admin)
@@ -299,6 +301,27 @@ class AdController extends Controller
         }
 
         return redirect()->route('zxadmin.ad.edit', $ad->id);
+    }
+
+    protected function getPrice(Ad $ad, $request)
+    {
+        $fields = $request->get('fields');
+
+        if (!is_array($fields)) {
+            return 0;
+        }
+
+        $priceField = $ad->category->fields()->whereIsPrice(true)->get()->first();
+
+        if (!$priceField) {
+            return 0;
+        }
+
+        if (!isset($fields[$priceField->id])) {
+            return 0;
+        }
+
+        return $fields[$priceField->id];
     }
 
     protected function syncAdFields(Ad $ad, $request)

@@ -2,7 +2,7 @@
 @section('page_header', trans("backend.page.page"))
 @section('page_description', trans("backend.page.page_list"))
 @section('page_right')
-<a href="{{ route('zxadmin.page.index') }}" class="btn btn-primary"><i class="fa fa-search"></i> <span class="hidden-xs">{!! trans('backend.page.list') !!}</span></a>
+<a href="{{ route('zxadmin.page.index') }}" class="btn btn-primary"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.list') !!}</span></a>
 <a href="{{ route('zxadmin.page.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> <span class="hidden-xs">{!! trans('backend.page.add') !!}</span></a>
 @endsection
 
@@ -13,6 +13,16 @@
       <ul class="nav nav-tabs pull-s">
         <li @if (Route::is('zxadmin.page.index')) class="active" @endif><a href="{{ route('zxadmin.page.index') }}" class="text-blue"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.my_pages') !!}</span></a></li>
         <li @if (Route::is('zxadmin.page.core')) class="active" @endif><a href="{{ route('zxadmin.page.core') }}" class="text-red"><i class="fa fa-list-ul"></i> <span class="hidden-xs">{!! trans('backend.page.core_pages') !!}</span></a></li>
+        <li class="pull-right col-sm-12 col-xs-12 col-sm-4 col-md-3">
+          <form action="{{ Request::url() }}" >
+           <div class="input-group">
+             <input type="text" name="q" class="form-control input-sm pull-right" value="{{ Request::get('q') }}" />
+             <div class="input-group-btn">
+               <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+             </div>
+           </div>
+          </form>
+        </li>
       </ul>
       <div class="tab-content no-padding">
         <div class="box box-solid">
@@ -29,9 +39,7 @@
                 @else
                 <th>{!! trans("backend.page.shortcut") !!}</th>
                 @endif
-                @if ($type == 'page')
                 <th>{!! trans("backend.page.home_page") !!}</th>
-                @endif
                 <th style="width: 40px"></th>
                 @if ($type == 'page')
                 <th style="width: 40px"></th>
@@ -51,9 +59,13 @@
                 @else
                 <td><a href="{{ route('page.show', $page->shortcut) }}" target="_blank"><i class="fa fa-link"></i> {{ $page->shortcut }}</a></td>
                 @endif
-                @if ($type == 'page')
-                <td><input type="radio" {{ $page->is_home ? 'checked' : '' }} data-url="{{ route('zxadmin.page.beHomepage', $page->id) }}" class="flat-red homepage-switch" name="is_home"></td>
-                @endif
+                <td>
+                  @if ($page->type == 'page' || in_array($page->shortcut, ['ad.search', 'user.login', 'user.register']))
+                  <input type="radio" {{ $page->is_home ? 'checked' : '' }} data-url="{{ route('zxadmin.page.beHomepage', $page->id) }}" class="flat-red homepage-switch" name="is_home">
+                  @else
+                  <i class="fa fa-ban text-red"></i>
+                  @endif
+                </td>
                 <td><a href="{{ route('zxadmin.page.edit', [$page->id, $page->template->blocks()->firstOrFail()->identifier]) }}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> {!! trans('backend.page.edit') !!}</span></a></td>
                 @if ($type == 'page')
                 <td>

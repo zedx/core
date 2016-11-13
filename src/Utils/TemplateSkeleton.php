@@ -169,14 +169,18 @@ class TemplateSkeleton
         foreach ($xmlRows as $xmlRow) {
             $cols = isset($xmlRow->col->item) ? $xmlRow->col->item : [$xmlRow->col];
             $templateCols = $this->renderCols($cols);
+
+            $class = $this->type != 'connection' ? str_replace('Empty', '', $xmlRow->attributes->class) : 'row';
+
             if ($templateCols) {
                 if (!$this->blockEdit) {
-                    $template .= '<div class="row">';
+                    $template .= '<div class="'.$class.'">';
                 } else {
                     $template .= '<div class="row template-editing ui-sortable">
           <div class="template-tools clearfix">
             <a href="javascript:void(0)" title="'.trans('backend.template.move_row').'" class="template-moveRow pull-left"><i class="fa fa-arrows"></i> </a>
             <a href="javascript:void(0)" title="'.trans('backend.template.add_col').'" class="template-addColumn pull-left"><i class="fa fa-plus"></i> </a>
+            <span class="pull-right"><span class="label label-success">'.trans('backend.template.class').'</span> <span class="template-element-class">'.$class.'</span></span>
           </div>';
                 }
                 $template .= $templateCols;
@@ -202,6 +206,8 @@ class TemplateSkeleton
 
         $template = '';
         foreach ($xmlCols as $xmlCol) {
+            $class = $this->type != 'connection' ? str_replace('Empty', '', $xmlCol->attributes->class) : '';
+
             if ($xmlCol->row) {
                 $rows = isset($xmlCol->row->item) ? $xmlCol->row->item : [$xmlCol->row];
                 $templateRows = $this->renderRows($rows);
@@ -230,14 +236,14 @@ class TemplateSkeleton
                     $template .= '</div>';
                 }
             } else {
-                $template .= $this->renderBlock($xmlCol->block, $xmlCol->attributes->grid);
+                $template .= $this->renderBlock($xmlCol->block, $xmlCol->attributes->grid, $class);
             }
         }
 
         return $template;
     }
 
-    protected function renderBlock($xmlBlock, $grid)
+    protected function renderBlock($xmlBlock, $grid, $class)
     {
         if (empty($xmlBlock)) {
             return;
@@ -246,30 +252,40 @@ class TemplateSkeleton
         $template = '';
         $current = $this->blockIdentifier == str_slug($xmlBlock->attributes->identifier) ? 'current' : '';
         $blockId = md5('block-ao-'.str_slug($xmlBlock->attributes->identifier).'-'.$this->additionalClass.'-'.uniqid());
+
         if ($this->blockEdit) {
-            $template .= $this->renderEditBlock($xmlBlock->attributes, $blockId, $grid);
-        } else {
-            if ($this->type == 'connection' && $this->page) {
-                $current = $this->isBlockInPage(str_slug($xmlBlock->attributes->identifier)) ? 'must-connect' : $current;
-            }
+            $template .= $this->renderEditBlock($xmlBlock->attributes, $blockId, $grid, $class);
+
+            return $template;
+        }
+
+        if ($this->type == 'connection' && $this->page) {
+            $current = $this->isBlockInPage(str_slug($xmlBlock->attributes->identifier)) ? 'must-connect' : $current;
+        }
+
+        if (!$this->generateFile) {
             $template .= '<div id="'.$blockId.'" data-template-identifier="'.str_slug($xmlBlock->attributes->identifier).'" class="'.$this->connectionClass.' col-md-'.$grid.' block '.$current.'" data-template-grid="'.$grid.'">';
             $template .= '  <div class="template-block-content">';
-            if (!$this->generateFile) {
-                if ($this->type == 'page') {
-                    $template .= '    <a href="'.route('zxadmin.page.edit', [$this->page->id, str_slug($xmlBlock->attributes->identifier)]).'">';
-                } else {
-                    $template .= '    <a href="javascript:void(0)">';
-                }
-                $template .= '        <div class="wrapper text-center">';
-                $template .= '            <h5>'.$xmlBlock->attributes->title.'</h5>';
-                $template .= '        </div>';
-                $template .= '    </a>';
+            if ($this->type == 'page') {
+                $template .= '    <a href="'.route('zxadmin.page.edit', [$this->page->id, str_slug($xmlBlock->attributes->identifier)]).'">';
             } else {
-                $template .= "@block('".str_slug($xmlBlock->attributes->identifier)."')";
+                $template .= '    <a href="javascript:void(0)">';
             }
+            $template .= '        <div class="wrapper text-center">';
+            $template .= '            <h5>'.$xmlBlock->attributes->title.'</h5>';
+            $template .= '        </div>';
+            $template .= '    </a>';
             $template .= '  </div>';
             $template .= '</div>';
+
+            return $template;
         }
+
+        $template .= '<div id="'.$blockId.'" data-template-identifier="'.str_slug($xmlBlock->attributes->identifier).'" class="'.$this->connectionClass.' col-md-'.$grid.' block '.$current.' '.$class.'" data-template-grid="'.$grid.'">';
+        $template .= '  <div class="template-block-content">';
+        $template .= "    @block('".str_slug($xmlBlock->attributes->identifier)."')";
+        $template .= '  </div>';
+        $template .= '</div>';
 
         return $template;
     }
@@ -285,7 +301,7 @@ class TemplateSkeleton
         return false;
     }
 
-    protected function renderEditBlock($attributes, $blockId, $grid)
+    protected function renderEditBlock($attributes, $blockId, $grid, $class)
     {
         return '
       <div id="'.$blockId.'" class="col-md-'.$grid.' column template-editing ui-sortable" data-template-grid="'.$grid.'">
@@ -293,6 +309,7 @@ class TemplateSkeleton
           <a href="javascript:void(0)" title="'.trans('backend.template.move_col').'" class="template-moveCol pull-left"><i class="fa fa-arrows"></i> </a>
           <a href="javascript:void(0)" title="'.trans('backend.template.decrease_col').'" class="template-colDecrease pull-left"><i class="fa fa-minus"></i> </a>
           <a href="javascript:void(0)" title="'.trans('backend.template.increase_col').'" class="template-colIncrease pull-left"><i class="fa fa-plus"></i></a>
+          <span class="pull-right"><span class="label label-danger">'.trans('backend.template.class').'</span> <span class="template-element-class">'.$class.'</span></span>
         </div>
         <div class="template-editable-region" data-template-identifier="'.str_slug($attributes->identifier).'">
           <h4><center><i class="fa fa-edit"></i> <span class="template-block-title">'.$attributes->title.'</span></center></h4>

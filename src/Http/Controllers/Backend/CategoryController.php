@@ -2,6 +2,8 @@
 
 namespace ZEDx\Http\Controllers\Backend;
 
+use Image;
+use Intervention\Image\Exception\NotReadableException;
 use Request;
 use ZEDx\Events\Category\CategoryWasUpdated;
 use ZEDx\Http\Controllers\Controller;
@@ -32,7 +34,9 @@ class CategoryController extends Controller
     {
         $fields = Field::all();
 
-        return view_backend('category.create', compact('fields'));
+        $parent_id = Request::get('parent_id');
+
+        return view_backend('category.create', compact('fields', 'parent_id'));
     }
 
     /**
@@ -46,6 +50,9 @@ class CategoryController extends Controller
     {
         $input = $request->all();
         $category = Category::create($input);
+
+        $this->saveThumbnail($category, $request);
+        $this->setCategoryParent($category, $request);
 
         $this->saveCategoryFields($category, $request);
 
@@ -75,6 +82,36 @@ class CategoryController extends Controller
     }
 
     /**
+     * Save thumbnail.
+     *
+     * @param CategoryRequest $request
+     * @param Category        $category
+     *
+     * @return void
+     */
+    protected function saveThumbnail(Category $category, CategoryRequest $request)
+    {
+        $name = $request->oldThumbnail;
+
+        if ($request->hasFile('thumbnail')) {
+            $image = $request->file('thumbnail');
+            $name = $category->id.'.png';
+            $path = public_path('uploads/categories/'.$name);
+
+            try {
+                $img = Image::make($image);
+            } catch (NotReadableException $e) {
+                return;
+            }
+
+            $img->save($path, 100);
+        }
+
+        $category->thumbnail = $name;
+        $category->save();
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -87,8 +124,9 @@ class CategoryController extends Controller
         $selectedFieldsId = array_reverse($category->fields()->lists('fields.id')->toArray());
 
         $fields = Field::whereNotIn('id', $selectedFieldsId)->get();
+        $parent_id = $category->parent_id;
 
-        return view_backend('category.edit', compact('category', 'codes', 'fields'));
+        return view_backend('category.edit', compact('category', 'codes', 'fields', 'parent_id'));
     }
 
     /**
@@ -103,6 +141,10 @@ class CategoryController extends Controller
         $input = $request->all();
         $category->update($input);
 
+        $this->saveThumbnail($category, $request);
+
+        $this->setCategoryParent($category, $request);
+
         $this->saveCategoryFields($category, $request);
 
         $category->codes()->delete();
@@ -113,6 +155,25 @@ class CategoryController extends Controller
         event(new CategoryWasUpdated($category));
 
         return redirect()->route('zxadmin.category.edit', $category->id)->with('message', 'success');
+    }
+
+    protected function setCategoryParent($category, $request)
+    {
+        if (!$request->parent_id) {
+            $category->makeRoot();
+
+            return;
+        }
+
+        if ($request->parent_id == $category->id) {
+            return;
+        }
+
+        $parent = Category::find($request->parent_id);
+
+        if ($parent) {
+            $category->makeChildOf($parent);
+        }
     }
 
     /**

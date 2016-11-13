@@ -15,6 +15,11 @@
         @include('backend::menu._partials.page')
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        @include('backend::menu._partials.route')
+      </div>
+    </div>
   </div>
   <div class="col-md-8">
     @include('backend::menu._partials.list')

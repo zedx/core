@@ -13,46 +13,46 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Sofa\Eloquence\Eloquence;
 
 class User extends Model implements
-AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+  AuthenticatableContract,
+  AuthorizableContract,
+  CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, Eloquence;
 
     protected $dates = ['subscribed_at', 'subscription_expired_at'];
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-    'email', 'password', 'status',
-    'name', 'phone', 'is_phone',
-    'company', 'siret',
-  ];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email', 'password', 'status',
+        'name', 'phone', 'is_phone',
+        'company', 'siret',
+    ];
 
     protected $casts = [
-    'is_phone' => 'boolean',
-  ];
+        'is_phone' => 'boolean',
+    ];
 
-  /**
-   * Searchable rules.
-   *
-   * @var array
-   */
-  protected $searchableColumns = [
-    'id'    => 10,
-    'name'  => 10,
-    'email' => 5,
-  ];
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchableColumns = [
+        'id'    => 10,
+        'name'  => 10,
+        'email' => 5,
+    ];
 
-  /**
-   * The attributes excluded from the model's JSON form.
-   *
-   * @var array
-   */
-  protected $hidden = ['password', 'remember_token'];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
 
     public function setPasswordAttribute($password)
     {
@@ -92,6 +92,23 @@ AuthenticatableContract,
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function hasOnlyOneFreeAdtype()
+    {
+        $adtypes = $this->adtypes;
+
+        if ($adtypes->count() !== 1) {
+            return false;
+        }
+
+        $adtype = $adtypes->first();
+
+        if ($adtype->price == 0) {
+            return true;
+        }
+
+        return false;
     }
 
     protected static function boot()

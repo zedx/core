@@ -224,6 +224,11 @@ class ModuleGenerator extends Generator
             'controller' => $this->getName().'Controller',
             'module'     => $this->getName(),
         ]);
+
+        $this->console->call('module:make-backend-controller', [
+            'controller' => $this->getName().'Controller',
+            'module'     => $this->getName(),
+        ]);
     }
 
     /**

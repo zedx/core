@@ -29,10 +29,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::whereType('page')->paginate(15);
-        $type = 'page';
-
-        return view_backend('page.index', compact('pages', 'type'));
+        return $this->pageList('page');
     }
 
     /**
@@ -42,8 +39,23 @@ class PageController extends Controller
      */
     public function core()
     {
-        $pages = Page::where('type', '<>', 'page')->paginate(15);
-        $type = 'core';
+        return $this->pageList('core');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param string $type
+     *
+     * @return Response
+     */
+    protected function pageList($type)
+    {
+        $condition = $type == 'page' ? '=' : '<>';
+
+        $pages = Page::where('type', $condition, 'page')
+            ->search(\Request::get('q'))
+            ->paginate(15);
 
         return view_backend('page.index', compact('pages', 'type'));
     }

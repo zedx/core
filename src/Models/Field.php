@@ -21,6 +21,17 @@ class Field extends Model
         'is_format'      => 'boolean',
     ];
 
+    public function scopeSearchFor($query, $q)
+    {
+        if (!$q) {
+            return $query;
+        }
+
+        return $query->where('name', 'like', '%'.$q.'%')
+            ->orWhere('title', 'like', '%'.$q.'%')
+            ->orWhere('id', 'like', '%'.$q.'%');
+    }
+
     public function search()
     {
         return $this->hasOne(SearchField::class)->select(['field_id', 'min', 'max', 'step', 'is_smart']);
