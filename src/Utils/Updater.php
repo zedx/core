@@ -2,6 +2,7 @@
 
 namespace ZEDx\Utils;
 
+use Cache;
 use Carbon\Carbon;
 use Exception;
 use File;
@@ -15,6 +16,7 @@ use Zipper;
 class Updater
 {
     protected $is_console;
+    protected $cacheTime = 1440;
     protected $latestJson = [];
     protected $updateJson = [];
     protected $packageType;
@@ -250,6 +252,9 @@ class Updater
      */
     public function update($force = false, $is_console = false)
     {
+        Cache::forget('updater.getLatest');
+        Cache::forget('updater.getJsonUpdate');
+
         if (!$this->newestVersion()) {
             $this->error('You are trying to install an old version v.'.$this->getLatestVersion().' <= (installed) v.'.$this->packageVersion);
 
@@ -349,7 +354,11 @@ class Updater
             return $this->latestJson[$namespace];
         }
 
-        return $this->latestJson[$namespace] = @json_decode(file_get_contents($this->getPackageDownloadUrl()));
+        $this->latestJson[$namespace] = Cache::remember('updater.getLatest', $this->cacheTime, function () {
+            return @json_decode(file_get_contents($this->getPackageDownloadUrl()));
+        });
+
+        return $this->latestJson[$namespace];
     }
 
     protected function getPackageDownloadUrl()
@@ -375,7 +384,9 @@ class Updater
             return $this->updateJson[$namespace];
         }
 
-        $this->updateJson[$namespace] = json_decode(file_get_contents($this->getPackageUpdateUrl()));
+        $this->updateJson[$namespace] = Cache::remember('updater.getJsonUpdate', $this->cacheTime, function () {
+            return @json_decode(file_get_contents($this->getPackageUpdateUrl()));
+        });
 
         if ($this->updateJson[$namespace] === null) {
             throw new Exception('Whoops, looks like something went wrong with the API.');
