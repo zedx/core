@@ -8,9 +8,7 @@
 
 @section('content')
 <div class="row">
-
   <div class="col-md-12">
-
     <div class="nav-tabs-custom">
       <!-- Tabs within a box -->
       <ul class="nav nav-tabs pull-s">
@@ -20,79 +18,43 @@
       </ul>
       <div class="tab-content no-padding">
         <div class="box box-solid">
-          <div class="box-body no-padding">
-            <div class="checkbox-auto-toggle">
-            @if (count($modules))
-              <table class="table table-striped">
-                <tr>
-                  <th></th>
-                  <th class="col-md-2">{!! trans("backend.module.name") !!}</th>
-                  <th class="col-md-1">{!! trans("backend.module.version") !!}</th>
-                  <th class="col-md-6">{!! trans("backend.module.description") !!}</th>
-                  <th class="col-md-6">{!! trans("backend.module.is_enabled") !!}</th>
-                  <th class="col-md-2"></th>
-                </tr>
-                @foreach ($modules as $module)
-                <tr>
-                  <td><input type="checkbox" class="flat-red" /></td>
-                  <td><a href="{{ url('zxadmin/module/' . $module->getLowerName()) }}">{{ $module->get('title') }}</a></td>
-                  <td>{{ $module->get('version') }}</td>
-                  <td>{{ $module->get('description') }}</td>
-                  <td>
-                  <input class="plugin-switch-status bootstrap-switch" data-url="{{ route('zxadmin.module.switchStatus', [$module->getName()]) }}" data-size="mini" data-on-text="Oui" data-off-text="Non" data-off-color="danger" type="checkbox" {{ $module->active() ? 'checked' : ''}}>
-                  </td>
-                  <td class="pull-right">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> {!! trans("backend.module.actions") !!} <span class="fa fa-caret-down"></span></button>
-                    <ul class="dropdown-menu pull-right">
-                      <li><a href="#" class="text-aqua"><i class="fa fa-wrench"></i> {!! trans("backend.module.configure") !!}</a></li>
-                      <li><a href="#" class="text-green"><i class="fa fa-wrench"></i> {!! trans("backend.module.enable") !!}</a></li>
-                      <li><a href="#" class="text-orange"><i class="fa fa-wrench"></i> {!! trans("backend.module.disable") !!}</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#" class="text-red"><i class="fa fa-remove"></i> {!! trans("backend.module.delete") !!}</a></li>
-                    </ul>
+          <div class="box-body">
+            @forelse ($modules as $module)
+              <div class="col-sm-6 col-xs-12 col-md-3" data-element-parent-action data-id="{{ $module->get('title') }}" data-title="{{ str_limit($module->get('title'), 20) }}">
+                <div class="thumbnail">
+                  <img src="{{ route('zxadmin.module.screenshot', $module->get('name')) }}" alt="{{ $module->get('title') }}">
+                  <div class="caption">
+                    <h3>
+                    @if (Route::has('module_'.$module->getLowerName().'.admin.index'))
+                    <a href="{{ route('module_'.$module->getLowerName().'.admin.index') }}">{{ str_limit($module->get('title'), 18) }}</a>
+                    @else
+                    {{ str_limit($module->get('title'), 18) }}
+                    @endif
+                    </h3>
+                    <p><span class="label label-info">{{ trans('backend.module.author', ['author' => $module->get('author')]) }}</span> <span class="label label-primary">{{ trans('backend.module.version', ['version' => $module->get('version')]) }}</span></p>
+                    <p>{{ str_limit($module->get('description'), 90) }}</p>
+                    @if ($module->active())
+                      @if (Route::has('module_'.$module->getLowerName().'.admin.config'))
+                      <a href="{{ route('module_'.$module->getLowerName().'.admin.config') }}" class="btn btn-primary btn-xs" > {!! trans("backend.module.configure") !!}</a>
+                      @endif
+                      <a href="#" class="plugin-switch-status btn btn-warning btn-xs" data-url="{{ route('zxadmin.module.switchStatus', [$module->getName()]) }}"> {!! trans('backend.module.disable') !!}</a>
+                      @else
+                      <a href="#" class="plugin-switch-status btn btn-success btn-xs" data-url="{{ route('zxadmin.module.switchStatus', [$module->getName()]) }}"> {!! trans('backend.module.enable') !!}</a>
+                      @endif
+                      <span><a href="#" class="btn btn-danger btn-xs" data-element-action data-element-action-text='{!! trans("backend.module.deleted_module") !!}' data-element-action-route = '{{ route("zxadmin.module.destroy", [$module->get('name')]) }}' data-toggle="modal" data-target="#confirmDeleteAction" data-title="{{ $module->get('title') }}" data-message="{!! trans('backend.module.delete_module_confirmation') !!}" > {!! trans('backend.module.delete') !!}</a></span>
                   </div>
-                  </td>
-                </tr>
-                @endforeach
-              </table>
-              @else
-                <br />
-                  <p class="text-center">{!! trans('backend.module.empty_modules_text') !!}</p>
-                <br />
-              @endif
-            </div><!-- /.mail-box-messages -->
-          </div><!-- /.box-body -->
-          @if (count($modules))
-          <div class="box-footer no-padding">
-            <div class="mailbox-controls">
-              <!-- Check all button -->
-              <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> {!! trans('backend.module.actions') !!} <span class="fa fa-caret-down"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#" class="text-green"><i class="fa fa-check"></i> {!! trans('backend.module.enable') !!}</a></li>
-                  <li><a href="#" class="text-orange"><i class="fa fa-ban"></i> {!! trans('backend.module.disable') !!}</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#" class="text-red"><i class="fa fa-remove"></i> {!! trans('backend.module.delete') !!}</a></li>
-                </ul>
+                </div>
               </div>
-              <div class="pull-right">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                </ul>
-              </div><!-- /.pull-right -->
-            </div>
-          </div>
-          @endif
-
+            @empty
+            <br />
+              <p class="text-center">{!! trans('backend.module.empty_modules_text') !!}</p>
+            <br />
+            @endforelse
+          </div><!-- /.box-body -->
         </div><!-- /. box -->
       </div>
     </div><!-- /.nav-tabs-custom -->
   </div><!-- /.col -->
 </div>
+@include('backend::module.modals.delete')
 @endsection

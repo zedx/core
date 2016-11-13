@@ -124,6 +124,7 @@ Route::group(['middleware' => 'web'], function () {
             /* Module : /zxadmin/module */
             Route::group(['prefix' => 'module'], function () {
                 Route::get('/', ['as' => 'zxadmin.module.index', 'uses' => 'ModuleController@index']);
+                Route::get('{module}/screenshot', ['as' => 'zxadmin.module.screenshot', 'uses' => 'ModuleController@screenshot']);
 
                 Route::post('download/{module}', ['as' => 'zxadmin.module.download', 'uses' => 'ModuleController@download']);
                 Route::put('{module}/switchStatus', ['as' => 'zxadmin.module.switchStatus', 'uses' => 'ModuleController@switchStatus']);
@@ -131,6 +132,7 @@ Route::group(['middleware' => 'web'], function () {
                 Route::get('add', ['as' => 'zxadmin.module.add', 'uses' => 'ModuleController@add']);
                 Route::get('add/tab/{tab}', ['as' => 'zxadmin.module.addWithTab', 'uses' => 'ModuleController@addWithTab']);
                 //Route::post('add/tab/upload', ['as' => 'zxadmin.module.upload', 'uses' => 'ModuleController@upload']);
+                Route::delete('{module}', ['as' => 'zxadmin.module.destroy', 'uses' => 'ModuleController@destroy']);
             });
 
             /* Widget : /zxadmin/widget */

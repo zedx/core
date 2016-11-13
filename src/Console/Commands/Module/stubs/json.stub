@@ -3,11 +3,11 @@
     "name": "$STUDLY_NAME$",
     "alias": "$LOWER_NAME$",
     "title": "$STUDLY_NAME$",
-    "author": "",
-    "description": "",
+    "author": "ZEDx",
+    "description": "Description du module $STUDLY_NAME$",
     "keywords": [],
     "version": "1.0.0",
-    "active": 1,
+    "active": 0,
     "providers": [
         "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\Providers\\$STUDLY_NAME$ServiceProvider"
     ],

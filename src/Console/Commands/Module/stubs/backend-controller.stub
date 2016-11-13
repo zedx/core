@@ -11,4 +11,8 @@ class $CLASS$ extends Controller {
 		return view_module('$LOWER_NAME$::backend.index');
 	}
 
+    public function config()
+    {
+        return view_module('$LOWER_NAME$::backend.config');
+    }
 }

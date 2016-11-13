@@ -10,8 +10,8 @@
         <div class="modal-message"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('Annuler') }}</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirm">{{trans('Supprimer') }}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{trans('backend.module.cancel_delete') }}</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="confirm"><i class="fa fa-remove"></i> {{trans('backend.module.delete') }}</button>
       </div>
     </div>
   </div>

@@ -8,6 +8,13 @@ use Modules;
 
 class Migrator
 {
+    protected $module;
+
+    public function __construct($module = null)
+    {
+        $this->module = $module;
+    }
+
     /**
      * Get migration path.
      *
@@ -15,9 +22,9 @@ class Migrator
      */
     public function getPath()
     {
-        return Modules::getExtraPath(
-            config('modules.paths.generator.migration')
-        );
+        $path = config('modules.paths.generator.migration');
+
+        return $this->module->getExtraPath($path);
     }
 
     /**

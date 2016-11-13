@@ -11,6 +11,7 @@ use ZEDx\Core;
 use ZEDx\Http\Controllers\Controller;
 use ZEDx\Http\Requests\ModuleUploadRequest;
 use Zipper;
+use Image;
 
 class ModuleController extends Controller
 {
@@ -191,6 +192,26 @@ class ModuleController extends Controller
     }
 
     /**
+     * Get module screenshot.
+     *
+     * @return Reponse
+     */
+    public function screenshot($module)
+    {
+        if (!Modules::has($module)) {
+            abort(404);
+        }
+
+        $screenshot = base_path('modules').'/'.studly_case($module).'/screenshot.png';
+
+        if (!File::exists($screenshot)) {
+            return;
+        }
+
+        return Image::make($screenshot)->response();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param int $id
@@ -212,8 +233,6 @@ class ModuleController extends Controller
         $modulePath = config('modules.paths.modules').DIRECTORY_SEPARATOR.$moduleName;
 
         File::deleteDirectory($modulePath);
-
-        return redirect()->route('zxadmin.module.index');
     }
 
     protected function getPaginatorFromApi()
