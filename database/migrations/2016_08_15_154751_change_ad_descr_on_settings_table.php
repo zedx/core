@@ -26,8 +26,8 @@ class ChangeAdDescrOnSettingsTable extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->tinyInteger('ad_descr_min')->change();
-            $table->tinyInteger('ad_descr_max')->change();
+            $table->boolean('ad_descr_min')->change();
+            $table->boolean('ad_descr_max')->change();
         });
     }
 }
