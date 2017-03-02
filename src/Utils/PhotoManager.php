@@ -4,7 +4,7 @@ namespace ZEDx\Utils;
 
 use Image;
 use Intervention\Image\Exception\NotReadableException;
-use Storage;
+use File;
 
 class PhotoManager
 {
@@ -46,11 +46,11 @@ class PhotoManager
         }
         if ($config['watermark']) {
             $watermark = config('zedx.watermark');
-            $img->insert(Storage::get($watermark['path']), $watermark['position']);
+            $img->insert(File::get(public_path($watermark['path'])), $watermark['position']);
         }
 
         $img->encode('jpg', 75);
-        Storage::put($config['path'].'/'.$this->hash.'.jpg', $img->getEncoded());
+        File::put(public_path($config['path'].'/'.$this->hash.'.jpg'), $img->getEncoded());
     }
 
     protected function randomPath()
@@ -59,7 +59,7 @@ class PhotoManager
             $fileName = hash('crc32', md5(rand()));
             $this->hash = $fileName;
             $file = config('zedx.images.large.path').'/ad-'.$fileName.'.jpg';
-            if (Storage::exists($file)) {
+            if (File::exists(public_path($file))) {
                 continue;
             }
 

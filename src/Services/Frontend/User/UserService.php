@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Exception;
 use Hash;
 use Image;
-use Storage;
+use File;
 use ZEDx\Events\User\UserWasCreated;
 use ZEDx\Events\User\UserWasUpdated;
 use ZEDx\Events\User\UserWillBeCreated;
@@ -105,7 +105,7 @@ class UserService
         $img->encode('jpg', 75);
         $filename = 'user-'.$user->id.'.jpg';
 
-        Storage::put($config['path'].'/'.$filename, $img->getEncoded());
+        File::put(public_path($config['path'].'/'.$filename), $img->getEncoded());
 
         $user->avatar = $filename;
         $user->save();
