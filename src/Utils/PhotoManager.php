@@ -2,9 +2,9 @@
 
 namespace ZEDx\Utils;
 
+use File;
 use Image;
 use Intervention\Image\Exception\NotReadableException;
-use File;
 
 class PhotoManager
 {
