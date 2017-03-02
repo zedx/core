@@ -15,7 +15,7 @@ class PageController extends Controller
   /**
    * Create a new controller instance.
    *
-   * @param  PageService  $service
+   * @param PageService $service
    *
    * @return void
    */
@@ -37,7 +37,7 @@ class PageController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $id
+   * @param int $id
    *
    * @return Response
    */

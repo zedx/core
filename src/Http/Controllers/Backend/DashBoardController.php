@@ -24,8 +24,8 @@ class DashBoardController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  Dashboardwidget              $dashboardwidget
-   * @param  DashboardWidgetUpdateRequest $request
+   * @param Dashboardwidget              $dashboardwidget
+   * @param DashboardWidgetUpdateRequest $request
    *
    * @return Reponse
    */
@@ -48,7 +48,7 @@ class DashBoardController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  DashboardWidgetCreateRequest $request
+   * @param DashboardWidgetCreateRequest $request
    *
    * @return Reponse
    */
@@ -62,7 +62,7 @@ class DashBoardController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  Dashboardwidget  $dashboardwidget
+   * @param Dashboardwidget $dashboardwidget
    *
    * @return Response
    */
