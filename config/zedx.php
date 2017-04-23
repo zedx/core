@@ -41,6 +41,15 @@ return [
                 'height' => 100,
             ],
         ],
+        'category' => [
+            'resizeCanvas' => true,
+            'colorCanvas'  => 'fffff',
+            'path'         => 'uploads/categories',
+            'size'         => [
+                'width'  => 100,
+                'height' => 100,
+            ],
+        ],
     ],
     'watermark' => [
         'path'     => 'uploads/watermark.png',
