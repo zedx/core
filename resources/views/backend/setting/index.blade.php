@@ -12,6 +12,7 @@
         <li><a href="#ads" data-toggle="tab"><i class="fa fa-paper-plane-o"></i> {!! trans("backend.setting.ads") !!}</a></li>
         <li><a href="#auth" data-toggle="tab"><i class="fa fa-key"></i> {!! trans("backend.setting.auth") !!}</a></li>
         <li><a href="#notifications" data-toggle="tab"><i class="fa fa-bell-o"></i> {!! trans("backend.setting.notifications") !!}</a></li>
+        <li><a href="#moderation" data-toggle="tab"><i class="fa fa-bell-o"></i> {!! trans("backend.setting.moderation") !!}</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="general">
@@ -27,6 +28,9 @@
            @include('backend::setting._partials.notificationsAdmin')
            <br />
            @include('backend::setting._partials.notificationsUser')
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="moderation">
+           @include('backend::setting._partials.moderation')
         </div><!-- /.tab-pane -->
         @include('backend::errors.list')
       </div><!-- /.tab-content -->
