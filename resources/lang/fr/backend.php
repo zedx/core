@@ -687,6 +687,10 @@ return merge_trans('backend', [
         'notification_on_website'     => 'Notification sur le site',
         'notification_by_email'       => 'Notification par email',
         'notification_email_website'  => 'Notification par email et sur le site',
+        'moderation'                  => 'Modération',
+        'auto_approval'               => 'Approbation automatique',
+        'manual_approval'             => 'Approbation manuelle',
+        'type_of_approval'            => 'Type d\'Approbation',
     ],
 
     'update'         => [
