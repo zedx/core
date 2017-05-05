@@ -3,11 +3,11 @@
 namespace ZEDx\Listeners;
 
 use Carbon\Carbon;
+use Session;
 use ZEDx\Jobs\UpdateCache;
 use ZEDx\Mailers\AdMail;
 use ZEDx\Models\Notification;
 use ZEDx\Models\Role;
-use Session;
 
 class AdEventListener
 {

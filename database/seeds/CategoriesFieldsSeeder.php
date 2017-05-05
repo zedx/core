@@ -17,10 +17,10 @@ class CategoriesFieldsSeeder extends Seeder
         /* Categories */
 
         $property = $this->createCategory('IMMOBILIER');
-        $sale     = $this->createCategory('Ventes Immobilières')->makeChildOf($property);
+        $sale = $this->createCategory('Ventes Immobilières')->makeChildOf($property);
 
         $vehicles = $this->createCategory('VEHICULES');
-        $car      = $this->createCategory('Voitures')->makeChildOf($vehicles);
+        $car = $this->createCategory('Voitures')->makeChildOf($vehicles);
 
         /* Fields */
         $this->createPropertyFields($sale);
@@ -44,7 +44,7 @@ class CategoriesFieldsSeeder extends Seeder
         $surface->search()->create(['min' => 0, 'max' => 500, 'step' => 10]);
         $room = $this->createField('Pièces', 4, 'Pièces immobilier', '', 0, 1, 1, 1, 1);
         $room->search()->create(['min' => 1, 'max' => 8, 'step' => 1]);
-        $type  = $this->createField('Type', 2, 'Type immobilier', '', 0, 1, 1, 1);
+        $type = $this->createField('Type', 2, 'Type immobilier', '', 0, 1, 1, 1);
         $types = ['Maison', 'Appartement', 'Terrain', 'Parking', 'Autre'];
         foreach ($types as $key => $typeName) {
             $type->select()->create(['name' => $typeName, 'position' => $key + 1]);
@@ -66,17 +66,17 @@ class CategoriesFieldsSeeder extends Seeder
         $year->search()->create(['min' => 1960, 'max' => 2016, 'step' => 1]);
         $km = $this->createField('Kilomètres', 4, 'Kilomètres voiture', 'km', 0, 1, 1, 1, 1);
         $km->search()->create(['min' => 0, 'max' => 300000, 'step' => 10000]);
-        $mark  = $this->createField('Marque', 1, 'Marque voiture', '', 0, 1, 1, 0);
+        $mark = $this->createField('Marque', 1, 'Marque voiture', '', 0, 1, 1, 0);
         $marks = ['Lamborghini', 'Ferrari', 'Audi', 'BMW', 'Dodge'];
         foreach ($marks as $key => $markName) {
             $mark->select()->create(['name' => $markName, 'position' => $key + 1]);
         }
-        $energy   = $this->createField('Energie', 1, 'Energie voiture', '', 0, 1, 1, 1);
+        $energy = $this->createField('Energie', 1, 'Energie voiture', '', 0, 1, 1, 1);
         $energies = ['Essence', 'Diesel', 'GPL', 'Electrique', 'Autre'];
         foreach ($energies as $key => $energyName) {
             $energy->select()->create(['name' => $energyName, 'position' => $key + 1]);
         }
-        $gearbox   = $this->createField('Boîte de vitesse', 1, 'Boîte de vitesse voiture', '', 0, 1, 1, 0);
+        $gearbox = $this->createField('Boîte de vitesse', 1, 'Boîte de vitesse voiture', '', 0, 1, 1, 0);
         $gearboxes = ['Manuelle', 'Automatique'];
         foreach ($gearboxes as $key => $gearboxName) {
             $gearbox->select()->create(['name' => $gearboxName, 'position' => $key + 1]);
