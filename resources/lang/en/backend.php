@@ -685,14 +685,14 @@ return merge_trans('backend', [
         'manual_approval'             => 'Manual approval',
         'type_of_approval'            => 'Type of approval',
         'ad'                          => [
-            'ad_content'               => 'Ad content',
+            'ad_content'                  => 'Ad content',
             'ad_descr_min'                => 'Min size',
             'ad_descr_min_help'           => '<b>Note:</b> Minimum number of characters in ad description',
             'ad_descr_max'                => 'Max size',
             'ad_descr_max_help'           => '<b>Note:</b> Maximum number of characters in ad description',
             'default_ad_currency'         => 'Default currency',
             'default_ad_currency_help'    => '<b>Note:</b> The default currency for ad price, if no country has been chosen',
-            'watermark'                => [
+            'watermark'                   => [
                 'watermark' => 'Watermark',
                 'image'     => 'Image',
                 'size'      => [
