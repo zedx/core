@@ -3,38 +3,38 @@
 return [
     'images' => [
         'thumb' => [
-            'watermark'    => false,
-            'resizeCanvas' => true,
-            'colorCanvas'  => 'fffff',
+            'watermark'    => env('ZEDX_IMAGES_THUMB_WATERMARK', false),
+            'resizeCanvas' => env('ZEDX_IMAGES_THUMB_RESIZECANVAS', true),
+            'colorCanvas'  => env('ZEDX_IMAGES_THUMB_COLORCANVAS', 'ffffff'),
             'path'         => 'uploads/thumbs',
             'size'         => [
-                'width'  => 76,
-                'height' => 76,
+                'width'  => env('ZEDX_IMAGES_THUMB_SIZE_WIDTH', 76),
+                'height' => env('ZEDX_IMAGES_THUMB_SIZE_HEIGHT', 76),
             ],
         ],
         'medium' => [
-            'watermark'    => false,
-            'resizeCanvas' => true,
-            'colorCanvas'  => 'fffff',
+            'watermark'    => env('ZEDX_IMAGES_MEDIUM_WATERMARK', false),
+            'resizeCanvas' => env('ZEDX_IMAGES_MEDIUM_RESIZECANVAS', true),
+            'colorCanvas'  => env('ZEDX_IMAGES_MEDIUM_COLORCANVAS', 'ffffff'),
             'path'         => 'uploads/mediums',
             'size'         => [
-                'width'  => 162,
-                'height' => 100,
+                'width'  => env('ZEDX_IMAGES_MEDIUM_SIZE_WIDTH', 162),
+                'height' => env('ZEDX_IMAGES_MEDIUM_SIZE_HEIGHT', 100),
             ],
         ],
         'large' => [
-            'watermark'    => true,
-            'resizeCanvas' => true,
-            'colorCanvas'  => 'fffff',
+            'watermark'    => env('ZEDX_IMAGES_LARGE_WATERMARK', true),
+            'resizeCanvas' => env('ZEDX_IMAGES_LARGE_RESIZECANVAS', true),
+            'colorCanvas'  => env('ZEDX_IMAGES_LARGE_COLORCANVAS', 'ffffff'),
             'path'         => 'uploads/larges',
             'size'         => [
-                'width'  => 605,
-                'height' => 403,
+                'width'  => env('ZEDX_IMAGES_LARGE_SIZE_WIDTH', 605),
+                'height' => env('ZEDX_IMAGES_LARGE_SIZE_HEIGHT', 403),
             ],
         ],
         'avatar' => [
             'resizeCanvas' => true,
-            'colorCanvas'  => 'fffff',
+            'colorCanvas'  => 'ffffff',
             'path'         => 'uploads/avatars',
             'size'         => [
                 'width'  => 100,
@@ -43,7 +43,7 @@ return [
         ],
         'category' => [
             'resizeCanvas' => true,
-            'colorCanvas'  => 'fffff',
+            'colorCanvas'  => 'ffffff',
             'path'         => 'uploads/categories',
             'size'         => [
                 'width'  => 100,
@@ -53,10 +53,10 @@ return [
     ],
     'watermark' => [
         'path'     => 'uploads/watermark.png',
-        'position' => 'top-left',
+        'position' => env('ZEDX_IMAGES_WATERMARK_POSITION', 'top-left'),
         'size'     => [
-            'width'  => 50,
-            'height' => 50,
+            'width'  => env('ZEDX_IMAGES_WATERMARK_SIZE_WIDTH', 50),
+            'height' => env('ZEDX_IMAGES_WATERMARK_SIZE_HEIGHT', 50),
         ],
     ],
 ];

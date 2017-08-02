@@ -12,4 +12,12 @@ $(document).ready(function() {
             $('#secret_key_' + providerName).val(newValue);
         }
     });
+
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('zedx-setting-active-tab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('zedx-setting-active-tab');
+    if(activeTab){
+        $('#setting-tab a[href="' + activeTab + '"]').tab('show');
+    }
 });

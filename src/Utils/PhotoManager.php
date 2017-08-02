@@ -42,7 +42,9 @@ class PhotoManager
         if ($config['resizeCanvas'] && ($img->width() < $size['width'] || $img->height() < $size['height'])) {
             $img->resizeCanvas($size['width'], $size['height'], 'center', false, $config['colorCanvas']);
         } else {
-            $img->fit($size['width'], $size['height']);
+            $img->resize($size['width'], $size['height'], function ($constraint) {
+                $constraint->aspectRatio();
+            });
         }
         if ($config['watermark']) {
             $watermark = config('zedx.watermark');
