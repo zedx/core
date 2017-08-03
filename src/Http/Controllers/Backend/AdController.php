@@ -215,7 +215,7 @@ class AdController extends Controller
         );
 
         if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, $this->admin));
+            event(new AdWasValidated($ad, 'system'));
         }
 
         return redirect()->route('zxadmin.ad.edit', $ad->id);

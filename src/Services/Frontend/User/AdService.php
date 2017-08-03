@@ -137,7 +137,7 @@ class AdService extends Controller
         event(new AdWasCreated($ad, $this->user));
 
         if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, "system"));
+            event(new AdWasValidated($ad, 'system'));
         }
 
         return [
@@ -214,7 +214,7 @@ class AdService extends Controller
         }
 
         if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, "system"));
+            event(new AdWasValidated($ad, 'system'));
         }
 
         return [
