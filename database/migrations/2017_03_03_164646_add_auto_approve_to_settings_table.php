@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class ChangeAdDescrOnSettingsTable extends Migration
+class AddAutoApproveToSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class ChangeAdDescrOnSettingsTable extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->integer('ad_descr_min')->change();
-            $table->integer('ad_descr_max')->change();
+            $table->string('auto_approve')->nullable()->after('language');
         });
     }
 
@@ -26,8 +25,7 @@ class ChangeAdDescrOnSettingsTable extends Migration
     public function down()
     {
         Schema::table('settings', function (Blueprint $table) {
-            $table->boolean('ad_descr_min')->change();
-            $table->boolean('ad_descr_max')->change();
+            $table->dropColumn('auto_approve');
         });
     }
 }

@@ -7,7 +7,6 @@ use Payment;
 use ZEDx\Events\Payment\PaymentWasReceived;
 use ZEDx\Gateways\Driver;
 use ZEDx\Http\Controllers\Controller;
-use ZEDx\Models\Gateway;
 use ZEDx\Models\Order;
 
 class PaymentService extends Controller

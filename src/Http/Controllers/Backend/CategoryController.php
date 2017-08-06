@@ -96,7 +96,7 @@ class CategoryController extends Controller
         if ($request->hasFile('thumbnail')) {
             $image = $request->file('thumbnail');
             $name = $category->id.'.png';
-            $path = public_path('uploads/categories/'.$name);
+            $path = public_path(config('zedx.images.category.path').'/'.$name);
 
             try {
                 $img = Image::make($image);
