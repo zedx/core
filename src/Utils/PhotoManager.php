@@ -47,8 +47,10 @@ class PhotoManager
             });
         }
         if ($config['watermark']) {
-            $watermark = config('zedx.watermark');
-            $img->insert(File::get(public_path($watermark['path'])), $watermark['position']);
+            $watermarkConfig = config('zedx.watermark');
+            $watermark = Image::make(public_path($watermarkConfig['path']));
+            $watermark->resize($watermarkConfig['size']['width'], $watermarkConfig['size']['height']);
+            $img->insert($watermark, $watermarkConfig['position']);
         }
 
         $img->encode('jpg', 75);
