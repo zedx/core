@@ -7,7 +7,6 @@ use Request;
 use ZEDx\Events\Ad\AdWasCreated;
 use ZEDx\Events\Ad\AdWasDeleted;
 use ZEDx\Events\Ad\AdWasUpdated;
-use ZEDx\Events\Ad\AdWasValidated;
 use ZEDx\Events\Ad\AdWillBeCreated;
 use ZEDx\Events\Ad\AdWillBeDeleted;
 use ZEDx\Events\Ad\AdWillBeUpdated;
@@ -96,8 +95,7 @@ class AdService extends Controller
         }
 
         $geo = new GeolocationHelper($request->get('geolocation_data'));
-        $adstatusTitle = setting('auto_approve') ? 'validate' : 'pending';
-        $adstatus = Adstatus::whereTitle($adstatusTitle)->first();
+        $adstatus = Adstatus::whereTitle('pending')->first();
         $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $geolocation = new Geolocation();
@@ -135,10 +133,6 @@ class AdService extends Controller
         }
 
         event(new AdWasCreated($ad, $this->user));
-
-        if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, 'system'));
-        }
 
         return [
             'adId' => $ad->id,
@@ -179,8 +173,7 @@ class AdService extends Controller
 
         $oldStatus = $ad->adstatus->title;
         $geo = new GeolocationHelper($request->get('geolocation_data'));
-        $adstatusTitle = setting('auto_approve') ? 'validate' : 'pending';
-        $adstatus = Adstatus::whereTitle($adstatusTitle)->first();
+        $adstatus = Adstatus::whereTitle('pending')->first();
         $category = Category::visible()->findOrFail($request->get('category_id'));
 
         $ad->category()->associate($category);
@@ -211,10 +204,6 @@ class AdService extends Controller
 
         if ($oldStatus != 'pending') {
             event(new AdWasUpdated($ad, $this->user));
-        }
-
-        if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, 'system'));
         }
 
         return [

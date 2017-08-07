@@ -174,8 +174,7 @@ class AdController extends Controller
     public function store(Adtype $adtype, AdRequest $request)
     {
         $geo = new GeolocationHelper($request->get('geolocation_data'));
-        $adstatusTitle = setting('auto_approve') ? 'validate' : 'pending';
-        $adstatus = Adstatus::whereTitle($adstatusTitle)->first();
+        $adstatus = Adstatus::whereTitle('pending')->first();
         $user = User::findOrFail($request->get('user_id'));
         $category = Category::findOrFail($request->get('category_id'));
 
@@ -213,10 +212,6 @@ class AdController extends Controller
         event(
             new AdWasCreated($ad, $this->admin)
         );
-
-        if (setting('auto_approve')) {
-            event(new AdWasValidated($ad, 'system'));
-        }
 
         return redirect()->route('zxadmin.ad.edit', $ad->id);
     }

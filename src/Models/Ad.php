@@ -85,9 +85,9 @@ class Ad extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
-    public function scopeValidate($query)
+    public function scopeValidate()
     {
-        return $query->where('adstatus_id', '1');
+        return $this->where('adstatus_id', '1');
     }
 
     protected static function boot()

@@ -48,7 +48,7 @@ class AdtypeEventListener
      */
     public function onAdtypeUpdated($event)
     {
-        //dispatch(new UpdateCache($event->adtype));
+        dispatch(new UpdateCache($event->adtype));
     }
 
     /**
@@ -56,7 +56,7 @@ class AdtypeEventListener
      */
     public function onAdtypeDeleted($event)
     {
-        //dispatch(new UpdateCache($event->adtype, true));
+        dispatch(new UpdateCache($event->adtype, true));
     }
 
     /**
