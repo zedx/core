@@ -137,6 +137,7 @@ class Updater
                     continue;
                 }
 
+
                 $model->api_version = $latest->version;
                 $model->date = Carbon::createFromFormat('F d Y H:i:s', $latest->date);
 

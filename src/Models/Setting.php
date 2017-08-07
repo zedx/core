@@ -15,7 +15,7 @@ class Setting extends Model
         'tell_client_ad_accepted', 'tell_client_ad_refused', 'tell_client_ad_deleted',
         'tell_client_ad_expired', 'tell_client_ad_type_changed', 'new_user_welcome_message',
         'tell_client_new_subscr', 'tell_me_payment_received', 'default_ad_currency',
-        'social_auths', 'language', 'auto_approve',
+        'social_auths', 'language',
     ];
 
     protected $casts = [

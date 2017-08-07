@@ -83,7 +83,7 @@ class SettingController extends Controller
         $setting->save();
         event(new SettingWasUpdated($setting, $admin));
 
-        $this->setToEnv($request);
+        $this->setToEnv($setting);
         $this->saveUploads($request);
 
         return redirect()->route('zxadmin.setting.index')->with('message', 'success');
@@ -123,26 +123,10 @@ class SettingController extends Controller
      *
      * @param Setting $setting
      */
-    protected function setToEnv(SettingRequest $request)
+    protected function setToEnv(Setting $setting)
     {
-        $setting = setting();
         $this->setProvidersToEnv(json_decode($setting->social_auths));
         $this->setLanguageToEnv($setting->language);
-        $this->setAdImagesSettingToEnv($request->image_settings);
-    }
-
-    /**
-     * Set images setting to the environement file.
-     *
-     * @param StdClass $image_settings
-     *
-     * @return void
-     */
-    protected function setAdImagesSettingToEnv($imageSettings)
-    {
-        foreach ($imageSettings as $key => $value) {
-            env_replace('ZEDX_IMAGES_'.$key, starts_with($value, '#') ? substr($value, 1) : $value);
-        }
     }
 
     /**

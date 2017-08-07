@@ -105,7 +105,7 @@ class UserController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param int $id
+   * @param  int  $id
    *
    * @return Response
    */
@@ -119,7 +119,7 @@ class UserController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param int $id
+   * @param  int  $id
    *
    * @return Response
    */
@@ -158,7 +158,7 @@ class UserController extends Controller
   /**
    * Remove a Collection of Users.
    *
-   * @param Collection $users
+   * @param  Collection  $users
    *
    * @return Response
    */
@@ -172,7 +172,7 @@ class UserController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param User $user
+   * @param  User  $user
    *
    * @return Response
    */

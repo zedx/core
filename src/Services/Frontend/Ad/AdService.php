@@ -204,9 +204,7 @@ class AdService extends Controller
         $radius = Request::get('radius');
         $fields_data = Request::get('fields');
         $fields = Cache::rememberForever('search-fields-'.$fields_data, function () use ($fields_data) {
-            $fields = $this->getFields($fields_data);
-
-            return $fields;
+            return $this->getFields($fields_data);
         });
 
         return [

@@ -325,6 +325,7 @@ if (!function_exists('image_route')) {
     }
 }
 
+
 if (!function_exists('getAdFields')) {
     /**
      * Get Ad fields.

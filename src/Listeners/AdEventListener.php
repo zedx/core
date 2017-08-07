@@ -3,7 +3,6 @@
 namespace ZEDx\Listeners;
 
 use Carbon\Carbon;
-use Session;
 use ZEDx\Jobs\UpdateCache;
 use ZEDx\Mailers\AdMail;
 use ZEDx\Models\Notification;
@@ -109,20 +108,6 @@ class AdEventListener
     }
 
     /**
-     * Handle ad update events.
-     */
-    public function onAdDisplay($event)
-    {
-        $viewed = Session::get('viewed_ads', []);
-        $adId = $event->ad->id;
-
-        if (!in_array($adId, $viewed)) {
-            $event->ad->increment('views');
-            Session::push('viewed_ads', $adId);
-        }
-    }
-
-    /**
      * Handle ad delete events.
      */
     public function onAdDelete($event)
@@ -190,6 +175,5 @@ class AdEventListener
         $events->listen('ZEDx\Events\Ad\AdWasUpdated', $class.'@onAdUpdate');
         $events->listen('ZEDx\Events\Ad\AdWasDeleted', $class.'@onAdDelete');
         $events->listen('ZEDx\Events\Ad\AdRenewRequested', $class.'@onAdRenewRequest');
-        $events->listen('ZEDx\Events\Ad\AdWillBeDisplayed', $class.'@onAdDisplay');
     }
 }
